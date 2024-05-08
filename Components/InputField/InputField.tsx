@@ -8,13 +8,14 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
+import { appTheme } from "../../Theme/Apptheme";
 
 type Props = {
   width: DimensionValue;
   height: DimensionValue;
   placeHolder: string;
   handleOnChangeText: (text: string) => void;
-  textValue: string;
+  textValue: string|undefined;
   //contentType:ContentType;
 };
 
@@ -34,6 +35,7 @@ const InputField: React.FC<Props> = ({
       onChangeText={handleOnChangeText}
       placeholder={placeHolder}
       textContentType="none"
+      placeholderTextColor={"gray"}
     //   onFocus={(e:NativeSyntheticEvent<TextInputFocusEventData>)=>console.log(e)}
     />
   );
@@ -46,9 +48,9 @@ const styles = (width: DimensionValue, height: DimensionValue) =>
     container: {
       width: width,
       height: height,
-      borderRadius:5,
-      borderColor:"white",
-      color:"white",
-      borderWidth:1
+      borderRadius:10,
+      backgroundColor: appTheme.colors.background,
+      padding:10,
+      color: appTheme.colors.white
     },
   });
