@@ -1,106 +1,158 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
+
 import { appTheme } from "../../../Theme/Apptheme";
 import { bold, tabsMenu } from "../../../Utils/Constants";
 import Icons from "./Icons/Icons";
 import Label from "./Labels/Labels";
-import Header from "./Header/Header";
+import { IReactNoPropElement } from "../../../Types/ReactComonents/Types";
+import HeaderIcon from "../../HeaderIcon/HeaderIcon";
 
-type Props = {};
-
-const TabsStack = (props: Props) => {
+const TabsStack: IReactNoPropElement = () => {
+  const { width } = useWindowDimensions();
+  const router = useRouter();
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: appTheme.colors.white,
-        tabBarStyle: {
-          height: 58,
-          paddingTop: 6,
-          alignContent: "flex-start",
-          borderTopColor: appTheme.colors.background,
-          backgroundColor: appTheme.colors.background,
-        },
-        tabBarItemStyle: {
-          flexDirection: "column",
-        },
-        headerRight:()=>(<Header/>),
-        headerTitleStyle: {
-          fontFamily: bold,
-          color: appTheme.colors.white,
-        },
-        headerTitleAlign: "center",
-        headerStyle: {
-          borderTopColor: appTheme.colors.background,
-          backgroundColor: appTheme.colors.background,
-        },
-        tabBarInactiveTintColor: appTheme.colors.white,
-      }}
-    >
-      <Tabs.Screen
-        name={"index"}
-        options={{
-          title: tabsMenu.home,
-          tabBarIcon: ({ color, focused }) => (
-            <Icons focused={focused} color={color} name={""} />
+    <View style={styles.container}>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: appTheme.colors.white,
+          tabBarStyle: {
+            height: 58,
+            alignContent: "flex-start",
+            borderTopColor: appTheme.colors.background,
+            backgroundColor: appTheme.colors.background,
+            paddingBottom: width > 875 ? 10 : 3,
+          },
+          tabBarItemStyle: {
+            flexDirection: "column",
+          },
+          headerRight: () => (
+            <HeaderIcon
+              iconName="person-outline"
+              onPressFunc={() => router.push("/login")}
+            />
           ),
-          tabBarLabel: ({ focused }) => (
-            <Label focused={focused} textItem={tabsMenu.home} />
-          )
+          headerLeft: () => (
+            <HeaderIcon
+              iconName="search"
+              onPressFunc={() => router.push("/search")}
+            />
+          ),
+          headerTitleStyle: {
+            fontFamily: bold,
+            color: appTheme.colors.white,
+          },
+          headerTitleAlign: "center",
+          headerStyle: {
+            borderTopColor: appTheme.colors.background,
+            backgroundColor: appTheme.colors.background,
+          },
+          headerRightContainerStyle: {
+            paddingRight: 15,
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: 15,
+          },
+          tabBarInactiveTintColor: appTheme.colors.white,
         }}
-      />
-      <Tabs.Screen
-        name={"tv"}
-        options={{
-          title: "Tv Shows",
-          tabBarIcon: ({ color, focused }) => (
-            <Icons focused={focused} color={color} name={tabsMenu.tvShows} />
-          ),
-          tabBarLabel: ({ focused }) => (
-            <Label focused={focused} textItem={"TvShows"} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name={"music"}
-        options={{
-          title: tabsMenu.music,
-          tabBarIcon: ({ color, focused }) => (
-            <Icons focused={focused} color={color} name={tabsMenu.music} />
-          ),
-          tabBarLabel: ({ focused }) => (
-            <Label focused={focused} textItem={tabsMenu.music} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name={"news"}
-        options={{
-          title: tabsMenu.news,
-          tabBarIcon: ({ color, focused }) => (
-            <Icons focused={focused} color={color} name={tabsMenu.news} />
-          ),
-          tabBarLabel: ({ focused }) => (
-            <Label focused={focused} textItem={tabsMenu.news} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name={"favorites"}
-        options={{
-          title: tabsMenu.favorites,
-          tabBarIcon: ({ color, focused }) => (
-            <Icons focused={focused} color={color} name={tabsMenu.favorites} />
-          ),
-          tabBarLabel: ({ focused }) => (
-            <Label focused={focused} textItem={tabsMenu.favorites} />
-          ),
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name={"index"}
+          options={{
+            title: tabsMenu.home,
+            tabBarIcon: ({ color, focused }) => (
+              <Icons focused={focused} color={color} name={""} />
+            ),
+            tabBarLabel: ({ focused }) => (
+              <Label focused={focused} textItem={tabsMenu.home} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name={"tv"}
+          options={{
+            title: "Tv Shows",
+            tabBarIcon: ({ color, focused }) => (
+              <Icons focused={focused} color={color} name={tabsMenu.tvShows} />
+            ),
+            tabBarLabel: ({ focused }) => (
+              <Label focused={focused} textItem={"TvShows"} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name={"music"}
+          options={{
+            title: tabsMenu.music,
+            tabBarIcon: ({ color, focused }) => (
+              <Icons focused={focused} color={color} name={tabsMenu.music} />
+            ),
+            tabBarLabel: ({ focused }) => (
+              <Label focused={focused} textItem={tabsMenu.music} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name={"news"}
+          options={{
+            title: tabsMenu.news,
+            tabBarIcon: ({ color, focused }) => (
+              <Icons focused={focused} color={color} name={tabsMenu.news} />
+            ),
+            tabBarLabel: ({ focused }) => (
+              <Label focused={focused} textItem={tabsMenu.news} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name={"favorites"}
+          options={{
+            title: tabsMenu.favorites,
+            tabBarIcon: ({ color, focused }) => (
+              <Icons
+                focused={focused}
+                color={color}
+                name={tabsMenu.favorites}
+              />
+            ),
+            tabBarLabel: ({ focused }) => (
+              <Label focused={focused} textItem={tabsMenu.favorites} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="(auth)"
+          options={{
+            title: "none",
+            href: null,
+            headerShown: false,
+            tabBarStyle: {
+              display: "none",
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="(search)"
+          options={{
+            title: "none",
+            href: null,
+            headerShown: false,
+            tabBarStyle: {
+              display: "none",
+            },
+          }}
+        />
+      </Tabs>
+    </View>
   );
 };
 
 export default TabsStack;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "black",
+    flex: 1,
+  },
+});
