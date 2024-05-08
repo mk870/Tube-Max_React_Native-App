@@ -1,7 +1,7 @@
-import { Animated, StyleSheet, useWindowDimensions } from "react-native";
+import { Animated, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { usePathname } from "expo-router";
 import { tabsMenu } from "../../../../Utils/Constants";
 import { appTheme } from "../../../../Theme/Apptheme";
@@ -14,8 +14,6 @@ type Props = {
 
 const Icons: React.FC<Props> = ({ focused, name, color }) => {
   const iconSize = 24;
-  const size = useWindowDimensions();
-  const width = size.width;
   const routePathName = usePathname();
   useEffect(() => {
     if (focused && routePathName === `/${name.toLocaleLowerCase()}`) {
@@ -81,18 +79,12 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
         return <Ionicons name="home-outline" size={iconSize} color={color} />;
     }
   };
-  const marginTop = () => {
-    if (width > 825) return -12;
-    else if (width > 766) return -26;
-    else return 0;
-  };
   return (
     <Animated.View
       style={{
         backgroundColor: focused ? appTheme.colors.lightPrimary : "",
         paddingHorizontal: viewPadding,
         borderRadius: 20,
-        marginTop: width > 825 ? -12 : 0,
       }}
     >
       {icons()}
