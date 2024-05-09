@@ -3,7 +3,7 @@ export const appTheme = {
         primary:'#1C7C8D',
         secondary:'#575958',
         white:"aliceblue",
-        background: '#0d0c0f',
+        background: '#0F0F10',
         lightPrimary:"#13515C",
         red:'#FF2700'
     },

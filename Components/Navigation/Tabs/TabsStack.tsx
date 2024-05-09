@@ -1,17 +1,42 @@
-import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import React from "react";
 import { Tabs, useRouter } from "expo-router";
 
 import { appTheme } from "../../../Theme/Apptheme";
-import { bold, tabsMenu } from "../../../Utils/Constants";
+import {
+  bold,
+  expoSecureValueKeyNames,
+  tabsMenu,
+} from "../../../Utils/Constants";
 import Icons from "./Icons/Icons";
 import Label from "./Labels/Labels";
 import { IReactNoPropElement } from "../../../Types/ReactComonents/Types";
 import HeaderIcon from "../../HeaderIcon/HeaderIcon";
+import { getSecureValue } from "../../../Utils/Funcs";
+import Logout from "../../Alerts/Logout";
 
 const TabsStack: IReactNoPropElement = () => {
   const { width } = useWindowDimensions();
   const router = useRouter();
+  const handleProfileClick = () => {
+    getSecureValue(expoSecureValueKeyNames.accessToken)
+      .then((value: string | null) => {
+        if (value) {
+          console.log("accessToken", value);
+          Logout()
+        } else router.push("/login");
+      })
+      .catch((e) => {
+        console.log("get error", e);
+        Alert.alert("AccessToken Retrivial Error", "please retry again later");
+      });
+  };
   return (
     <View style={styles.container}>
       <Tabs
@@ -30,7 +55,7 @@ const TabsStack: IReactNoPropElement = () => {
           headerRight: () => (
             <HeaderIcon
               iconName="person-outline"
-              onPressFunc={() => router.push("/login")}
+              onPressFunc={handleProfileClick}
             />
           ),
           headerLeft: () => (
@@ -143,6 +168,7 @@ const TabsStack: IReactNoPropElement = () => {
             },
           }}
         />
+        
       </Tabs>
     </View>
   );

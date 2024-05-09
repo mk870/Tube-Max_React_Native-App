@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 
 const ScreenWrapper = (Screen: React.FC) => {
   const useScreenWrapper = (props: any) => {
