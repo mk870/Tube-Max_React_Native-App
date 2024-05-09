@@ -1,9 +1,10 @@
 import React from "react";
 import { Stack, useRouter } from "expo-router";
+
 import { appTheme } from "../../../../Theme/Apptheme";
 import { bold } from "../../../../Utils/Constants";
 import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
-import ScreenWrapper from "../../../../HOCs/ScreenWrapper";
+import StackWrapper from "../../../../HOCs/StackWrapper";
 
 type Props = {};
 
@@ -45,4 +46,4 @@ const AuthStack = (props: Props) => {
   );
 };
 
-export default ScreenWrapper(AuthStack);
+export default StackWrapper(AuthStack);
