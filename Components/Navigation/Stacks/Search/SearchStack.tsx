@@ -4,7 +4,7 @@ import { Stack, useRouter } from "expo-router";
 import { appTheme } from "../../../../Theme/Apptheme";
 import { bold } from "../../../../Utils/Constants";
 import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
-import ScreenWrapper from "../../../../HOCs/ScreenWrapper";
+import StackWrapper from "../../../../HOCs/StackWrapper";
 
 type Props = {};
 
@@ -46,4 +46,4 @@ const SearchStack = (props: Props) => {
   );
 };
 
-export default ScreenWrapper(SearchStack);
+export default StackWrapper(SearchStack);

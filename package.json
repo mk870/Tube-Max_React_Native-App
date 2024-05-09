@@ -23,7 +23,8 @@
     "react-native-screens": "~3.29.0",
     "react-redux": "^9.1.2",
     "react-native-web": "~0.19.6",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "expo-secure-store": "~12.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

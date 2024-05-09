@@ -1,43 +1,44 @@
-enum ContentType {
-  none = "none",
-  addressCity = "addressCity",
-  addressCityAndState = "addressCityAndState",
-  addressState = "addressState",
-  birthdate = "birthdate",
-  birthdateDay = "birthdateDay",
-  birthdateMonth = "birthdateMonth",
-  birthdateYear = "birthdateYear",
-  countryName = "countryName",
-  creditCardExpiration = "creditCardExpiration",
-  creditCardExpirationMonth = "creditCardExpirationMonth",
-  creditCardExpirationYear = "creditCardExpirationYear",
-  creditCardFamilyName = "creditCardFamilyName",
-  creditCardGivenName = "creditCardGivenName",
-  creditCardMiddleName = "creditCardMiddleName",
-  creditCardName = "creditCardName",
-  creditCardNumber = "creditCardNumber",
-  creditCardSecurityCode = "creditCardSecurityCode",
-  creditCardType = "creditCardType",
-  emailAddress = "emailAddress",
-  familyName = "familyName",
-  fullStreetAddress = "fullStreetAddress",
-  givenName = "givenName",
-  jobTitle = "jobTitle",
-  location = "location",
-  middleName = "middleName",
-  name = "name",
-  namePrefix = "namePrefix",
-  nameSuffix = "nameSuffix",
-  newPassword = "newPassword",
-  nickname = "nickname",
-  oneTimeCode = "oneTimeCode",
-  organizationName = "organizationName",
-  password = "password",
-  postalCode = "postalCode",
-  streetAddressLine1 = "streetAddressLine1",
-  streetAddressLine2 = "streetAddressLine2",
-  sublocality = "sublocality",
-  telephoneNumber = "telephoneNumber",
-  url = "URL",
-  username = "username",
-}
+export type ContentType = 
+  "none"|
+  "addressCity"|
+  "addressCityAndState"|
+  "addressState"|
+  "birthdate"|
+  "birthdateDay"|
+  "birthdateMonth"|
+  "birthdateYear"|
+  "countryName"|
+  "creditCardExpiration"|
+  "creditCardExpirationMonth"|
+  "creditCardExpirationYear"|
+  "creditCardFamilyName"|
+  "creditCardGivenName"|
+  "creditCardMiddleName"|
+  "creditCardName"|
+  "creditCardNumber"|
+  "creditCardSecurityCode"|
+  "creditCardType"|
+  "emailAddress"|
+  "familyName"|
+  "fullStreetAddress"|
+  "givenName"|
+  "jobTitle"|
+  "location"|
+  "middleName"|
+  "name"|
+  "namePrefix"|
+  "nameSuffix"|
+  "newPassword"|
+  "nickname"|
+  "oneTimeCode"|
+  "organizationName"|
+  "password"|
+  "postalCode"|
+  "streetAddressLine1"|
+  "streetAddressLine2"|
+  "sublocality"|
+  "telephoneNumber"|
+  "URL"|
+  "username"
+
+
