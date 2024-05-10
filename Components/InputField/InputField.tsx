@@ -19,7 +19,9 @@ type Props = {
   textValue: string | undefined;
   contentType: ContentType;
   type: string;
-  label: string;
+  label?: string;
+  isFocused?: boolean;
+  backgroundColor?: string
 };
 
 const InputField: React.FC<Props> = ({
@@ -31,19 +33,22 @@ const InputField: React.FC<Props> = ({
   contentType,
   type,
   label,
+  isFocused,
+  backgroundColor
 }) => {
   const [ispassWordHidden, setIsPassWordHidden] = useState<boolean>(true);
   const iconSize = 20;
   const iconColor = "gray";
-  const secureText = ()=>{
-    if(type === "password"){
-      if(ispassWordHidden) return true
+  const secureText = () => {
+    if (type === "password") {
+      if (ispassWordHidden) return true
       else return false
-    }else return false
+    } else return false
   }
+
   return (
     <View style={styles(width, height).container}>
-      <Text style={styles(width, height).labelText}>{label}</Text>
+      {label && <Text style={styles(width, height).labelText}>{label}</Text>}
       <View style={styles(width, height).inputWrapper}>
         {type === "emailAddress" && (
           <Zocial
@@ -96,7 +101,7 @@ const InputField: React.FC<Props> = ({
           />
         )}
         <TextInput
-          style={styles(width, height).input}
+          style={[styles(width, height).input,{backgroundColor:backgroundColor?backgroundColor:"black"}]}
           value={textValue}
           onChangeText={handleOnChangeText}
           placeholder={placeHolder}
@@ -108,6 +113,7 @@ const InputField: React.FC<Props> = ({
           enterKeyHint={"enter"}
           keyboardAppearance="dark"
           secureTextEntry={secureText()}
+          autoFocus={isFocused?isFocused:false}
         />
       </View>
     </View>
@@ -144,7 +150,6 @@ const styles = (width: DimensionValue, height: DimensionValue) =>
       right: "5%",
     },
     input: {
-      backgroundColor: "black",
       height: height,
       width: "100%",
       textAlign: "left",

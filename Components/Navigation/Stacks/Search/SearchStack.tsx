@@ -1,14 +1,13 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { Stack, useRouter } from "expo-router";
+
 import { appTheme } from "../../../../Theme/Apptheme";
 import { bold } from "../../../../Utils/Constants";
 import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
 import StackWrapper from "../../../../HOCs/StackWrapper";
+import InputField from "~/Components/InputField/InputField";
 
-type Props = {};
-
-const SearchStack = (props: Props) => {
+const SearchStack = () => {
   const router = useRouter();
   return (
     <Stack
@@ -16,6 +15,7 @@ const SearchStack = (props: Props) => {
         headerStyle: {
           backgroundColor: appTheme.colors.background,
         },
+        headerBackButtonMenuEnabled:false,
         headerTitleStyle: {
           fontFamily: bold,
           color: appTheme.colors.white,
@@ -33,13 +33,14 @@ const SearchStack = (props: Props) => {
       <Stack.Screen
         name="search"
         options={{
-          title: "Search",
+          headerShown: false
         }}
       />
       <Stack.Screen
-        name="results"
+        name="voiceSearch"
         options={{
-          title: "Results",
+          title: "Voice Search",
+          presentation:"modal"
         }}
       />
     </Stack>
