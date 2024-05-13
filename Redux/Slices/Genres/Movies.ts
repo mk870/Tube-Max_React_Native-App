@@ -40,7 +40,16 @@ export const movieGenresSlice = createSlice({
       });
       state.value = newList;
     },
+    clearMoviesGenres: (state) => {
+      const newList = state.value.map((genre) => {
+          return {
+            ...genre,
+            selected: false,
+          };
+      });
+      state.value = newList;
+    },
   },
 });
-export const { toggleMovieGenre } = movieGenresSlice.actions;
+export const { toggleMovieGenre,clearMoviesGenres } = movieGenresSlice.actions;
 export default movieGenresSlice.reducer;

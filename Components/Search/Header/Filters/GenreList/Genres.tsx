@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
+
 import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
 import { IGenre, IGenreList } from "~/Types/Redux/Types";
 import Genre from "./GenreCard/Genre";
@@ -32,30 +33,34 @@ const Genres: React.FC<Props> = ({ contentType }) => {
       dispatch(toggleMusicGenres(genre.id));
     }
   };
-  const { headertext } = styles;
+  const { headertext, container } = styles;
   return (
-    <FlatList
-      data={dataList()}
-      renderItem={({ item }) => (
-        <Genre genre={item} onPressFunc={() => handleSelect(item)} />
-      )}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      ListHeaderComponent={() => (
-        <View>
-          <Text style={headertext}>Genres</Text>
-        </View>
-      )}
-    />
+    <View style={container}>
+      <Text style={headertext}>
+        {contentType === "music" ? "Playlist Genres" : "Genres"}
+      </Text>
+      <FlatList
+        data={dataList()}
+        renderItem={({ item }) => (
+          <Genre genre={item} onPressFunc={() => handleSelect(item)} />
+        )}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
+    </View>
   );
 };
 
 export default Genres;
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 5,
+  },
   headertext: {
     fontFamily: medium,
     fontSize: large,
     color: white,
+    marginLeft: 10,
   },
 });

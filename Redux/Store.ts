@@ -3,6 +3,9 @@ import { userSlice } from './Slices/User/UserSlice'
 import { musicGenresSlice } from './Slices/Genres/Music'
 import { movieGenresSlice } from './Slices/Genres/Movies'
 import { tvShowGenresSlice } from './Slices/Genres/TvShows'
+import { moviesPlayingNowSlice } from './Slices/Movies/NowPlayingSlice'
+import { popularMoviesSlice } from './Slices/Movies/PopularSlice'
+import { topRatedMoviesSlice } from './Slices/Movies/TopRatedSlice'
 
 
 export const store = configureStore({
@@ -10,7 +13,10 @@ export const store = configureStore({
     user: userSlice.reducer,
     musicGenres: musicGenresSlice.reducer,
     movieGenres: movieGenresSlice.reducer,
-    tvShowGenres: tvShowGenresSlice.reducer
+    tvShowGenres: tvShowGenresSlice.reducer,
+    moviesPlayingNow: moviesPlayingNowSlice.reducer,
+    popularMovies: popularMoviesSlice.reducer,
+    topRatedMovies: topRatedMoviesSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

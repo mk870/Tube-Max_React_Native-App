@@ -38,7 +38,16 @@ export const tvShowGenresSlice = createSlice({
       });
       state.value = newList;
     },
+    clearTvShowGenres: (state) => {
+      const newList = state.value.map((genre) => {
+          return {
+            ...genre,
+            selected: false,
+          };
+      });
+      state.value = newList;
+    },
   },
 });
-export const { toggleTvShowGenre } = tvShowGenresSlice.actions;
+export const { toggleTvShowGenre, clearTvShowGenres } = tvShowGenresSlice.actions;
 export default tvShowGenresSlice.reducer;
