@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IMusicGenreList } from "~/Types/Redux/Types";
+import { IGenreList } from "~/Types/Redux/Types";
 
-const musicGenres: IMusicGenreList = [
+const musicGenres: IGenreList = [
   { id: "toplists", name: "Toplist", selected: false },
   { id: "0JQ5DAqbMKFNQ0fGp4byGU", name: "Afro", selected: false },
   { id: "0JQ5DAqbMKFEC4WFtoNRpw", name: "Pop", selected: false },
@@ -38,7 +38,16 @@ export const musicGenresSlice = createSlice({
       });
       state.value = newList;
     },
+    clearMusicGenres: (state) => {
+      const newList = state.value.map((genre) => {
+          return {
+            ...genre,
+            selected: false,
+          };
+      });
+      state.value = newList;
+    },
   },
 });
-export const { toggleMusicGenres } = musicGenresSlice.actions;
+export const { toggleMusicGenres,clearMusicGenres } = musicGenresSlice.actions;
 export default musicGenresSlice.reducer;

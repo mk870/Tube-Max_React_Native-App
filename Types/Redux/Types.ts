@@ -1,3 +1,5 @@
+import { IMovieSummary } from "../Apis/Movies/SummaryMovieInfo";
+
 export type IUser = {
   emailAddress: string;
   firstName: string;
@@ -10,4 +12,7 @@ export type IGenre ={
   name: string;
   selected: boolean;
 }
-
+export type IMovieSummaryDispatchAction = {
+  payload: IMovieSummary[];
+  type: string;
+}

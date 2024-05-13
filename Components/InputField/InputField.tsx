@@ -10,18 +10,20 @@ import { Zocial, Feather, Ionicons } from "@expo/vector-icons";
 
 import { appTheme } from "../../Theme/Apptheme";
 import { ContentType } from "./Types/Types";
+import { IVoidFunc } from "~/Types/Shared/Types";
 
 type Props = {
   width: DimensionValue;
   height: DimensionValue;
   placeHolder: string;
   handleOnChangeText: (text: string) => void;
+  handleOnEnter?: IVoidFunc;
   textValue: string | undefined;
   contentType: ContentType;
   type: string;
   label?: string;
   isFocused?: boolean;
-  backgroundColor?: string
+  backgroundColor?: string;
 };
 
 const InputField: React.FC<Props> = ({
@@ -34,17 +36,18 @@ const InputField: React.FC<Props> = ({
   type,
   label,
   isFocused,
-  backgroundColor
+  backgroundColor,
+  handleOnEnter,
 }) => {
   const [ispassWordHidden, setIsPassWordHidden] = useState<boolean>(true);
   const iconSize = 20;
   const iconColor = "gray";
   const secureText = () => {
     if (type === "password") {
-      if (ispassWordHidden) return true
-      else return false
-    } else return false
-  }
+      if (ispassWordHidden) return true;
+      else return false;
+    } else return false;
+  };
 
   return (
     <View style={styles(width, height).container}>
@@ -64,6 +67,7 @@ const InputField: React.FC<Props> = ({
             size={iconSize}
             color={iconColor}
             style={styles(width, height).icon}
+            onPress={handleOnEnter}
           />
         )}
         {type === "password" && ispassWordHidden && (
@@ -101,7 +105,10 @@ const InputField: React.FC<Props> = ({
           />
         )}
         <TextInput
-          style={[styles(width, height).input,{backgroundColor:backgroundColor?backgroundColor:"black"}]}
+          style={[
+            styles(width, height).input,
+            { backgroundColor: backgroundColor ? backgroundColor : "black" },
+          ]}
           value={textValue}
           onChangeText={handleOnChangeText}
           placeholder={placeHolder}
@@ -113,7 +120,8 @@ const InputField: React.FC<Props> = ({
           enterKeyHint={"enter"}
           keyboardAppearance="dark"
           secureTextEntry={secureText()}
-          autoFocus={isFocused?isFocused:false}
+          autoFocus={isFocused ? isFocused : false}
+          onSubmitEditing={handleOnEnter}
         />
       </View>
     </View>

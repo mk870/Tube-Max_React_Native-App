@@ -21,3 +21,11 @@ export const expoSecureValueKeyNames= {
 export const regular = "Roboto-regular";
 export const medium = "Roboto-medium";
 export const bold = "Roboto-large";
+
+export const tmdbKey = process.env.TMD_API_KEY;
+export const youtubeKey = process.env.YOUTUBE_API_KEY;
+export const client_id = process.env.SPOTIFY_CLIENT_ID;
+export const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+export const newsApiKey = process.env.NEWS_API_KEY;
+export const googleClientId = process.env.CLIENT_ID
+export const googleSecretId = process.env.SECRET_ID
