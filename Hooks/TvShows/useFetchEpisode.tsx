@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { tmdbKey } from "~/Utils/Constants";
-import { IMovieReview } from "~/Types/Apis/Movies/MovieReviews";
+import { IEpisode } from "~/Types/Apis/TvShows/Episode";
 
-
-const useFetchMovieReviews = (id: number) => {
+const useFetchEpisode = (
+  id: number,
+  seasonNumber: number,
+  episodeNumber: number
+) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<IMovieReview[] | null>(null);
+  const [data, setData] = useState<IEpisode | null>(null);
   const [error, setError] = useState<boolean>(false);
-  const url = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${tmdbKey}&language=en-US`;
+  const url = `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}/episode/${episodeNumber}?api_key=${tmdbKey}&language=en-US`;
   useEffect(() => {
     setIsLoading(true);
     setError(false);
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data.results);
-        setData(res.data.results);
+        console.log(res.data);
+        setData(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -24,7 +27,7 @@ const useFetchMovieReviews = (id: number) => {
       })
       .finally(() => setIsLoading(false));
   }, []);
-  return { reviews: data, isLoading, error };
+  return { episode: data, isLoading, error };
 };
 
-export default useFetchMovieReviews;
+export default useFetchEpisode;
