@@ -1,4 +1,5 @@
 import { IMovieSummary } from "../Apis/Movies/SummaryMovieInfo";
+import { IShowSummary } from "../Apis/TvShows/ShowSummary";
 
 export type IUser = {
   emailAddress: string;
@@ -14,5 +15,9 @@ export type IGenre ={
 }
 export type IMovieSummaryDispatchAction = {
   payload: IMovieSummary[];
+  type: string;
+}
+export type IShowSummaryDispatchAction = {
+  payload: IShowSummary[];
   type: string;
 }
