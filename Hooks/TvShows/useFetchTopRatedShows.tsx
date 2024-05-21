@@ -17,7 +17,6 @@ const useFetchTopRatedShows = () => {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data.results);
           dispatch(addtopRatedShows(res.data.results));
         })
         .catch((e) => {

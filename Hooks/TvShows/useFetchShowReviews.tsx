@@ -14,7 +14,6 @@ const useFetchShowReviews = (id: number) => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data.results);
         setData(res.data.results);
       })
       .catch((e) => {

@@ -17,7 +17,6 @@ const useFetchPopularMovies = () => {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data.results);
           dispatch(addPopularMovies(res.data.results));
         })
         .catch((e) => {

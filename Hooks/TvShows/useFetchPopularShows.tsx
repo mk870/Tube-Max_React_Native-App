@@ -17,7 +17,6 @@ const useFetchPopularShows = () => {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data.results);
           dispatch(addpopularShows(res.data.results));
         })
         .catch((e) => {
