@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
 import { IArtist, IStringOrNull } from "~/Types/Shared/Types";
 import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
 
-const useFetchAlbumArtists = (artistsIds: string | null) => {
+const useFetchTrackArtists = (artistsIds: string | null) => {
   const [error, setError] = useState<IStringOrNull>(null);
   const [data, setData] = useState<IArtist[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -39,8 +39,8 @@ const useFetchAlbumArtists = (artistsIds: string | null) => {
           setIsLoading(false);
         });
     }
-  }, [spotifyAccessToken, artistsIds]);
+  }, [artistsIds, spotifyAccessToken]);
   return { data, isLoading, error };
 };
 
-export default useFetchAlbumArtists;
+export default useFetchTrackArtists;
