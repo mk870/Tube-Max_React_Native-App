@@ -9,6 +9,13 @@ import { topRatedMoviesSlice } from './Slices/Movies/TopRatedSlice'
 import { popularShowsSlice } from './Slices/TvShows/PopularShows'
 import { topRatedShowsSlice } from './Slices/TvShows/TopRatedShows'
 import { showsPlayingNowSlice } from './Slices/TvShows/ShowsNowPlaying'
+import { spotifyAccessTokenSlice } from './Slices/Music/Token/SpotifyAccessTokenSlice'
+import { topArtistsSlice } from './Slices/Music/Artists/TopArtistsSlice'
+import { popPlaylistsSlice } from './Slices/Music/Playlists/PopSlice'
+import { electroPlaylistsSlice } from './Slices/Music/Playlists/ElectroSlice'
+import { hipHopPlaylistsSlice } from './Slices/Music/Playlists/HipHopSlice'
+import { rnbPlaylistsSlice } from './Slices/Music/Playlists/RNBSLice'
+import { topListPlaylistsSlice } from './Slices/Music/Playlists/TopListSlice'
 
 
 export const store = configureStore({
@@ -23,6 +30,13 @@ export const store = configureStore({
     popularShows: popularShowsSlice.reducer,
     topRatedShows: topRatedShowsSlice.reducer,
     showsPlayingNow: showsPlayingNowSlice.reducer,
+    spotifyAccessToken: spotifyAccessTokenSlice.reducer,
+    topArtists: topArtistsSlice.reducer,
+    popPlaylists: popPlaylistsSlice.reducer,
+    hipHopPlaylists: hipHopPlaylistsSlice.reducer,
+    electroPlaylists: electroPlaylistsSlice.reducer,
+    rnbPlaylists: rnbPlaylistsSlice.reducer,
+    topListPlaylists: topListPlaylistsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

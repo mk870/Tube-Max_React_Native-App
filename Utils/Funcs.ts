@@ -48,3 +48,4 @@ export const passwordGuideLines = [
   "have atleast 1 number",
   "have atleast 1 capital letter",
 ];
+
