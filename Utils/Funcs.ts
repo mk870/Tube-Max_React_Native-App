@@ -1,4 +1,5 @@
 import * as SecureStore from "expo-secure-store";
+import { ITrack } from "~/Types/Shared/Types";
 
 export const saveSecureValue = async (key: string, value: string) => {
   await SecureStore.setItemAsync(key, value);
@@ -48,4 +49,31 @@ export const passwordGuideLines = [
   "have atleast 1 number",
   "have atleast 1 capital letter",
 ];
-
+export const getArtistIds = (tracksList: ITrack[] | null) => {
+  if (tracksList === null) return null;
+  else {
+    const ids: string[] = [];
+    const albumArtistsObj: { [index: string]: string } = {};
+    for (let i = 0; i < tracksList.length; i++) {
+      for (let j = 0; j < tracksList[i].artists.length; j++) {
+        if (tracksList[i].artists[j].name in albumArtistsObj === false) {
+          albumArtistsObj[tracksList[i].artists[j].name] =
+            tracksList[i].artists[j].id;
+        }
+      }
+    }
+    for (const key in albumArtistsObj) {
+      ids.push(albumArtistsObj[key]);
+    }
+    const processedIds = [];
+    for (let i = 0; i < ids.length; i++) {
+      if (i === ids.length - 1) {
+        processedIds.push(ids[i]);
+      } else {
+        processedIds.push(`${ids[i]},`);
+      }
+    }
+    const idsInString = "".concat(...processedIds);
+    return idsInString;
+  }
+};

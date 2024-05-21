@@ -15,7 +15,6 @@ const useFetchSeason = (id:number,seasonNumber:number) => {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
           setData(res.data);
         })
         .catch((e) => {

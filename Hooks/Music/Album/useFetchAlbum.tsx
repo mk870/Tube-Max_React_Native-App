@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
 import { IStringOrNull } from "~/Types/Shared/Types";
-import { refetchSpotifyTokenAfterExpiration } from "./Playlists/RefetchToken/RefetchToken";
-import { IPlayList } from "~/Types/Apis/Music/PlayList";
+import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
+import { IAlbum } from "~/Types/Apis/Music/Album/Album";
 
-const useFetchPlaylist = (playlistId: string) => {
+const useFetchAlbum = (albumId: string) => {
   const [error, setError] = useState<IStringOrNull>(null);
-  const [data, setData] = useState<IPlayList|null>(null);
+  const [data, setData] = useState<IAlbum | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
   const spotifyAccessToken = useAppSelector(
@@ -17,13 +17,12 @@ const useFetchPlaylist = (playlistId: string) => {
     setData(null);
     setError(null);
     axios
-      .get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+      .get(`https://api.spotify.com/v1/albums/${albumId}`, {
         headers: {
           Authorization: `Bearer ${spotifyAccessToken}`,
         },
       })
       .then((data) => {
-        console.log(data.data)
         setData(data.data);
         setIsLoading(false);
       })
@@ -39,8 +38,8 @@ const useFetchPlaylist = (playlistId: string) => {
         }
         setIsLoading(false);
       });
-  }, [playlistId, spotifyAccessToken]);
+  }, [albumId, spotifyAccessToken]);
   return { data, isLoading, error };
 };
 
-export default useFetchPlaylist;
+export default useFetchAlbum;

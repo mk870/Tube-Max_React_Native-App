@@ -17,7 +17,6 @@ const useFetchShowsOnAir = () => {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data.results);
           dispatch(addShowsPlayingNow(res.data.results));
         })
         .catch((e) => {
