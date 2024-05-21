@@ -14,7 +14,6 @@ const useFetchMovieById = (id: number) => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((e) => {

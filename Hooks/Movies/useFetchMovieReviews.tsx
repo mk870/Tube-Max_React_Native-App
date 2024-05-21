@@ -1,10 +1,8 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { tmdbKey } from "~/Utils/Constants";
 import { IMovieReview } from "~/Types/Apis/Movies/MovieReviews";
 
-type Props = {};
 
 const useFetchMovieReviews = (id: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -17,7 +15,6 @@ const useFetchMovieReviews = (id: number) => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data.results);
         setData(res.data.results);
       })
       .catch((e) => {

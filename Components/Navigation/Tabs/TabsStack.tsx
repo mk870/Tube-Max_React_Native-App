@@ -20,10 +20,12 @@ import { IReactNoPropElement } from "../../../Types/ReactComonents/Types";
 import HeaderIcon from "../../HeaderIcon/HeaderIcon";
 import { getSecureValue } from "../../../Utils/Funcs";
 import Logout from "../../Alerts/Logout";
+import useGetSpotifyToken from "~/Hooks/Music/useGetSpotifyToken";
 
 const TabsStack: IReactNoPropElement = () => {
   const { width } = useWindowDimensions();
   const router = useRouter();
+  useGetSpotifyToken()
   const handleProfileClick = () => {
     getSecureValue(expoSecureValueKeyNames.accessToken)
       .then((value: string | null) => {
