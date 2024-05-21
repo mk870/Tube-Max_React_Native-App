@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ITopArtist } from "~/Types/Apis/Music/TopArtist";
 import { ITopArtistDispatchAction } from "~/Types/Redux/Types";
+import { IArtist } from "~/Types/Shared/Types";
 
-const topArtists:ITopArtist[] = []
+const topArtists:IArtist[] = []
 export const topArtistsSlice = createSlice({
   name: "topArtists",
   initialState: {

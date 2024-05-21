@@ -21,6 +21,18 @@ export type IImage = {
 };
 export type IArtist = {
   external_urls: IExternalUrl;
+  followers: { href: IStringOrNull; total: INumberOrNull };
+  genres: string[] | null;
+  href: IStringOrNull;
+  id: string;
+  images: IImage[] | null;
+  name: string;
+  popularity: INumberOrNull;
+  type: IStringOrNull;
+  uri: IStringOrNull;
+};
+export type IArtistSummary = {
+  external_urls: IExternalUrl;
   href: IStringOrNull;
   id: string;
   name: string;
@@ -28,8 +40,8 @@ export type IArtist = {
   uri: IStringOrNull;
 };
 
-export type ITrack = {
-  artists: IArtist[];
+export type ITrackSummary = {
+  artists: IArtistSummary[];
   available_markets: string[] | null;
   disc_number: INumberOrNull;
   duration_ms: INumberOrNull;
