@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ScreenWrapper from '../HOCs/ScreenWrapper'
+import useFetchNews from '~/Hooks/News/useFetchNews'
 
-type Props = {}
 
-const news = (props: Props) => {
+const news = () => {
+  // const news = useFetchNews("albums")
   return (
     <View>
       <Text>news</Text>

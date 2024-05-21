@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
 import axios from "axios";
 import { IStringOrNull } from "~/Types/Shared/Types";
-import { refetchSpotifyTokenAfterExpiration } from "./Playlists/RefetchToken/RefetchToken";
+import { refetchSpotifyTokenAfterExpiration } from "./RefetchToken/RefetchToken";
 import { IPlayList } from "~/Types/Apis/Music/PlayList";
 
 const useFetchPlaylist = (playlistId: string) => {

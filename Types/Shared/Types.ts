@@ -56,3 +56,12 @@ export type ITrackSummary = {
   type: IStringOrNull;
   uri: IStringOrNull;
 };
+
+export type INewsCategory =
+  | "musicians"
+  | "movies"
+  | "tv shows"
+  | "albums"
+  | "songs"
+  | "hollywood actors"
+  | "entertainment";
