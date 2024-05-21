@@ -4,7 +4,7 @@ import ScreenWrapper from "../HOCs/ScreenWrapper";
 import useFetchElectro from "~/Hooks/Music/Playlists/useFetchElectro";
 import useFetchHipHop from "~/Hooks/Music/Playlists/useFetchHipHop";
 import useFetchTopArtists from "~/Hooks/Music/Artists/useFetchTopArtists";
-import useFetchPlaylist from "~/Hooks/Music/useFetchPlaylist";
+import useFetchPlaylist from "~/Hooks/Music/Playlists/useFetchPlaylist";
 const music = () => {
   return (
     <View>

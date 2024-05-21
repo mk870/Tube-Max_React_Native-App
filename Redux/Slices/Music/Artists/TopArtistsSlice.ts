@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ITopArtistDispatchAction } from "~/Types/Redux/Types";
 import { IArtist } from "~/Types/Shared/Types";
 
-const topArtists:IArtist[] = []
+const topArtists: IArtist[] = [];
 export const topArtistsSlice = createSlice({
   name: "topArtists",
   initialState: {
     value: topArtists,
   },
   reducers: {
-    addTopArtists: (state, action:ITopArtistDispatchAction) => {
+    addTopArtists: (state, action: ITopArtistDispatchAction) => {
       state.value = action.payload;
     },
   },
