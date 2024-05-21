@@ -18,7 +18,6 @@ const useFetchMoviesPlayingNow = () => {
         axios
           .get(url)
           .then((res) => {
-            console.log(res.data.results);
             dispatch(addMoviesPlayingNow(res.data.results));
           })
           .catch((e) => {

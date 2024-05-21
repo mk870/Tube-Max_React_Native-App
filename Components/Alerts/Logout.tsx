@@ -1,5 +1,5 @@
-import { Alert, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Alert, StyleSheet } from 'react-native'
+
 import { saveSecureValue } from '../../Utils/Funcs'
 import { expoSecureValueKeyNames } from '../../Utils/Constants'
 
