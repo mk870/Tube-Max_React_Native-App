@@ -56,7 +56,7 @@ export type ITrackSummary = {
   type: IStringOrNull;
   uri: IStringOrNull;
 };
-
+export type IContentType = "movie"|"tvShow"|"music"
 export type INewsCategory =
   | "musicians"
   | "movies"

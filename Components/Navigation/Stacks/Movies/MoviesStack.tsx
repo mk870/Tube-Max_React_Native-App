@@ -1,22 +1,21 @@
 import React from "react";
 import { Stack, useRouter } from "expo-router";
+import { bold } from "~/Utils/Constants";
+import { background, white } from "~/Theme/Apptheme";
+import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
+import StackWrapper from "~/HOCs/StackWrapper";
 
-import { appTheme } from "../../../../Theme/Apptheme";
-import { bold } from "../../../../Utils/Constants";
-import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
-import StackWrapper from "../../../../HOCs/StackWrapper";
-
-const AuthStack = () => {
+const MoviesStack = () => {
   const router = useRouter();
   return (
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: appTheme.colors.background,
+          backgroundColor: background,
         },
         headerTitleStyle: {
           fontFamily: bold,
-          color: appTheme.colors.white,
+          color: white,
         },
         headerTitleAlign: "center",
         headerLeft: () => (
@@ -29,19 +28,20 @@ const AuthStack = () => {
       }}
     >
       <Stack.Screen
-        name="login"
+        name="index"
         options={{
-          title: "Login",
+          title: "Movies",
+          headerShown:false
         }}
       />
       <Stack.Screen
-        name="register"
+        name="[id]"
         options={{
-          title: "Register",
+          title: "Movie Details",
         }}
       />
     </Stack>
   );
 };
 
-export default StackWrapper(AuthStack);
+export default StackWrapper(MoviesStack);

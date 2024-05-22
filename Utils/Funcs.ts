@@ -1,5 +1,5 @@
 import * as SecureStore from "expo-secure-store";
-import { IArtistSummary, ITrackSummary } from "~/Types/Shared/Types";
+import { IArtistSummary, IContentType, ITrackSummary } from "~/Types/Shared/Types";
 
 export const saveSecureValue = async (key: string, value: string) => {
   await SecureStore.setItemAsync(key, value);
@@ -89,3 +89,5 @@ export const getTrackArtistsIds = (artistList: IArtistSummary[] | null) => {
     return ids;
   } else return null;
 };
+
+
