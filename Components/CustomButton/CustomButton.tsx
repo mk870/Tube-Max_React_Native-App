@@ -8,7 +8,9 @@ type Props = {
   onPressFunc: () => void;
   title: string;
   width?: number;
+  height?: number;
   color?: string;
+  borderRadius?: number;
   isDisabled?: boolean;
 };
 
@@ -18,6 +20,8 @@ const CustomButton: React.FC<Props> = ({
   width,
   color,
   isDisabled,
+  height,
+  borderRadius,
 }) => {
   const { container, textStyles } = styles;
   return (
@@ -28,7 +32,9 @@ const CustomButton: React.FC<Props> = ({
         container,
         {
           width: width ? width : "100%",
+          height: height ? height : 50,
           backgroundColor: color ? color : appTheme.colors.lightPrimary,
+          borderRadius: borderRadius ? borderRadius : 10,
         },
       ]}
     >
@@ -45,10 +51,8 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 10,
   },
   textStyles: {
     color: appTheme.colors.white,
