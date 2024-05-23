@@ -181,7 +181,19 @@ const TabsStack: IReactNoPropElement = () => {
             },
           }}
         />
+        <Tabs.Screen
+          name="(movie)"
+          options={{
+            title: "none",
+            href: null,
+            headerShown: false,
+            tabBarStyle: {
+              display: "none",
+            },
+          }}
+        />
       </Tabs>
+      
     </View>
   );
 };
