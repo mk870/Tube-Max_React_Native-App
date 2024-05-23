@@ -27,17 +27,17 @@ const MoviesStack = () => {
         ),
       }}
     >
-      <Stack.Screen
-        name="index"
+       <Stack.Screen
+        name="[id]"
         options={{
-          title: "Movies",
           headerShown:false
         }}
       />
       <Stack.Screen
-        name="[id]"
+        name="actors"
         options={{
-          title: "Movie Details",
+          title: "Movies",
+          headerShown:false
         }}
       />
     </Stack>

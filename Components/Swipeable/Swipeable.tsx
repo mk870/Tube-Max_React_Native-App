@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
@@ -14,7 +14,6 @@ type Props = { headerTitle: string } & (
 );
 
 const Swipeable: React.FC<Props> = ({ type, content, headerTitle }) => {
-  const [activeItem,setActiveItem] = useState<number|string>(content[0].id)
   const { headertext, container } = styles;
   const handleSelect = (
     contentItem: IMovieSummary | IShowSummary

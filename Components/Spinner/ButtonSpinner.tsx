@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import React from 'react'
 import { appTheme } from '../../Theme/Apptheme'
 
@@ -6,7 +6,7 @@ import { appTheme } from '../../Theme/Apptheme'
 const ButtonSpinner = () => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size={"large"} color={appTheme.colors.white} />
+      <ActivityIndicator size={"small"} color={appTheme.colors.white} />
     </View>
   )
 }

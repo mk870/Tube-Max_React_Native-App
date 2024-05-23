@@ -1,17 +1,19 @@
 import {
-  Animated,
+  GestureResponderEvent,
   ImageBackground,
+  Pressable,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IVoidFunc } from "~/Types/Shared/Types";
-import { appTheme} from "~/Theme/Apptheme";
+import { appTheme } from "~/Theme/Apptheme";
 import { styles } from "./styles";
 import { getContentImage } from "./utils/utils";
+import { useRouter } from "expo-router";
+import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
 
 type Props = {
   movieContent: IMovieSummary;
@@ -19,10 +21,17 @@ type Props = {
 };
 
 const MovieCard: React.FC<Props> = ({
-  movieContent: { id, vote_average, poster_path, title, release_date }
+  movieContent: { id, vote_average, poster_path, title, release_date },
 }) => {
-  const getImage = () => {
-    return `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const route = useRouter();
+  const navigate = () => {
+    route.push(`(movies)/${id}`);
+  };
+  const addMovieToFavourites = (e: GestureResponderEvent) => {
+    e.stopPropagation();
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 3000);
   };
   const {
     poster,
@@ -46,9 +55,7 @@ const MovieCard: React.FC<Props> = ({
     }
   };
   return (
-    <Animated.View
-      style={[ container]}
-    >
+    <View style={[container]} onTouchEnd={navigate}>
       <ImageBackground
         source={getContentImage(poster_path)}
         style={poster}
@@ -69,25 +76,32 @@ const MovieCard: React.FC<Props> = ({
                 <Text style={ratingsText}>{getRating()}</Text>
               </View>
               <View style={subDetails}>
-                <TouchableOpacity
-                  onPress={() => console.log("hie")}
+                <Pressable
                   style={btn}
                 >
                   <Text style={detailsText}>view</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={addMovieContainer}>
-                  <AntDesign
-                    name="plus"
-                    size={20}
-                    color={appTheme.colors.white}
-                  />
-                </TouchableOpacity>
+                </Pressable>
+                <Pressable
+                  style={addMovieContainer}
+                  onTouchEnd={(e) => addMovieToFavourites(e)}
+                  disabled={isLoading ? true : false}
+                >
+                  {isLoading ? (
+                    <ButtonSpinner />
+                  ) : (
+                    <AntDesign
+                      name="plus"
+                      size={20}
+                      color={appTheme.colors.white}
+                    />
+                  )}
+                </Pressable>
               </View>
             </View>
           </View>
         </View>
       </ImageBackground>
-    </Animated.View>
+    </View>
   );
 };
 

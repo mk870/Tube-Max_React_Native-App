@@ -31,11 +31,13 @@ const styles = StyleSheet.create({
   },
   skeletonStyles: {
     marginHorizontal: 5,
+    marginBottom:10
   },
   headertext: {
     fontFamily: medium,
     fontSize: large,
     color: white,
     marginLeft: 10,
+    marginTop:10
   },
 });
