@@ -1,5 +1,5 @@
 import * as SecureStore from "expo-secure-store";
-import { IArtistSummary, IContentType, ITrackSummary } from "~/Types/Shared/Types";
+import { IArtistSummary, ITrackSummary } from "~/Types/Shared/Types";
 
 export const saveSecureValue = async (key: string, value: string) => {
   await SecureStore.setItemAsync(key, value);
@@ -89,5 +89,9 @@ export const getTrackArtistsIds = (artistList: IArtistSummary[] | null) => {
     return ids;
   } else return null;
 };
-
+export const timeConverter = (totalMinutes:number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${hours}h ${minutes}m`;
+}
 

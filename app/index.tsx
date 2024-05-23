@@ -1,9 +1,6 @@
 import {
   ScrollView,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
+  StyleSheet
 } from "react-native";
 import React from "react";
 import ScreenWrapper from "~/HOCs/ScreenWrapper";

@@ -1,5 +1,10 @@
 import { StyleSheet } from "react-native";
-import { appTheme, primary, white } from "~/Theme/Apptheme";
+import {
+  appTheme,
+  imageBackgroundColor,
+  primary,
+  white,
+} from "~/Theme/Apptheme";
 import { medium } from "~/Utils/Constants";
 
 export const styles = StyleSheet.create({
@@ -13,7 +18,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
   },
   subContainer: {
-    backgroundColor: "rgba(26, 24, 29, 0.4)",
+    backgroundColor: imageBackgroundColor,
     flex: 1,
     borderRadius: 15,
     position: "relative",
@@ -21,8 +26,9 @@ export const styles = StyleSheet.create({
   detailsContainer: {
     position: "absolute",
     bottom: 10,
-    marginHorizontal: 10,
-    gap:10
+    paddingHorizontal: 10,
+    gap: 10,
+    width: "100%",
   },
   details: {
     flexDirection: "column",
@@ -32,14 +38,14 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",
-    width:"100%"
+    width: "100%",
   },
   subDetails: {
-    display:"flex",
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",
-    gap:10,
+    gap: 10,
   },
   titleText: {
     fontFamily: medium,
@@ -55,23 +61,23 @@ export const styles = StyleSheet.create({
     fontFamily: medium,
     fontSize: appTheme.font.small,
     color: white,
-    textAlign:"center",
-    alignSelf:"center"
+    textAlign: "center",
+    alignSelf: "center",
   },
-  addMovieContainer:{
-    backgroundColor:"#575958",
-    height:30,
-    width:30,
-    alignItems:"center",
-    justifyContent:"center",
-    borderRadius:30
+  addMovieContainer: {
+    backgroundColor: "#575958",
+    height: 30,
+    width: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 30,
   },
-  btn:{
-    backgroundColor:primary,
-    height:30,
-    borderRadius:5,
-    width:70,
-    alignItems:"center",
-    justifyContent:"center"
-  }
+  btn: {
+    backgroundColor: primary,
+    height: 30,
+    borderRadius: 5,
+    width: 70,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

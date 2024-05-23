@@ -85,7 +85,7 @@ const TabsStack: IReactNoPropElement = () => {
         }}
       >
         <Tabs.Screen
-          name={"(movies)"}
+          name={"index"}
           options={{
             title: tabsMenu.home,
             tabBarIcon: ({ color, focused }) => (
@@ -170,7 +170,17 @@ const TabsStack: IReactNoPropElement = () => {
             },
           }}
         />
-        
+        <Tabs.Screen
+          name="(movies)"
+          options={{
+            title: "none",
+            href: null,
+            headerShown: false,
+            tabBarStyle: {
+              display: "none",
+            },
+          }}
+        />
       </Tabs>
     </View>
   );
