@@ -5,7 +5,7 @@ import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
 import { medium } from "~/Utils/Constants";
 import { large, white } from "~/Theme/Apptheme";
-import MovieCard from "../Cards/Movie/MovieCard";
+import MovieCard from "../Cards/Movie/CardWithDetails/MovieCard";
 
 type Props = { headerTitle: string } & (
   | { type: "movie"; content: IMovieSummary[] }

@@ -10,8 +10,8 @@ import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IVoidFunc } from "~/Types/Shared/Types";
 import { appTheme } from "~/Theme/Apptheme";
-import { styles } from "./styles";
-import { getContentImage } from "./utils/utils";
+import { styles } from "../styles";
+import { getContentImage } from "../utils/utils";
 import { useRouter } from "expo-router";
 import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
 
@@ -26,7 +26,7 @@ const MovieCard: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const route = useRouter();
   const navigate = () => {
-    route.push(`(movies)/${id}`);
+    route.push(`movie/${id}`);
   };
   const addMovieToFavourites = (e: GestureResponderEvent) => {
     e.stopPropagation();
