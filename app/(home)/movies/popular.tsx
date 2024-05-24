@@ -1,16 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView } from 'react-native'
 import React from 'react'
+import HttpError from '~/Components/HttpError/HttpError';
+import VerticalSwipeable from '~/Components/Swipeables/Vertical/VerticalSwipeable';
+import useFetchMoreMovies from '~/Hooks/Movies/useFetchMoreMovies';
+import ScreenWrapper from '~/HOCs/ScreenWrapper';
+import VerticalSwipeableSkeleton from '~/Components/SkeletonLoaders/Swipeable/Vertical/VerticalSkeleton';
 
-type Props = {}
-
-const popular = (props: Props) => {
+const popular = () => {
+  const { data, error, isLoading } = useFetchMoreMovies("popular");
   return (
-    <View>
-      <Text>popular</Text>
-    </View>
-  )
+    <ScrollView>
+      {isLoading && <VerticalSwipeableSkeleton/>}
+      {error && <HttpError />}
+      {data && <VerticalSwipeable type="movie" content={data} />}
+    </ScrollView>
+  );
 }
 
-export default popular
-
-const styles = StyleSheet.create({})
+export default ScreenWrapper(popular)

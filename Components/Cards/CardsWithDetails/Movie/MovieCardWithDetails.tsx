@@ -8,12 +8,11 @@ import {
 import React, { useState } from "react";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
-import { IVoidFunc } from "~/Types/Shared/Types";
 import { appTheme } from "~/Theme/Apptheme";
-import { styles } from "../styles";
-import { getContentImage } from "../utils/utils";
+import { styles } from "./styles";
 import { useRouter } from "expo-router";
 import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
+import { getTMDBImage } from "~/Utils/Funcs";
 
 type Props = {
   movieContent: IMovieSummary;
@@ -56,7 +55,7 @@ const MovieCardWithDetails: React.FC<Props> = ({
   return (
     <View style={[container]} onTouchEnd={navigate}>
       <ImageBackground
-        source={getContentImage(poster_path)}
+        source={getTMDBImage(poster_path)}
         style={poster}
         resizeMode="cover"
         imageStyle={{ borderRadius: 15 }}

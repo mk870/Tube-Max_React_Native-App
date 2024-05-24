@@ -1,13 +1,12 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { getContentImage } from "~/Components/Cards/Movie/utils/utils";
-import { IStringOrNull } from "~/Types/Shared/Types";
 import Details from "../Details/Details";
 import { IMovie } from "~/Types/Apis/Movies/SingleMovie";
 import Genres from "../Genres/Genres";
 import { regular } from "~/Utils/Constants";
 import { small, white } from "~/Theme/Apptheme";
 import ContentButton from "../../Shared/Buttons/ContentButton";
+import { getTMDBImage } from "~/Utils/Funcs";
 
 type Props = {
   movie: IMovie;
@@ -17,7 +16,7 @@ const TabletView: React.FC<Props> = ({ movie }) => {
   return (
     <View style={styles.tabletContainer}>
       <Image
-        source={getContentImage(movie.poster_path)}
+        source={getTMDBImage(movie.poster_path)}
         style={styles.imageStyle}
       />
       <View style={styles.detailsContainer}>

@@ -1,16 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import ScreenWrapper from '~/HOCs/ScreenWrapper'
 
-type Props = {}
-
-const BareMovieCard = (props: Props) => {
+const crew = () => {
   return (
     <View>
-      <Text>BareMovieCard</Text>
+      <Text>crew</Text>
     </View>
   )
 }
 
-export default BareMovieCard
+export default ScreenWrapper(crew)
 
 const styles = StyleSheet.create({})

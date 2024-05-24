@@ -53,6 +53,12 @@ const MovieStack = () => {
             title: "Actors",
           }}
         />
+        <Stack.Screen
+          name="movie/actors/crew"
+          options={{
+            title: "Crew",
+          }}
+        />
       </Stack>
   )
 }

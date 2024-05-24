@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { IMovieReview } from "~/Types/Apis/Movies/MovieReviews";
 import { tmdbKey } from "~/Utils/Constants";
-import { IMovieRecommendations } from "~/Types/Apis/Movies/MovieRecommandations";
 
-const useFetchMovieRecommendations = (id: number) => {
+const useFetchActor = (actorId: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<null | IMovieRecommendations[]>(null);
+  const [data, setData] = useState<IMovieReview[] | null>(null);
   const [error, setError] = useState<boolean>(false);
-  const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${tmdbKey}&language=en-US`;
+  const url = `https://api.themoviedb.org/3/person/${actorId}?api_key=${tmdbKey}&language=en-US`;
   useEffect(() => {
     setIsLoading(true);
     setError(false);
@@ -22,7 +22,7 @@ const useFetchMovieRecommendations = (id: number) => {
       })
       .finally(() => setIsLoading(false));
   }, []);
-  return { recommandetions: data, isLoading, error };
+  return { actorProfile: data, isLoading, error };
 };
 
-export default useFetchMovieRecommendations;
+export default useFetchActor;

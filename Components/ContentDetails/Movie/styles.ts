@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
-import { appTheme, large, white } from "~/Theme/Apptheme";
-import { bold, medium, regular } from "~/Utils/Constants";
+import { appTheme, white } from "~/Theme/Apptheme";
+import { medium, regular } from "~/Utils/Constants";
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
+    gap:5
   },
   row: {
     flexDirection: "row",
@@ -30,5 +31,19 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 5,
     alignItems: "center",
+  },
+  castNcrewContainer:{
+    marginLeft:5,
+    marginTop:15
+  },
+  recommsContainer:{
+    flexDirection:"column",
+    marginTop:15
+  },
+  recommsText: {
+    fontFamily: medium,
+    fontSize: appTheme.font.large,
+    color: white,
+    marginLeft:15
   },
 });
