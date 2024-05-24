@@ -17,10 +17,9 @@ import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
 
 type Props = {
   movieContent: IMovieSummary;
-  onPressFunc: IVoidFunc;
 };
 
-const MovieCard: React.FC<Props> = ({
+const MovieCardWithDetails: React.FC<Props> = ({
   movieContent: { id, vote_average, poster_path, title, release_date },
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -105,4 +104,4 @@ const MovieCard: React.FC<Props> = ({
   );
 };
 
-export default MovieCard;
+export default MovieCardWithDetails;

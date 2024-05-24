@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { Tabs, useRouter } from "expo-router";
+import { Tabs, useRouter, useSegments } from "expo-router";
 
 import { appTheme } from "../../../Theme/Apptheme";
 import {
@@ -25,13 +25,14 @@ import useGetSpotifyToken from "~/Hooks/Music/useGetSpotifyToken";
 const TabsStack: IReactNoPropElement = () => {
   const { width } = useWindowDimensions();
   const router = useRouter();
-  useGetSpotifyToken()
+  const segments = useSegments();
+  useGetSpotifyToken();
   const handleProfileClick = () => {
     getSecureValue(expoSecureValueKeyNames.accessToken)
       .then((value: string | null) => {
         if (value) {
           console.log("accessToken", value);
-          Logout()
+          Logout();
         } else router.push("/login");
       })
       .catch((e) => {
@@ -39,18 +40,13 @@ const TabsStack: IReactNoPropElement = () => {
         Alert.alert("AccessToken Retrivial Error", "please retry again later");
       });
   };
+  //console.log("segs",segments[1])
   return (
     <View style={styles.container}>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: appTheme.colors.white,
-          tabBarStyle: {
-            height: 58,
-            alignContent: "flex-start",
-            borderTopColor: appTheme.colors.background,
-            backgroundColor: appTheme.colors.background,
-            paddingBottom: width > 875 ? 10 : 3,
-          },
+          tabBarStyle: styles.tabStyles,
           tabBarItemStyle: {
             flexDirection: "column",
           },
@@ -85,15 +81,20 @@ const TabsStack: IReactNoPropElement = () => {
         }}
       >
         <Tabs.Screen
-          name={"index"}
+          name={"(home)"}
           options={{
             title: tabsMenu.home,
+            headerShown: segments[1] === undefined ? true : false,
             tabBarIcon: ({ color, focused }) => (
               <Icons focused={focused} color={color} name={""} />
             ),
             tabBarLabel: ({ focused }) => (
               <Label focused={focused} textItem={tabsMenu.home} />
             ),
+            tabBarStyle: [
+              styles.tabStyles,
+              { display: segments[1] === undefined ? "flex" : "none" },
+            ],
           }}
         />
         <Tabs.Screen
@@ -133,9 +134,10 @@ const TabsStack: IReactNoPropElement = () => {
           }}
         />
         <Tabs.Screen
-          name={"favorites"}
+          name={"(favorites)"}
           options={{
             title: tabsMenu.favorites,
+            headerShown: segments[2] === undefined ? true : false,
             tabBarIcon: ({ color, focused }) => (
               <Icons
                 focused={focused}
@@ -146,6 +148,10 @@ const TabsStack: IReactNoPropElement = () => {
             tabBarLabel: ({ focused }) => (
               <Label focused={focused} textItem={tabsMenu.favorites} />
             ),
+            tabBarStyle: [
+              styles.tabStyles,
+              { display: segments[2] === undefined ? "flex" : "none" },
+            ],
           }}
         />
         <Tabs.Screen
@@ -170,30 +176,7 @@ const TabsStack: IReactNoPropElement = () => {
             },
           }}
         />
-        <Tabs.Screen
-          name="(movies)"
-          options={{
-            title: "none",
-            href: null,
-            headerShown: false,
-            tabBarStyle: {
-              display: "none",
-            },
-          }}
-        />
-        <Tabs.Screen
-          name="(movie)"
-          options={{
-            title: "none",
-            href: null,
-            headerShown: false,
-            tabBarStyle: {
-              display: "none",
-            },
-          }}
-        />
       </Tabs>
-      
     </View>
   );
 };
@@ -204,5 +187,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
     flex: 1,
+  },
+  tabStyles: {
+    height: 58,
+    alignContent: "flex-start",
+    borderTopColor: appTheme.colors.background,
+    backgroundColor: appTheme.colors.background,
+    //paddingBottom: width > 875 ? 10 : 3,
   },
 });
