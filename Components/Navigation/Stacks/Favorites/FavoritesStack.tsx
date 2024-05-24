@@ -1,11 +1,13 @@
 import React from "react";
-import { Stack, useRouter } from "expo-router";
-import { bold } from "~/Utils/Constants";
-import { background, white } from "~/Theme/Apptheme";
+import { useRouter, Stack } from "expo-router";
 import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
+import { background, white } from "~/Theme/Apptheme";
+import { bold } from "~/Utils/Constants";
 import StackWrapper from "~/HOCs/StackWrapper";
 
-const MoviesStack = () => {
+type Props = {};
+
+const FavoritesStack = (props: Props) => {
   const router = useRouter();
   return (
     <Stack
@@ -28,37 +30,31 @@ const MoviesStack = () => {
       }}
     >
       <Stack.Screen
-        name="index"
+        name="favorites/index"
         options={{
-          headerShown:false
+          headerShown: false,
         }}
       />
       <Stack.Screen
-        name="(movie)"
+        name="favorites/movies"
         options={{
-          headerShown:false
+          title: "fav movies",
         }}
       />
       <Stack.Screen
-        name="movies/inTheatres"
+        name="favorites/tracks"
         options={{
-          title: "Showing in Theatres"
+          title: "Actor",
         }}
       />
       <Stack.Screen
-        name="movies/popular"
+        name="favorites/tvShows"
         options={{
-          title: "Most Popular",
-        }}
-      />
-      <Stack.Screen
-        name="movies/topRated"
-        options={{
-          title: "Top Rated",
+          title: "Actors",
         }}
       />
     </Stack>
   );
 };
 
-export default StackWrapper(MoviesStack);
+export default StackWrapper(FavoritesStack);

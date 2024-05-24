@@ -6,10 +6,11 @@ import React from "react";
 import ScreenWrapper from "~/HOCs/ScreenWrapper";
 import useFetchMoviesPlayingNow from "~/Hooks/Movies/useFetchMoviesPlayingNow";
 import SwipeableSkeleton from "~/Components/SkeletonLoaders/Swipeable/SwipeableSkeleton";
-import Swipeable from "~/Components/Swipeable/Swipeable";
+import Swipeable from "~/Components/Swipeables/Swipeable";
 import useFetchPopularMovies from "~/Hooks/Movies/useFetchPopularMovies";
 import useFetchTopRatedMovies from "~/Hooks/Movies/useFetchTopRatedMovies";
 import HttpError from "~/Components/HttpError/HttpError";
+import { useRouter } from "expo-router";
 
 const Movies = () => {
   const moviesOnTheatres = useFetchMoviesPlayingNow();
@@ -24,6 +25,7 @@ const Movies = () => {
       return true;
     } else return false;
   };
+  const router = useRouter()
   return (
     <ScrollView style={container} >
       {hasError() ? (
@@ -38,6 +40,7 @@ const Movies = () => {
               type="movie"
               content={moviesOnTheatres.data}
               headerTitle={moviesOnTheatresTitle}
+              seeAllRouteFunc={()=>router.push("movies/inTheatres")}
             />
           )}
           {topRatedMovies.isLoading && (
@@ -48,6 +51,7 @@ const Movies = () => {
               type="movie"
               content={topRatedMovies.data}
               headerTitle={topRatedoviesTitle}
+              seeAllRouteFunc={()=>router.push("movies/topRated")}
             />
           )}
           {popularMovies.isLoading && (
@@ -58,6 +62,7 @@ const Movies = () => {
               type="movie"
               content={popularMovies.data}
               headerTitle={popularMoviesTitle}
+              seeAllRouteFunc={()=>router.push("movies/popular")}
             />
           )}
         </>
