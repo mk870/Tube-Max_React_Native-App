@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-type Props = {}
-
-const Actor = (props: Props) => {
+const Actor = () => {
   return (
     <View>
       <Text>actor</Text>

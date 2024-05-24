@@ -1,16 +1,14 @@
-import {
-  ScrollView,
-  StyleSheet
-} from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
+
 import ScreenWrapper from "~/HOCs/ScreenWrapper";
 import useFetchMoviesPlayingNow from "~/Hooks/Movies/useFetchMoviesPlayingNow";
 import SwipeableSkeleton from "~/Components/SkeletonLoaders/Swipeable/SwipeableSkeleton";
-import Swipeable from "~/Components/Swipeables/Swipeable";
+import Swipeable from "~/Components/Swipeables/Horizontal/Swipeable";
 import useFetchPopularMovies from "~/Hooks/Movies/useFetchPopularMovies";
 import useFetchTopRatedMovies from "~/Hooks/Movies/useFetchTopRatedMovies";
 import HttpError from "~/Components/HttpError/HttpError";
-import { useRouter } from "expo-router";
 
 const Movies = () => {
   const moviesOnTheatres = useFetchMoviesPlayingNow();
@@ -25,11 +23,11 @@ const Movies = () => {
       return true;
     } else return false;
   };
-  const router = useRouter()
+  const router = useRouter();
   return (
-    <ScrollView style={container} >
+    <ScrollView style={container}>
       {hasError() ? (
-        <HttpError/>
+        <HttpError />
       ) : (
         <>
           {moviesOnTheatres.isLoading && (
@@ -40,7 +38,7 @@ const Movies = () => {
               type="movie"
               content={moviesOnTheatres.data}
               headerTitle={moviesOnTheatresTitle}
-              seeAllRouteFunc={()=>router.push("movies/inTheatres")}
+              seeAllRouteFunc={() => router.push("movies/inTheatres")}
             />
           )}
           {topRatedMovies.isLoading && (
@@ -51,7 +49,7 @@ const Movies = () => {
               type="movie"
               content={topRatedMovies.data}
               headerTitle={topRatedoviesTitle}
-              seeAllRouteFunc={()=>router.push("movies/topRated")}
+              seeAllRouteFunc={() => router.push("movies/topRated")}
             />
           )}
           {popularMovies.isLoading && (
@@ -62,7 +60,7 @@ const Movies = () => {
               type="movie"
               content={popularMovies.data}
               headerTitle={popularMoviesTitle}
-              seeAllRouteFunc={()=>router.push("movies/popular")}
+              seeAllRouteFunc={() => router.push("movies/popular")}
             />
           )}
         </>
