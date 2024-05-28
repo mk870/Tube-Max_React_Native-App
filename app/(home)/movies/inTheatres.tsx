@@ -9,7 +9,7 @@ import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
 const inTheatres = () => {
   const { data, error, isLoading } = useFetchMoreMovies("now_playing");
   return (
-    <ScrollView contentContainerStyle={{ flex: 1 }}>
+    <ScrollView contentContainerStyle={styles.container} showsHorizontalScrollIndicator={false}>
       {isLoading && <ScreenSpinner />}
       {error && <HttpError />}
       {data && <VerticalSwipeable type="movie" content={data} />}
@@ -21,6 +21,6 @@ export default ScreenWrapper(inTheatres);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    alignItems:"center"
   },
 });

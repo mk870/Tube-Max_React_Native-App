@@ -21,6 +21,7 @@ export const expoSecureValueKeyNames= {
 export const regular = "Roboto-regular";
 export const medium = "Roboto-medium";
 export const bold = "Roboto-large";
+export const unknown = "unknown"
 
 export const tmdbKey = process.env.TMD_API_KEY;
 export const youtubeKey = process.env.YOUTUBE_API_KEY;

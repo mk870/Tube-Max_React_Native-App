@@ -16,6 +16,7 @@ import { ICast, IMovieCrew, IVoidFunc } from "~/Types/Shared/Types";
 import MovieCardWithDetails from "../../Cards/CardsWithDetails/Movie/MovieCardWithDetails";
 import BareCastCard from "~/Components/Cards/Shared/BareCastCard";
 import BareCrewCard from "~/Components/Cards/Shared/BareCrewCard";
+import TvShowCardWithDetails from "~/Components/Cards/CardsWithDetails/TvShow/TvShowCardWithDetails";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & (
     | { type: "movie"; content: IMovieSummary[] }
@@ -36,12 +37,14 @@ const Swipeable: React.FC<Props> = ({
     <View style={container}>
       <View style={styles.row}>
         <Text style={headertext}>{headerTitle}</Text>
-        <TouchableOpacity
-          style={styles.linkContainer}
-          onPress={seeAllRouteFunc}
-        >
-          <Text style={styles.linkText}>See all</Text>
-        </TouchableOpacity>
+        {seeAllRouteFunc && (
+          <TouchableOpacity
+            style={styles.linkContainer}
+            onPress={seeAllRouteFunc}
+          >
+            <Text style={styles.linkText}>See all</Text>
+          </TouchableOpacity>
+        )}
       </View>
       {type === "movie" && (
         <FlatList
@@ -56,9 +59,7 @@ const Swipeable: React.FC<Props> = ({
       {type === "movieCast" && (
         <FlatList
           data={content}
-          renderItem={({ item }) => (
-            <BareCastCard cast={item} />
-          )}
+          renderItem={({ item }) => <BareCastCard cast={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
@@ -66,9 +67,18 @@ const Swipeable: React.FC<Props> = ({
       {type === "movieCrew" && (
         <FlatList
           data={content}
-          keyExtractor={(item,index)=>index.toString()}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <BareCrewCard crew={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "tvShow" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <BareCrewCard crew={item} />
+            <TvShowCardWithDetails show={item} />
           )}
           horizontal
           showsHorizontalScrollIndicator={false}

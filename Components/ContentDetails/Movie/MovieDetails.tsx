@@ -22,6 +22,7 @@ import VerticalSwipeable from "~/Components/Swipeables/Vertical/VerticalSwipeabl
 import { IMovieReview } from "~/Types/Apis/Movies/MovieReviews";
 import Reviews from "../Shared/Reviews/Reviews";
 import Id from "~/app/(home)/(movie)/movie/[id]";
+import LinearGradientOverlay from "~/Components/LinearGradient/LinearGradientOverlay";
 
 type Props = {
   movie: IMovie;
@@ -60,11 +61,7 @@ const MovieDetails: React.FC<Props> = ({
         resizeMode="cover"
         blurRadius={width > screenBreakpoint ? 15 : 0}
       >
-        <LinearGradient
-          style={styles.gradientOverlay}
-          colors={["rgba(0,0,0,1)", backGroundColor, "rgba(0,0,0,1)"]}
-          locations={[0.01, 0.4, 1]}
-        />
+        <LinearGradientOverlay backGroundColor={backGroundColor}/>
         <View style={styles.row}>
           <HeaderIcon iconName="arrow-back" onPressFunc={() => route.back()} />
           <HeaderIcon
