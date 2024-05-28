@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignContent:"center",
     alignSelf:"center",
-    marginTop:"25%"
   },
   textStyles: {
     fontFamily: medium,

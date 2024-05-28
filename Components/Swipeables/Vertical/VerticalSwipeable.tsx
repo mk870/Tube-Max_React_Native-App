@@ -1,4 +1,4 @@
-import { View, StyleSheet} from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
@@ -18,15 +18,15 @@ const VerticalSwipeable: React.FC<Props> = ({ type, content }) => {
   return (
     <View style={styles.container}>
       {type === "movie" &&
-        content.map((movie,index) => (
+        content.map((movie, index) => (
           <BareSharedCard
             posterPath={movie.poster_path}
             key={index}
             onPressFunc={() => router.push(`movie/${movie.id}`)}
           />
         ))}
-        {type === "movieRecomms" &&
-        content.map((movie,index) => (
+      {type === "movieRecomms" &&
+        content.map((movie, index) => (
           <BareSharedCard
             posterPath={movie.poster_path}
             key={index}
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flexWrap: "wrap",
     gap: 10,
-    marginTop:10
+    marginTop: 10,
   },
 });
 

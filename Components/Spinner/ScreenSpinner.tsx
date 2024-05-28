@@ -1,12 +1,11 @@
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { appTheme } from "../../Theme/Apptheme";
+import { appTheme, darkGray } from "../../Theme/Apptheme";
 
 const ScreenSpinner = () => {
   return (
     <View style={styles.container}>
       <ActivityIndicator size={"large"} color={appTheme.colors.primary} />
-      <Text style={styles.text}>Loading...</Text>
     </View>
   );
 };
@@ -25,6 +24,6 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-medium",
     fontSize: appTheme.font.medium,
     textAlign: "center",
-    color: appTheme.colors.white,
+    color: "gray",
   },
 });
