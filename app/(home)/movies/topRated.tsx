@@ -10,7 +10,7 @@ import ScreenSpinner from '~/Components/Spinner/ScreenSpinner';
 const topRated = () => {
   const { data, error, isLoading } = useFetchMoreMovies("top_rated");
   return (
-    <ScrollView contentContainerStyle={{ flex: 1 }}>
+    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
       {isLoading && <ScreenSpinner/>}
       {error && <HttpError />}
       {data && <VerticalSwipeable type="movie" content={data} />}
