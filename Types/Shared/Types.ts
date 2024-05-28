@@ -14,6 +14,20 @@ export type IOwner = {
   type: IStringOrNull;
   uri: IStringOrNull;
 };
+export type IActorProfile = {
+  biography: IStringOrNull;
+  birthday: IStringOrNull;
+  deathday: IStringOrNull;
+  gender: 1 | 2;
+  homepage: IStringOrNull;
+  id: number;
+  imdb_id: string;
+  known_for_department: IStringOrNull;
+  name: IStringOrNull;
+  place_of_birth: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
 export type IImage = {
   url: INumberOrNull;
   height: IStringOrNull;
@@ -83,7 +97,7 @@ export type ICast = {
   popularity: INumberOrNull;
   profile_path: IStringOrNull;
 };
-export type IContentType = "movie"|"tvShow"|"music"
+export type IContentType = "movie" | "tvShow" | "music";
 export type INewsCategory =
   | "musicians"
   | "movies"
