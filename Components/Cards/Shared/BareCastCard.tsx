@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { regular } from "~/Utils/Constants";
-import { background, darkGray, small, white } from "~/Theme/Apptheme";
+import { small, white } from "~/Theme/Apptheme";
 import { ICast } from "~/Types/Shared/Types";
 import { getTMDBImage, shortenString } from "~/Utils/Funcs";
 import { useRouter } from "expo-router";
@@ -17,7 +17,7 @@ type Props = {
   cast: ICast;
 };
 
-const CastCard: React.FC<Props> = ({
+const BareCastCard: React.FC<Props> = ({
   cast: { character, profile_path, original_name, id },
 }) => {
   const router = useRouter();
@@ -54,7 +54,7 @@ const CastCard: React.FC<Props> = ({
   );
 };
 
-export default CastCard;
+export default BareCastCard;
 
 const styles = StyleSheet.create({
   container: {

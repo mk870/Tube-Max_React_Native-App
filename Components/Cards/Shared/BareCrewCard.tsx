@@ -16,7 +16,7 @@ type Props = {
   crew: IMovieCrew;
 };
 
-const CrewCard: React.FC<Props> = ({ crew: { name, job, profile_path } }) => {
+const BareCrewCard: React.FC<Props> = ({ crew: { name, job, profile_path } }) => {
   const maxWords = 8;
   const { width } = useWindowDimensions();
   const getHeightAndWidth = () => {
@@ -47,7 +47,7 @@ const CrewCard: React.FC<Props> = ({ crew: { name, job, profile_path } }) => {
   );
 };
 
-export default CrewCard;
+export default BareCrewCard;
 
 const styles = StyleSheet.create({
   container: {

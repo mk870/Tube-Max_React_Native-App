@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
 
-const Actor = () => {
-  const {id} = useLocalSearchParams()
+type Props = {}
+
+const TabletView = (props: Props) => {
   return (
     <View>
-      <Text>actor</Text>
+      <Text>TabletView</Text>
     </View>
   )
 }
 
-export default Actor
+export default TabletView
 
 const styles = StyleSheet.create({})

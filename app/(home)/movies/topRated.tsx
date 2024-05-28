@@ -4,14 +4,14 @@ import HttpError from '~/Components/HttpError/HttpError';
 import VerticalSwipeable from '~/Components/Swipeables/Vertical/VerticalSwipeable';
 import useFetchMoreMovies from '~/Hooks/Movies/useFetchMoreMovies';
 import ScreenWrapper from '~/HOCs/ScreenWrapper';
-import VerticalSwipeableSkeleton from '~/Components/SkeletonLoaders/Swipeable/Vertical/VerticalSkeleton';
+import ScreenSpinner from '~/Components/Spinner/ScreenSpinner';
 
 
 const topRated = () => {
   const { data, error, isLoading } = useFetchMoreMovies("top_rated");
   return (
-    <ScrollView>
-      {isLoading && <VerticalSwipeableSkeleton/>}
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      {isLoading && <ScreenSpinner/>}
       {error && <HttpError />}
       {data && <VerticalSwipeable type="movie" content={data} />}
     </ScrollView>

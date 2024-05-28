@@ -6,6 +6,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
+
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
@@ -13,8 +14,8 @@ import { medium, regular } from "~/Utils/Constants";
 import { darkGray, large, small, white } from "~/Theme/Apptheme";
 import { ICast, IMovieCrew, IVoidFunc } from "~/Types/Shared/Types";
 import MovieCardWithDetails from "../../Cards/CardsWithDetails/Movie/MovieCardWithDetails";
-import CastCard from "~/Components/Cards/CardsWithDetails/Movie/CastCard";
-import CrewCard from "~/Components/Cards/CardsWithDetails/Movie/crewCard";
+import BareCastCard from "~/Components/Cards/Shared/BareCastCard";
+import BareCrewCard from "~/Components/Cards/Shared/BareCrewCard";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & (
     | { type: "movie"; content: IMovieSummary[] }
@@ -56,7 +57,7 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           renderItem={({ item }) => (
-            <CastCard cast={item} />
+            <BareCastCard cast={item} />
           )}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -67,7 +68,7 @@ const Swipeable: React.FC<Props> = ({
           data={content}
           keyExtractor={(item,index)=>index.toString()}
           renderItem={({ item }) => (
-            <CrewCard crew={item} />
+            <BareCrewCard crew={item} />
           )}
           horizontal
           showsHorizontalScrollIndicator={false}

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+
 import Details from "../Details/Details";
 import Genres from "../Genres/Genres";
 import { IMovie } from "~/Types/Apis/Movies/SingleMovie";
@@ -57,8 +58,8 @@ export default MobileView;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 15,
-    gap: 10,
+    paddingHorizontal: 14,
+    gap: 15,
   },
   regularText: {
     fontFamily: regular,
@@ -67,6 +68,6 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    gap:10
   },
 });

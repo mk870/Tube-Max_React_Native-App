@@ -5,7 +5,7 @@ export type IMovieReview = {
   author_details: IAuthor | null;
   content: IStringOrNull;
   created_at: IStringOrNull;
-  id: IStringOrNull;
+  id: string;
   updated_at: IStringOrNull;
   url: IStringOrNull;
 };

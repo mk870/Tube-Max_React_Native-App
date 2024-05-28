@@ -21,12 +21,13 @@ import { IMovieRecommendations } from "~/Types/Apis/Movies/MovieRecommandations"
 import VerticalSwipeable from "~/Components/Swipeables/Vertical/VerticalSwipeable";
 import { IMovieReview } from "~/Types/Apis/Movies/MovieReviews";
 import Reviews from "../Shared/Reviews/Reviews";
+import Id from "~/app/(home)/(movie)/movie/[id]";
 
 type Props = {
   movie: IMovie;
   cast: IMovieCast;
   recommandations: IMovieRecommendations[];
-  reviews:IMovieReview[]
+  reviews: IMovieReview[];
 };
 
 const MovieDetails: React.FC<Props> = ({
@@ -34,7 +35,7 @@ const MovieDetails: React.FC<Props> = ({
   movie,
   cast: { cast, crew },
   recommandations,
-  reviews
+  reviews,
 }) => {
   const route = useRouter();
   const { width } = useWindowDimensions();
@@ -49,7 +50,10 @@ const MovieDetails: React.FC<Props> = ({
   const backGroundColor =
     width > screenBreakpoint ? imageBackgroundColor : "transparent";
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <ImageBackground
         source={getTMDBImage(poster_path)}
         style={[styles.poster, { height: posterHeight() }]}
@@ -76,20 +80,30 @@ const MovieDetails: React.FC<Props> = ({
           type="movieCast"
           content={cast ? cast : []}
           headerTitle="Cast"
-          seeAllRouteFunc={() => route.push({pathname:"movie/actors/actors"})}
+          seeAllRouteFunc={() =>
+            route.push({
+              pathname: "movie/actors/actors",
+              params: { movieId: movie.id, name: movie.title },
+            })
+          }
         />
         <Swipeable
           type="movieCrew"
           content={crew ? crew : []}
           headerTitle="Crew"
-          seeAllRouteFunc={() => route.push("movie/actors/crew")}
+          seeAllRouteFunc={() =>
+            route.push({
+              pathname: "movie/actors/crew",
+              params: { movieId: movie.id, name: movie.title },
+            })
+          }
         />
       </View>
+      <Reviews type="movie" content={reviews} />
       <View style={styles.recommsContainer}>
         <Text style={styles.recommsText}>Movie Recommendations</Text>
         <VerticalSwipeable type="movieRecomms" content={recommandations} />
       </View>
-      <Reviews type="movie" content={reviews}/>
     </ScrollView>
   );
 };

@@ -109,4 +109,12 @@ export const cleanTextSnippets = (snippet:string) => {
   if (snippet) return snippet.replace(/(https?|ftp):\/\/[.[a-zA-Z0-9/-]+/, " ");
   else return "";
 };
+export const numberToString = (value:number)=>{
+  if(typeof value === "number") return value.toString();
+  else return value
+}
+export const stringToNumber = (value:string)=>{
+  if(typeof value === "string") return Number(value);
+  else return value
+}
 
