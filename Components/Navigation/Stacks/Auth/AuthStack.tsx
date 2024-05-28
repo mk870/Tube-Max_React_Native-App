@@ -6,9 +6,7 @@ import { bold } from "../../../../Utils/Constants";
 import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
 import StackWrapper from "../../../../HOCs/StackWrapper";
 
-type Props = {};
-
-const AuthStack = (props: Props) => {
+const AuthStack = () => {
   const router = useRouter();
   return (
     <Stack
