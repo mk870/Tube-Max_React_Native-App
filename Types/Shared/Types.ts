@@ -56,7 +56,34 @@ export type ITrackSummary = {
   type: IStringOrNull;
   uri: IStringOrNull;
 };
-
+export type IMovieCrew = {
+  adult: IBooleanOrNull;
+  credit_id: IStringOrNull;
+  department: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  job: IStringOrNull;
+  known_for_department: IStringOrNull;
+  name: string;
+  original_name: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
+export type ICast = {
+  adult: IBooleanOrNull;
+  cast_id: INumberOrNull;
+  character: IStringOrNull;
+  credit_id: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  known_for_department: IStringOrNull;
+  name: IStringOrNull;
+  order: INumberOrNull;
+  original_name: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
+export type IContentType = "movie"|"tvShow"|"music"
 export type INewsCategory =
   | "musicians"
   | "movies"

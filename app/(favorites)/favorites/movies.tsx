@@ -1,17 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import ScreenWrapper from '../HOCs/ScreenWrapper'
 
 type Props = {}
 
-const favorites = (props: Props) => {
+const movies = (props: Props) => {
   return (
     <View>
-      <Text>favorites</Text>
+      <Text>movies</Text>
     </View>
   )
 }
 
-export default ScreenWrapper(favorites)
+export default movies
 
 const styles = StyleSheet.create({})

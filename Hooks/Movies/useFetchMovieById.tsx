@@ -4,12 +4,11 @@ import { tmdbKey } from "~/Utils/Constants";
 import { IMovie } from "~/Types/Apis/Movies/SingleMovie";
 
 const useFetchMovieById = (id: number) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<IMovie | null>(null);
   const [error, setError] = useState<boolean>(false);
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbKey}&language=en-US`;
   useEffect(() => {
-    setIsLoading(true);
     setError(false);
     axios
       .get(url)
@@ -21,7 +20,7 @@ const useFetchMovieById = (id: number) => {
         setError(true);
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [id]);
   return { movie:data, isLoading, error };
 };
 
