@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { SplashScreen } from "expo-router";
-import TabsStack from "../Components/Navigation/Tabs/TabsStack";
 import { Provider } from "react-redux";
+import 'react-native-reanimated'
+import 'react-native-gesture-handler'
+
+import TabsStack from "../Components/Navigation/Tabs/TabsStack";
 import { store } from "../Redux/Store";
 
 const RootLayout: React.FC = () => {
