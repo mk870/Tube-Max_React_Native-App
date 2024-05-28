@@ -44,7 +44,7 @@ const MovieStack = () => {
         <Stack.Screen
           name="movie/actors/[id]"
           options={{
-            title: "Actor"
+            headerShown:false
           }}
         />
         <Stack.Screen
