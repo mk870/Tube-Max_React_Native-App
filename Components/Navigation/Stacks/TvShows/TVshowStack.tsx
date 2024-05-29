@@ -1,0 +1,64 @@
+import { Stack, useRouter } from "expo-router";
+import React from "react";
+import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
+import StackWrapper from "~/HOCs/StackWrapper";
+import { background, white } from "~/Theme/Apptheme";
+import { bold } from "~/Utils/Constants";
+
+const TVshowStack = () => {
+  const router = useRouter();
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: background,
+        },
+        headerTitleStyle: {
+          fontFamily: bold,
+          color: white,
+        },
+        headerTitleAlign: "center",
+        headerLeft: () => (
+          <HeaderIcon
+            iconSize={24}
+            iconName="arrow-back"
+            onPressFunc={() => router.back()}
+          />
+        ),
+      }}
+    >
+      <Stack.Screen
+        name="tvshow/[id]"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="tvshow/actors/[id]"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="tvshow/actors/actors"
+        options={{
+          title: "Actors",
+        }}
+      />
+      <Stack.Screen
+        name="tvshow/season/[id]"
+        options={{
+          title: "season",
+        }}
+      />
+      <Stack.Screen
+        name="tvshow/season/episode/[id]"
+        options={{
+          title: "episode",
+        }}
+      />
+    </Stack>
+  );
+};
+
+export default StackWrapper(TVshowStack);

@@ -98,7 +98,7 @@ const TabsStack: IReactNoPropElement = () => {
           }}
         />
         <Tabs.Screen
-          name={"tv"}
+          name={"(tvshows)"}
           options={{
             title: "Tv Shows",
             tabBarIcon: ({ color, focused }) => (

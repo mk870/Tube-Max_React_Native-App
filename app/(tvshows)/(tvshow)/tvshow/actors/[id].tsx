@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const recommendations = (props: Props) => {
+const TvShowActor = () => {
   return (
     <View>
-      <Text>recommendations</Text>
+      <Text>TvShowActor</Text>
     </View>
   )
 }
 
-export default recommendations
+export default TvShowActor
 
 const styles = StyleSheet.create({})

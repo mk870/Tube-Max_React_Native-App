@@ -1,6 +1,6 @@
 export const tabsMenu = {
     home: "Home",
-    tvShows:"TV",
+    tvShows:"tvshows",
     music:"Music",
     news: "News",
     favorites:"Favorites"

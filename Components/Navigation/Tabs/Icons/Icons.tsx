@@ -15,24 +15,24 @@ type Props = {
 const Icons: React.FC<Props> = ({ focused, name, color }) => {
   const iconSize = 24;
   const routePathName = usePathname();
-  useEffect(() => {
-    if (focused && routePathName === `/${name.toLocaleLowerCase()}`) {
-      isFocused.start();
-    } else {
-      isNotFocused.start();
-    }
-  }, [routePathName]);
-  const viewPadding = useRef(new Animated.Value(0)).current;
-  const isFocused = Animated.timing(viewPadding, {
-    toValue: 20,
-    duration: 200,
-    useNativeDriver: false,
-  });
+  // useEffect(() => {
+  //   if (focused && routePathName === `/${name.toLocaleLowerCase()}`) {
+  //     isFocused.start();
+  //   } else {
+  //     isNotFocused.start();
+  //   }
+  // }, [routePathName]);
+  // const viewPadding = useRef(new Animated.Value(0)).current;
+  // const isFocused = Animated.timing(viewPadding, {
+  //   toValue: 20,
+  //   duration: 200,
+  //   useNativeDriver: false,
+  // });
 
-  const isNotFocused = Animated.timing(viewPadding, {
-    toValue: 0,
-    useNativeDriver: false,
-  });
+  // const isNotFocused = Animated.timing(viewPadding, {
+  //   toValue: 0,
+  //   useNativeDriver: false,
+  // });
 
   const icons = () => {
     if (name === tabsMenu.music) {
@@ -83,7 +83,7 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
     <Animated.View
       style={{
         backgroundColor: focused ? appTheme.colors.lightPrimary : "",
-        paddingHorizontal: viewPadding,
+        paddingHorizontal: 20,
         borderRadius: 20,
       }}
     >
