@@ -47,7 +47,7 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
           />
         );
     }
-    if (name === tabsMenu.favorites) {
+    else if (name === tabsMenu.favorites) {
       if (focused)
         return <MaterialIcons name="favorite" size={iconSize} color={color} />;
       else
@@ -59,11 +59,11 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
           />
         );
     }
-    if (name === tabsMenu.tvShows) {
+    else if (name === tabsMenu.tvShows) {
       if (focused) return <Ionicons name="tv" size={iconSize} color={color} />;
       else return <Ionicons name="tv-outline" size={iconSize} color={color} />;
     }
-    if (name === tabsMenu.news) {
+    else if (name === tabsMenu.news) {
       if (focused)
         return (
           <Ionicons name="newspaper-sharp" size={iconSize} color={color} />

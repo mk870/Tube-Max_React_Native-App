@@ -1,6 +1,8 @@
 import {
   IBooleanOrNull,
+  ICreator,
   INumberOrNull,
+  ISeasonSummary,
   IStringOrNull,
 } from "~/Types/Shared/Types";
 
@@ -30,21 +32,13 @@ export type IShow = {
   poster_path: IStringOrNull;
   production_companies: IProductionCompany[] | null;
   production_countries: IProductionCountry[] | null;
-  seasons: ISeason[]|null;
+  seasons: ISeasonSummary[]|null;
   spoken_languages: ISpokenLanguages[] | null;
   status: IStringOrNull;
   tagline: IStringOrNull;
   type: IStringOrNull;
   vote_average: INumberOrNull;
   vote_count: INumberOrNull;
-};
-type ICreator = {
-  credit_id: IStringOrNull;
-  gender: INumberOrNull;
-  id: number;
-  name: IStringOrNull;
-  original_name: IStringOrNull;
-  profile_path: IStringOrNull;
 };
 type IGenre = {
   id: number;
@@ -82,16 +76,7 @@ type ISpokenLanguages = {
   iso_639_1: IStringOrNull;
   name: IStringOrNull;
 };
-type ISeason = {
-  air_date: IStringOrNull;
-  episode_count: INumberOrNull;
-  id: number;
-  name: IStringOrNull;
-  overview: IStringOrNull;
-  poster_path: IStringOrNull;
-  season_number: INumberOrNull;
-  vote_average: INumberOrNull;
-};
+
 type IProductionCountry = {
   iso_3166_1: IStringOrNull;
   name: IStringOrNull;

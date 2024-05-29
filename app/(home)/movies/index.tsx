@@ -43,7 +43,10 @@ const Movies = () => {
   };
   const router = useRouter();
   return (
-    <ScrollView contentContainerStyle={container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      contentContainerStyle={container}
+      showsVerticalScrollIndicator={false}
+    >
       {hasError() ? (
         <HttpError />
       ) : (

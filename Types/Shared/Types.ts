@@ -14,6 +14,24 @@ export type IOwner = {
   type: IStringOrNull;
   uri: IStringOrNull;
 };
+export type ICreator = {
+  credit_id: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  name: IStringOrNull;
+  original_name: IStringOrNull;
+  profile_path: IStringOrNull;
+};
+export type ISeasonSummary = {
+  air_date: IStringOrNull;
+  episode_count: INumberOrNull;
+  id: number;
+  name: IStringOrNull;
+  overview: IStringOrNull;
+  poster_path: IStringOrNull;
+  season_number: INumberOrNull;
+  vote_average: INumberOrNull;
+};
 export type IActorProfile = {
   biography: IStringOrNull;
   birthday: IStringOrNull;

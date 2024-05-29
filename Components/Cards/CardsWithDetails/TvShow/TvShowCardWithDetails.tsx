@@ -17,8 +17,7 @@ const TvShowCardWithDetails:React.FC<Props> = ({show:{id,poster_path,vote_averag
     const [isLoading, setIsLoading] = useState<boolean>(false);
   const route = useRouter();
   const navigate = () => {
-    //route.push(`/${id}`);
-    console.log("hie")
+    route.push(`/tvshow/${id}`);
   };
   const addMovieToFavourites = (e: GestureResponderEvent) => {
     e.stopPropagation();

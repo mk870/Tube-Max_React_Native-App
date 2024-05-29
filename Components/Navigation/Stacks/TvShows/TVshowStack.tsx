@@ -46,15 +46,15 @@ const TVshowStack = () => {
         }}
       />
       <Stack.Screen
-        name="tvshow/season/[id]"
+        name="tvshow/season/[number]"
         options={{
-          title: "season",
+          headerShown: false,
         }}
       />
       <Stack.Screen
-        name="tvshow/season/episode/[id]"
+        name="tvshow/season/episode/[number]"
         options={{
-          title: "episode",
+          headerShown: false,
         }}
       />
     </Stack>

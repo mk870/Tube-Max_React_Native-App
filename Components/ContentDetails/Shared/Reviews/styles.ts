@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
   reviewsContainer: {
     flexDirection: "column",
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     marginTop: 15,
   },
   reviewContainer: {

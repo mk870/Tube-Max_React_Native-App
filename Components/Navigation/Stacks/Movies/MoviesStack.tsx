@@ -28,7 +28,7 @@ const MoviesStack = () => {
       }}
     >
       <Stack.Screen
-        name="index"
+        name="movies/index"
         options={{
           headerShown:false
         }}

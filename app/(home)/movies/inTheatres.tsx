@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import ScreenWrapper from "~/HOCs/ScreenWrapper";
 import useFetchMoreMovies from "~/Hooks/Movies/useFetchMoreMovies";
@@ -9,11 +9,11 @@ import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
 const inTheatres = () => {
   const { data, error, isLoading } = useFetchMoreMovies("now_playing");
   return (
-    <ScrollView contentContainerStyle={styles.container} showsHorizontalScrollIndicator={false}>
+    <View style={styles.container} >
       {isLoading && <ScreenSpinner />}
       {error && <HttpError />}
       {data && <VerticalSwipeable type="movie" content={data} />}
-    </ScrollView>
+    </View>
   );
 };
 
@@ -21,6 +21,7 @@ export default ScreenWrapper(inTheatres);
 
 const styles = StyleSheet.create({
   container: {
-    alignItems:"center"
+    alignItems: "center",
+    flex:1
   },
 });
