@@ -4,21 +4,29 @@ import {
   Text,
   TouchableOpacity,
   useWindowDimensions,
-  View,
 } from "react-native";
 import React from "react";
-import { regular } from "~/Utils/Constants";
-import { small, white } from "~/Theme/Apptheme";
-import { ICast } from "~/Types/Shared/Types";
-import { getTMDBImage, shortenString } from "~/Utils/Funcs";
 import { useRouter } from "expo-router";
 
+import { regular } from "~/Utils/Constants";
+import { small, white } from "~/Theme/Apptheme";
+import { IStringOrNull } from "~/Types/Shared/Types";
+import { getTMDBImage, shortenString } from "~/Utils/Funcs";
+
 type Props = {
-  cast: ICast;
+  id: number;
+  profile_path: IStringOrNull;
+  original_name: IStringOrNull;
+  character: IStringOrNull;
+  type: "movie" | "tvshow";
 };
 
 const BareCastCard: React.FC<Props> = ({
-  cast: { character, profile_path, original_name, id },
+  character,
+  profile_path,
+  original_name,
+  id,
+  type,
 }) => {
   const router = useRouter();
   const maxWords = 8;
@@ -31,11 +39,12 @@ const BareCastCard: React.FC<Props> = ({
     if (width > 500) return 60;
     else return 40;
   };
+  const navigate = () => {
+    if (type === "movie") router.push(`movie/actors/${id}`);
+    else router.push(`tvshow/actors/${id}`);
+  };
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => router.push(`movie/actors/${id}`)}
-    >
+    <TouchableOpacity style={styles.container} onPress={navigate}>
       <Image
         source={getTMDBImage(profile_path)}
         style={{

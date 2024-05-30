@@ -124,7 +124,7 @@ const Episode: React.FC<Props> = ({
           <Text style={styles.regularText}>
             {width < 700 ? amountOfTextToBeShown(id, overview) : overview}
           </Text>
-          {width < 700 && (
+          {width < 700 && overview.length > 100 && (
             <TouchableOpacity
               style={styles.linkContainer}
               onPress={(e) => toggleOverviewToRead(e)}

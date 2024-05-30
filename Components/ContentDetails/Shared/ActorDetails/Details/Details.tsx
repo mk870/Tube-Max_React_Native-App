@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { AntDesign, Ionicons, EvilIcons } from "@expo/vector-icons";
+
 import { IActorProfile } from "~/Types/Shared/Types";
 import { bold, regular, unknown } from "~/Utils/Constants";
 import { darkGray, medium, primary, small, white } from "~/Theme/Apptheme";
@@ -43,31 +44,31 @@ const Details: React.FC<Props> = ({ actor }) => {
             </View>
           )}
           <View style={styles.subRow}>
-            <EvilIcons
-              name="location"
-              size={iconSize}
-              color={white}
-              style={{ marginRight: -7 }}
-            />
-            <Text style={styles.regularText}>
-              {actor.place_of_birth
-                ? actor.place_of_birth.split(",")[2]
-                : unknown}
-            </Text>
-          </View>
-          <View style={styles.subRow}>
             <AntDesign name="star" size={iconSize} color={"gold"} />
             <Text style={styles.regularText}>
               {actor.popularity ? actor.popularity.toFixed(0) : unknown}
             </Text>
           </View>
         </View>
+        <View style={styles.subRow}>
+            <EvilIcons
+              name="location"
+              size={iconSize}
+              color={white}
+              style={{ marginLeft: -7 }}
+            />
+            <Text style={styles.regularText}>
+              {actor.place_of_birth
+                ? actor.place_of_birth
+                : unknown}
+            </Text>
+          </View>
         <View style={styles.bioContainer}>
           <Text style={styles.mediumText}>Biography:</Text>
           <Text style={styles.bioText}>
             {actor.biography ? actorBio(actor.biography) : unknown}
           </Text>
-          {actor.biography && (
+          {actor.biography && actor.biography.length > 200 && (
             <View style={styles.bioRow}>
               <TouchableOpacity
                 style={styles.linkContainer}

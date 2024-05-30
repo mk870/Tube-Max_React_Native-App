@@ -1,19 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
+import { ScrollView, StyleSheet } from "react-native";
+import React from "react";
+import { useLocalSearchParams } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-type Props = {}
+import useFetchEpisode from "~/Hooks/TvShows/useFetchEpisode";
+import ScreenWrapper from "~/HOCs/ScreenWrapper";
+import EpisodeDetails from "~/Components/ContentDetails/TvShow/Episode/EpisodeDetails";
+import HttpError from "~/Components/HttpError/HttpError";
+import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
 
-const TvShowEpisode = (props: Props) => {
-  const{number,showId,seasonNumber} = useLocalSearchParams()
-  console.log(number,seasonNumber,showId)
+const TvShowEpisode = () => {
+  const { number, showId, seasonNumber } = useLocalSearchParams();
+  const { episode, error, isLoading } = useFetchEpisode(
+    Number(showId),
+    Number(seasonNumber),
+    Number(number)
+  );
+  const { container, subContainer } = styles;
   return (
-    <View>
-      <Text>TvShowEpisode</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={container}>
+      <ScrollView contentContainerStyle={subContainer}>
+        {isLoading && <ScreenSpinner />}
+        {error && <HttpError />}
+        {episode && <EpisodeDetails episode={episode} />}
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
-export default TvShowEpisode
+export default ScreenWrapper(TvShowEpisode);
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    flex: 1,
+  },
+  subContainer: {
+    flex: 1,
+  },
+});

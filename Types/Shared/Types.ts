@@ -6,6 +6,32 @@ export type INumberOrNull = number | null;
 export type IExternalUrl = {
   spotify: IStringOrNull;
 };
+export type IGuestStar = {
+  adult: IBooleanOrNull;
+  character: IStringOrNull;
+  credit_id: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  known_for_department: IStringOrNull;
+  name: IStringOrNull;
+  order: INumberOrNull;
+  original_name: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
+export type ITvCrew = {
+  adult: IBooleanOrNull;
+  credit_id: IStringOrNull;
+  department: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  job: IStringOrNull;
+  known_for_department: IStringOrNull;
+  name: IStringOrNull;
+  original_name: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
 export type IOwner = {
   display_name: IStringOrNull;
   external_urls: IExternalUrl;

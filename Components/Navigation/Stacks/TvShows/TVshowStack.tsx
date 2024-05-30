@@ -40,12 +40,6 @@ const TVshowStack = () => {
         }}
       />
       <Stack.Screen
-        name="tvshow/actors/actors"
-        options={{
-          title: "Actors",
-        }}
-      />
-      <Stack.Screen
         name="tvshow/season/[number]"
         options={{
           headerShown: false,
