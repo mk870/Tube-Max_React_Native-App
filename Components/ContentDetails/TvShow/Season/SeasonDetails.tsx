@@ -9,12 +9,14 @@ import Episode from "./Episode/Episode";
 type Props = {
   season: ISeason;
   showId: number;
+  showName: string;
 };
 
 const SeasonDetails: React.FC<Props> = ({
   season: { poster_path, episodes },
   showId,
   season,
+  showName,
 }) => {
   return (
     <ScrollView
@@ -26,7 +28,12 @@ const SeasonDetails: React.FC<Props> = ({
       {episodes && episodes.length > 0 && (
         <View style={styles.episodesContainer}>
           {episodes.map((episode) => (
-            <Episode episode={episode} key={episode.id} showId={showId} />
+            <Episode
+              episode={episode}
+              key={episode.id}
+              showId={showId}
+              showName={showName}
+            />
           ))}
         </View>
       )}

@@ -75,7 +75,7 @@ const Details: React.FC<Props> = ({
           onPressFunc={() => console.log("hie")}
           type="add"
         />
-        <PlayContentButtons type="movie" />
+        <PlayContentButtons type="movie" queryString={title ? title : ""} />
       </View>
     </View>
   );

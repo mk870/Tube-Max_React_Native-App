@@ -8,16 +8,17 @@ import Swipeable from "~/Components/Swipeables/Horizontal/Swipeable";
 
 type Props = {
   episode: IEpisode;
+  showName: string;
 };
 
-const EpisodeDetails: React.FC<Props> = ({ episode }) => {
+const EpisodeDetails: React.FC<Props> = ({ episode,showName }) => {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
       <ContentImage source="tmdb" imagePath={episode.still_path} />
-      <Details episode={episode} />
+      <Details episode={episode} showName={showName}/>
       {episode.crew && episode.crew.length > 0 && (
         <Swipeable headerTitle="Crew" type="tvCrew" content={episode.crew} />
       )}

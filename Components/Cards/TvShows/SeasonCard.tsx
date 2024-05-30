@@ -8,11 +8,12 @@ import { useRouter } from "expo-router";
 
 type Props = {
   season: ISeasonSummary;
-  id:number|undefined
+  id:number|undefined;
+  showName: string
 };
 
 const SeasonCard: React.FC<Props> = ({
-  season: { season_number, poster_path},id
+  season: { season_number, poster_path},id,showName
 }) => {
   const router = useRouter();
   const navigate = ()=>{
@@ -21,6 +22,7 @@ const SeasonCard: React.FC<Props> = ({
         pathname: `tvshow/season/${season_number}`,
         params: {
           showId: id,
+          showName
         },
       })
     }

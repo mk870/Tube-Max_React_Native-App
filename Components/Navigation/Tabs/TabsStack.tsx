@@ -43,6 +43,7 @@ const TabsStack: IReactNoPropElement = () => {
   return (
     <View style={styles.container}>
       <Tabs
+      safeAreaInsets={{bottom:0}}
         screenOptions={{
           tabBarActiveTintColor: appTheme.colors.white,
           tabBarStyle: styles.tabStyles,

@@ -36,6 +36,12 @@ const MovieStack = () => {
           }}
         />
         <Stack.Screen
+          name="movie/video/[type]"
+          options={{
+            headerShown:false
+          }}
+        />
+        <Stack.Screen
           name="movie/actors/[id]"
           options={{
             headerShown:false

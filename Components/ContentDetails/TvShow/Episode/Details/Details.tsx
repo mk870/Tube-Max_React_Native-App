@@ -9,10 +9,20 @@ import PlayContentButtons from "~/Components/ContentDetails/Shared/Buttons/PlayC
 
 type Props = {
   episode: IEpisode;
+  showName: string;
 };
 
 const Details: React.FC<Props> = ({
-  episode: { name, vote_average, season_number, runtime, air_date, overview },
+  episode: {
+    name,
+    vote_average,
+    season_number,
+    runtime,
+    air_date,
+    overview,
+    episode_number,
+  },
+  showName,
 }) => {
   const iconSize = 22;
   const ratingsStarList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -81,7 +91,10 @@ const Details: React.FC<Props> = ({
           )}
         </View>
       </View>
-      <PlayContentButtons type="episode"/>
+      <PlayContentButtons
+        type="episode"
+        queryString={`${showName} season${season_number} episode${episode_number}`}
+      />
       {overview && (
         <Text style={[styles.regularText, { textAlign: "left" }]}>
           {overview}

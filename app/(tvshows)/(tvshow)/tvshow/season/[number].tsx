@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet} from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,7 +10,7 @@ import useFetchSeason from "~/Hooks/TvShows/useFetchSeason";
 import SeasonDetails from "~/Components/ContentDetails/TvShow/Season/SeasonDetails";
 
 const TvShowSeason = () => {
-  const { number, showId } = useLocalSearchParams();
+  const { number, showId, showName } = useLocalSearchParams();
   const { season, isLoading, error } = useFetchSeason(
     Number(showId),
     Number(number)
@@ -21,7 +21,13 @@ const TvShowSeason = () => {
       <ScrollView contentContainerStyle={subContainer}>
         {isLoading && <ScreenSpinner />}
         {error && <HttpError />}
-        {season && <SeasonDetails season={season} showId={Number(showId)} />}
+        {season && (
+          <SeasonDetails
+            season={season}
+            showId={Number(showId)}
+            showName={showName ? (Array.isArray(showName) ? "" : showName) : ""}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   );

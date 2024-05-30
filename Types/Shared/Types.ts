@@ -142,6 +142,7 @@ export type ICast = {
   profile_path: IStringOrNull;
 };
 export type IContentType = "movie" | "tvShow" | "music";
+export type IVideoType = "reviews"|"clips"|"trailer"|"song"
 export type INewsCategory =
   | "musicians"
   | "movies"

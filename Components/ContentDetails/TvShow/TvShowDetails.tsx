@@ -45,6 +45,7 @@ const TvShowDetails: React.FC<Props> = ({ show, recommendations, reviews }) => {
             type="tvShowSeason"
             content={show.seasons ? show.seasons : []}
             id={show.id}
+            showName={show.name?show.name:""}
             headerTitle="Seasons"
           />
           {reviews.length > 0 && <Reviews type="tvShow" content={reviews} />}

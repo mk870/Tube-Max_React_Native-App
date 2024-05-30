@@ -10,7 +10,7 @@ import HttpError from "~/Components/HttpError/HttpError";
 import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
 
 const TvShowEpisode = () => {
-  const { number, showId, seasonNumber } = useLocalSearchParams();
+  const { number, showId, seasonNumber, showName } = useLocalSearchParams();
   const { episode, error, isLoading } = useFetchEpisode(
     Number(showId),
     Number(seasonNumber),
@@ -22,7 +22,12 @@ const TvShowEpisode = () => {
       <ScrollView contentContainerStyle={subContainer}>
         {isLoading && <ScreenSpinner />}
         {error && <HttpError />}
-        {episode && <EpisodeDetails episode={episode} />}
+        {episode && (
+          <EpisodeDetails
+            episode={episode}
+            showName={showName ? (Array.isArray(showName) ? "" : showName) : ""}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   );

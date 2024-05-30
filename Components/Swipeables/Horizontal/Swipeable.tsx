@@ -30,6 +30,8 @@ import BareCreatorCard from "~/Components/Cards/Shared/BareCreatorCard";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
   id?: number;
+} & {
+  showName?: string;
 } & (
     | { type: "movie"; content: IMovieSummary[] }
     | { type: "tvShow"; content: IShowSummary[] }
@@ -48,6 +50,7 @@ const Swipeable: React.FC<Props> = ({
   headerTitle,
   seeAllRouteFunc,
   id,
+  showName,
 }) => {
   const { headertext, container } = styles;
   return (
@@ -135,7 +138,7 @@ const Swipeable: React.FC<Props> = ({
           renderItem={({ item }) => (
             <BareCrewCard
               job={item.job}
-              name={item.name?item.name:unknown}
+              name={item.name ? item.name : unknown}
               profile_path={item.profile_path}
             />
           )}
@@ -156,7 +159,13 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <SeasonCard season={item} id={id} />}
+          renderItem={({ item }) => (
+            <SeasonCard
+              season={item}
+              id={id}
+              showName={showName ? showName : ""}
+            />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
         />

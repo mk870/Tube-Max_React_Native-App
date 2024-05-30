@@ -19,6 +19,7 @@ import { getTMDBImage, shortenString } from "~/Utils/Funcs";
 type Props = {
   episode: IEspisodeSummary;
   showId: number;
+  showName:string
 };
 
 const Episode: React.FC<Props> = ({
@@ -34,6 +35,7 @@ const Episode: React.FC<Props> = ({
     season_number,
   },
   showId,
+  showName
 }) => {
   const [episodeToReadMore, setEpisodeToReadMore] = useState<number | null>(
     null
@@ -68,6 +70,7 @@ const Episode: React.FC<Props> = ({
       params: {
         showId,
         seasonNumber: season_number,
+        showName
       },
     });
   };
