@@ -15,24 +15,24 @@ type Props = {
 const Icons: React.FC<Props> = ({ focused, name, color }) => {
   const iconSize = 24;
   const routePathName = usePathname();
-  useEffect(() => {
-    if (focused && routePathName === `/${name.toLocaleLowerCase()}`) {
-      isFocused.start();
-    } else {
-      isNotFocused.start();
-    }
-  }, [routePathName]);
-  const viewPadding = useRef(new Animated.Value(0)).current;
-  const isFocused = Animated.timing(viewPadding, {
-    toValue: 20,
-    duration: 200,
-    useNativeDriver: false,
-  });
+  // useEffect(() => {
+  //   if (focused && routePathName === `/${name.toLocaleLowerCase()}`) {
+  //     isFocused.start();
+  //   } else {
+  //     isNotFocused.start();
+  //   }
+  // }, [routePathName]);
+  // const viewPadding = useRef(new Animated.Value(0)).current;
+  // const isFocused = Animated.timing(viewPadding, {
+  //   toValue: 20,
+  //   duration: 200,
+  //   useNativeDriver: false,
+  // });
 
-  const isNotFocused = Animated.timing(viewPadding, {
-    toValue: 0,
-    useNativeDriver: false,
-  });
+  // const isNotFocused = Animated.timing(viewPadding, {
+  //   toValue: 0,
+  //   useNativeDriver: false,
+  // });
 
   const icons = () => {
     if (name === tabsMenu.music) {
@@ -47,7 +47,7 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
           />
         );
     }
-    if (name === tabsMenu.favorites) {
+    else if (name === tabsMenu.favorites) {
       if (focused)
         return <MaterialIcons name="favorite" size={iconSize} color={color} />;
       else
@@ -59,11 +59,11 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
           />
         );
     }
-    if (name === tabsMenu.tvShows) {
+    else if (name === tabsMenu.tvShows) {
       if (focused) return <Ionicons name="tv" size={iconSize} color={color} />;
       else return <Ionicons name="tv-outline" size={iconSize} color={color} />;
     }
-    if (name === tabsMenu.news) {
+    else if (name === tabsMenu.news) {
       if (focused)
         return (
           <Ionicons name="newspaper-sharp" size={iconSize} color={color} />
@@ -83,7 +83,7 @@ const Icons: React.FC<Props> = ({ focused, name, color }) => {
     <Animated.View
       style={{
         backgroundColor: focused ? appTheme.colors.lightPrimary : "",
-        paddingHorizontal: viewPadding,
+        paddingHorizontal: 20,
         borderRadius: 20,
       }}
     >

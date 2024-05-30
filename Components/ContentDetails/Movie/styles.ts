@@ -26,8 +26,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   castNcrewContainer:{
-    marginLeft:5,
-    marginTop:15
+    marginTop:10
   },
   recommsContainer:{
     flexDirection:"column",
@@ -37,6 +36,6 @@ export const styles = StyleSheet.create({
     fontFamily: medium,
     fontSize: appTheme.font.large,
     color: white,
-    marginLeft:15
+    marginLeft:10
   },
 });

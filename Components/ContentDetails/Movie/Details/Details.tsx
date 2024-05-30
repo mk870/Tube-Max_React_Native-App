@@ -1,28 +1,23 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import { INumberOrNull, IStringOrNull } from "~/Types/Shared/Types";
+import millify from "millify";
+
 import { appTheme, medium, small, white } from "~/Theme/Apptheme";
 import { bold, regular } from "~/Utils/Constants";
-import millify from "millify";
 import { timeConverter } from "~/Utils/Funcs";
+import { IMovie } from "~/Types/Apis/Movies/SingleMovie";
+import ContentButton from "../../Shared/Buttons/ContentButton";
+import Genres from "../Genres/Genres";
+import PlayContentButtons from "../../Shared/Buttons/PlayContentButtons/PlayContentButtons";
 
 type Props = {
-  date: IStringOrNull;
-  runtime: INumberOrNull;
-  ratings: INumberOrNull;
-  budget: INumberOrNull;
-  revenue: INumberOrNull;
-  title: IStringOrNull;
+  movie: IMovie;
 };
 
 const Details: React.FC<Props> = ({
-  date,
-  ratings,
-  runtime,
-  budget,
-  revenue,
-  title,
+  movie: { release_date, vote_average, runtime, budget, revenue, title },
+  movie,
 }) => {
   const iconSize = 22;
   const getYear = (releaseDate: string) => {
@@ -35,7 +30,7 @@ const Details: React.FC<Props> = ({
         <View style={styles.smallRow}>
           <AntDesign name="calendar" size={iconSize} color={white} />
           <Text style={styles.regularText}>
-            {date ? getYear(date) : "date unkown"}
+            {release_date ? getYear(release_date) : "date unkown"}
           </Text>
         </View>
         <View style={styles.smallRow}>
@@ -47,7 +42,7 @@ const Details: React.FC<Props> = ({
         <View style={styles.smallRow}>
           <AntDesign name="star" size={iconSize} color="gold" />
           <Text style={styles.regularText}>
-            {ratings ? `${ratings.toFixed(2)} (IMDB)` : "no rating"}
+            {vote_average ? `${vote_average.toFixed(2)} (IMDB)` : "no rating"}
           </Text>
         </View>
       </View>
@@ -65,6 +60,23 @@ const Details: React.FC<Props> = ({
           </Text>
         </View>
       </View>
+      <View style={styles.detailsContainer}>
+        {movie.genres && <Genres list={movie.genres} />}
+        {movie.tagline && (
+          <Text style={[styles.regularText, { flex: 1 }]}>{movie.tagline}</Text>
+        )}
+        {movie.overview && (
+          <Text style={[styles.regularText, { textAlign: "left" }]}>
+            {movie.overview}
+          </Text>
+        )}
+        <ContentButton
+          title="add to favorites"
+          onPressFunc={() => console.log("hie")}
+          type="add"
+        />
+        <PlayContentButtons type="movie" queryString={title ? title : ""} />
+      </View>
     </View>
   );
 };
@@ -74,7 +86,8 @@ export default Details;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    gap:10,
+    gap: 10,
+    paddingHorizontal: 10,
   },
   titleText: {
     fontFamily: bold,
@@ -83,7 +96,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    gap: 15
+    gap: 15,
   },
   smallRow: {
     flexDirection: "row",
@@ -93,11 +106,15 @@ const styles = StyleSheet.create({
   regularText: {
     fontFamily: regular,
     fontSize: small,
-    color: white,
+    color: "gray",
   },
   headerText: {
     fontFamily: bold,
     fontSize: medium,
     color: white,
+  },
+  detailsContainer: {
+    flexDirection: "column",
+    gap: 10,
   },
 });

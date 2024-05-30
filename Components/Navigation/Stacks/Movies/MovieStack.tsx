@@ -35,10 +35,10 @@ const MovieStack = () => {
             headerShown:false
           }}
         />
-         <Stack.Screen
-          name="movie/recommendations"
+        <Stack.Screen
+          name="movie/video/[type]"
           options={{
-            title:"Recommendations"
+            headerShown:false
           }}
         />
         <Stack.Screen

@@ -6,7 +6,7 @@ import { IShowRecommendation } from '~/Types/Apis/TvShows/ShowRecommendation';
 
 const useFetchShowRecommendations = (id:number) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [data, setData] = useState<IShowRecommendation[] | null>(null);
+    const [data, setData] = useState<IShowRecommendation[]>([]);
     const [error, setError] = useState<boolean>(false);
     const url = `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${tmdbKey}&language=en-US`;
     useEffect(() => {

@@ -17,9 +17,15 @@ const Movie = () => {
   const movieCast = useFetchMovieCast(id ? +id : 0);
   const movieRecomms = useFetchMovieRecommendations(id ? +id : 0);
   const movieReviews = useFetchMovieReviews(id ? +id : 0);
-  const { container, subContainer,skeletonContainer } = styles;
+  const { container, subContainer } = styles;
   const hasError = () => {
-    if (movie.error) return true;
+    if (
+      movie.error ||
+      movieCast.error ||
+      movieRecomms.error ||
+      movieReviews.error
+    )
+      return true;
     else return false;
   };
   const isLoading = () => {
@@ -35,7 +41,7 @@ const Movie = () => {
   return (
     <SafeAreaView style={container}>
       <ScrollView contentContainerStyle={subContainer}>
-        {isLoading() && <ScreenSpinner/>}
+        {isLoading() && <ScreenSpinner />}
         {hasError() && <HttpError />}
         {movie.movie &&
           movieCast.cast &&
@@ -64,7 +70,4 @@ const styles = StyleSheet.create({
   subContainer: {
     flex: 1,
   },
-  skeletonContainer:{
-    gap:15,
-  }
 });

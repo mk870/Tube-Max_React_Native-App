@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import React from "react";
 import HttpError from "~/Components/HttpError/HttpError";
 import VerticalSwipeable from "~/Components/Swipeables/Vertical/VerticalSwipeable";
@@ -9,11 +9,11 @@ import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
 const popular = () => {
   const { data, error, isLoading } = useFetchMoreMovies("popular");
   return (
-    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+    <View style={{ alignItems: "center",flex:1 }}>
       {isLoading && <ScreenSpinner />}
       {error && <HttpError />}
       {data && <VerticalSwipeable type="movie" content={data} />}
-    </ScrollView>
+    </View>
   );
 };
 

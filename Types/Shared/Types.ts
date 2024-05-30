@@ -6,6 +6,32 @@ export type INumberOrNull = number | null;
 export type IExternalUrl = {
   spotify: IStringOrNull;
 };
+export type IGuestStar = {
+  adult: IBooleanOrNull;
+  character: IStringOrNull;
+  credit_id: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  known_for_department: IStringOrNull;
+  name: IStringOrNull;
+  order: INumberOrNull;
+  original_name: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
+export type ITvCrew = {
+  adult: IBooleanOrNull;
+  credit_id: IStringOrNull;
+  department: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  job: IStringOrNull;
+  known_for_department: IStringOrNull;
+  name: IStringOrNull;
+  original_name: IStringOrNull;
+  popularity: INumberOrNull;
+  profile_path: IStringOrNull;
+};
 export type IOwner = {
   display_name: IStringOrNull;
   external_urls: IExternalUrl;
@@ -13,6 +39,24 @@ export type IOwner = {
   id: IStringOrNull;
   type: IStringOrNull;
   uri: IStringOrNull;
+};
+export type ICreator = {
+  credit_id: IStringOrNull;
+  gender: INumberOrNull;
+  id: number;
+  name: IStringOrNull;
+  original_name: IStringOrNull;
+  profile_path: IStringOrNull;
+};
+export type ISeasonSummary = {
+  air_date: IStringOrNull;
+  episode_count: INumberOrNull;
+  id: number;
+  name: IStringOrNull;
+  overview: IStringOrNull;
+  poster_path: IStringOrNull;
+  season_number: INumberOrNull;
+  vote_average: INumberOrNull;
 };
 export type IActorProfile = {
   biography: IStringOrNull;
@@ -98,6 +142,7 @@ export type ICast = {
   profile_path: IStringOrNull;
 };
 export type IContentType = "movie" | "tvShow" | "music";
+export type IVideoType = "reviews"|"clips"|"trailer"|"song"
 export type INewsCategory =
   | "musicians"
   | "movies"

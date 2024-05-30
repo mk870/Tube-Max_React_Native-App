@@ -2,21 +2,22 @@ import {
   Image,
   StyleSheet,
   Text,
-  TouchableOpacity,
   useWindowDimensions,
   View,
 } from "react-native";
 import React from "react";
-import { IMovieCrew } from "~/Types/Shared/Types";
-import { regular } from "~/Utils/Constants";
+import { IStringOrNull } from "~/Types/Shared/Types";
+import { notAvailable, regular } from "~/Utils/Constants";
 import { small, white } from "~/Theme/Apptheme";
 import { getTMDBImage, shortenString } from "~/Utils/Funcs";
 
 type Props = {
-  crew: IMovieCrew;
+  name: string;
+  job:IStringOrNull
+  profile_path: IStringOrNull
 };
 
-const BareCrewCard: React.FC<Props> = ({ crew: { name, job, profile_path } }) => {
+const BareCrewCard: React.FC<Props> = ( { name, job, profile_path } ) => {
   const maxWords = 8;
   const { width } = useWindowDimensions();
   const getHeightAndWidth = () => {
@@ -38,10 +39,10 @@ const BareCrewCard: React.FC<Props> = ({ crew: { name, job, profile_path } }) =>
         }}
       />
       <Text style={[styles.textStyles, { color: "gray" }]}>
-        {job ? shortenString(job, maxWords) : "unknown"}
+        {job ? shortenString(job, maxWords) : notAvailable}
       </Text>
       <Text style={[styles.textStyles, { color: white }]}>
-        {name ? shortenString(name, maxWords) : "unknown"}
+        {name ? shortenString(name, maxWords) : notAvailable}
       </Text>
     </View>
   );
