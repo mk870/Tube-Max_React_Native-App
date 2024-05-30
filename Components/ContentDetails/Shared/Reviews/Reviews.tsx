@@ -87,14 +87,16 @@ const Reviews: React.FC<Props> = ({ type, content }) => {
     <View style={reviewsContainer}>
       <View style={headerContainer}>
         <Text style={titleText}>Reviews</Text>
-        <TouchableOpacity
-          style={linkContainer}
-          onPress={() => setSeeMoreReviews((value) => !value)}
-        >
-          <Text style={linkText}>
-            {seeMoreReviews ? "Show less" : "Show more"}
-          </Text>
-        </TouchableOpacity>
+        {content.length > 3 && (
+          <TouchableOpacity
+            style={linkContainer}
+            onPress={() => setSeeMoreReviews((value) => !value)}
+          >
+            <Text style={linkText}>
+              {seeMoreReviews ? "Show less" : "Show more"}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
       {type === "movie" &&
         reviewsList().map((review) => (
@@ -138,18 +140,20 @@ const Reviews: React.FC<Props> = ({ type, content }) => {
                   )
                 : null}
             </Text>
-            <View style={readMoreContainer}>
-              <TouchableOpacity
-                style={linkContainer}
-                onPress={() => toggleReviewTobeRead(review.id)}
-              >
-                <Text style={readMoreText}>
-                  {reviewToReadMore === review.id
-                    ? "Read less..."
-                    : "Read More..."}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            {review.content && review.content.length > 100 && (
+              <View style={readMoreContainer}>
+                <TouchableOpacity
+                  style={linkContainer}
+                  onPress={() => toggleReviewTobeRead(review.id)}
+                >
+                  <Text style={readMoreText}>
+                    {reviewToReadMore === review.id
+                      ? "Read less..."
+                      : "Read More..."}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         ))}
       {type === "tvShow" &&
@@ -186,18 +190,20 @@ const Reviews: React.FC<Props> = ({ type, content }) => {
                   )
                 : null}
             </Text>
-            <View style={readMoreContainer}>
-              <TouchableOpacity
-                style={linkContainer}
-                onPress={() => toggleReviewTobeRead(review.id)}
-              >
-                <Text style={readMoreText}>
-                  {reviewToReadMore === review.id
-                    ? "Read less..."
-                    : "Read More..."}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            {review.content && review.content.length > 100 && (
+              <View style={readMoreContainer}>
+                <TouchableOpacity
+                  style={linkContainer}
+                  onPress={() => toggleReviewTobeRead(review.id)}
+                >
+                  <Text style={readMoreText}>
+                    {reviewToReadMore === review.id
+                      ? "Read less..."
+                      : "Read More..."}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         ))}
     </View>

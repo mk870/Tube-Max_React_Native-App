@@ -98,6 +98,13 @@ export const getTMDBImage = (imageUrl: string | null) => {
   if (imageUrl) return { uri: `https://image.tmdb.org/t/p/w500/${imageUrl}` };
   else return require("assets/images/poster.jpg")
 };
+export const getSpotifyImage = (imageUrl: string | null) => {
+  if (imageUrl) return { uri: `${imageUrl}` };
+  else return require("assets/images/empty_album_poster.jpg")
+};
+export const getYear = (releaseDate: string) => {
+  return releaseDate.split("-")[0];
+};
 export const shortenString = (text:string, maxNumberOfWords:number) => {
   const maxWords = maxNumberOfWords + 1;
   if (text.length > maxNumberOfWords)

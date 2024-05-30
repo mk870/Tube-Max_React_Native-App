@@ -1,7 +1,6 @@
 import {
   Alert,
   StyleSheet,
-  Text,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -44,6 +43,7 @@ const TabsStack: IReactNoPropElement = () => {
   return (
     <View style={styles.container}>
       <Tabs
+      safeAreaInsets={{bottom:0}}
         screenOptions={{
           tabBarActiveTintColor: appTheme.colors.white,
           tabBarStyle: styles.tabStyles,
@@ -84,7 +84,7 @@ const TabsStack: IReactNoPropElement = () => {
           name={"(home)"}
           options={{
             title: tabsMenu.home,
-            headerShown: segments[1] === undefined ? true : false,
+            headerShown: segments[2] === undefined ? true : false,
             tabBarIcon: ({ color, focused }) => (
               <Icons focused={focused} color={color} name={""} />
             ),
@@ -93,20 +93,25 @@ const TabsStack: IReactNoPropElement = () => {
             ),
             tabBarStyle: [
               styles.tabStyles,
-              { display: segments[1] === undefined ? "flex" : "none" },
+              { display: segments[2] === undefined ? "flex" : "none" },
             ],
           }}
         />
         <Tabs.Screen
-          name={"tv"}
+          name={"(tvshows)"}
           options={{
             title: "Tv Shows",
+            headerShown: segments[2] === undefined ? true : false,
             tabBarIcon: ({ color, focused }) => (
               <Icons focused={focused} color={color} name={tabsMenu.tvShows} />
             ),
             tabBarLabel: ({ focused }) => (
               <Label focused={focused} textItem={"TvShows"} />
             ),
+            tabBarStyle: [
+              styles.tabStyles,
+              { display: segments[2] === undefined ? "flex" : "none" },
+            ],
           }}
         />
         <Tabs.Screen

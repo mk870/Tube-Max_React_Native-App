@@ -1,7 +1,7 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import ScreenWrapper from '../../../HOCs/ScreenWrapper'
 import { useRouter } from 'expo-router'
+import ScreenWrapper from '~/HOCs/ScreenWrapper'
 
 type Props = {}
 

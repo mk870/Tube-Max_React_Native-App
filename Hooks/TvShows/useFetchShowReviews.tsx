@@ -5,7 +5,7 @@ import { IShowReview } from "~/Types/Apis/TvShows/ShowReviews";
 
 const useFetchShowReviews = (id: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<IShowReview[] | null>(null);
+  const [data, setData] = useState<IShowReview[]>([]);
   const [error, setError] = useState<boolean>(false);
   const url = `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${tmdbKey}&language=en-US`;
   useEffect(() => {

@@ -6,7 +6,7 @@ import {
 
 export type ISeason = {
   air_date: IStringOrNull;
-  episodes: IEspisode[] | null;
+  episodes: IEspisodeSummary[] | null;
   id: number;
   name: IStringOrNull;
   overview: IStringOrNull;
@@ -16,7 +16,7 @@ export type ISeason = {
   _id: IStringOrNull;
 };
 
-type IEspisode = {
+export type IEspisodeSummary = {
   air_date: IStringOrNull;
   crew: ICrew[] | null;
   guest_stars: IGuestStar[] | null;

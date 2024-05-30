@@ -10,20 +10,38 @@ import React from "react";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
-import { medium, regular } from "~/Utils/Constants";
+import { medium, regular, unknown } from "~/Utils/Constants";
 import { darkGray, large, small, white } from "~/Theme/Apptheme";
-import { ICast, IMovieCrew, IVoidFunc } from "~/Types/Shared/Types";
+import {
+  ICast,
+  ICreator,
+  IGuestStar,
+  IMovieCrew,
+  ISeasonSummary,
+  ITvCrew,
+  IVoidFunc,
+} from "~/Types/Shared/Types";
 import MovieCardWithDetails from "../../Cards/CardsWithDetails/Movie/MovieCardWithDetails";
 import BareCastCard from "~/Components/Cards/Shared/BareCastCard";
 import BareCrewCard from "~/Components/Cards/Shared/BareCrewCard";
 import TvShowCardWithDetails from "~/Components/Cards/CardsWithDetails/TvShow/TvShowCardWithDetails";
+import SeasonCard from "~/Components/Cards/TvShows/SeasonCard";
+import BareCreatorCard from "~/Components/Cards/Shared/BareCreatorCard";
 
-type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & (
+type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
+  id?: number;
+} & {
+  showName?: string;
+} & (
     | { type: "movie"; content: IMovieSummary[] }
     | { type: "tvShow"; content: IShowSummary[] }
     | { type: "music"; content: IPlayListSummary[] }
     | { type: "movieCast"; content: ICast[] }
+    | { type: "creators"; content: ICreator[] }
     | { type: "movieCrew"; content: IMovieCrew[] }
+    | { type: "tvCrew"; content: ITvCrew[] }
+    | { type: "guestStars"; content: IGuestStar[] }
+    | { type: "tvShowSeason"; content: ISeasonSummary[] }
   );
 
 const Swipeable: React.FC<Props> = ({
@@ -31,6 +49,8 @@ const Swipeable: React.FC<Props> = ({
   content,
   headerTitle,
   seeAllRouteFunc,
+  id,
+  showName,
 }) => {
   const { headertext, container } = styles;
   return (
@@ -59,7 +79,39 @@ const Swipeable: React.FC<Props> = ({
       {type === "movieCast" && (
         <FlatList
           data={content}
-          renderItem={({ item }) => <BareCastCard cast={item} />}
+          renderItem={({ item }) => (
+            <BareCastCard
+              id={item.id}
+              profile_path={item.profile_path}
+              original_name={item.original_name}
+              character={item.character}
+              type="movie"
+            />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "guestStars" && (
+        <FlatList
+          data={content}
+          renderItem={({ item }) => (
+            <BareCastCard
+              id={item.id}
+              profile_path={item.profile_path}
+              original_name={item.original_name}
+              character={item.character}
+              type="tvshow"
+            />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "creators" && (
+        <FlatList
+          data={content}
+          renderItem={({ item }) => <BareCreatorCard creator={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
@@ -68,7 +120,28 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <BareCrewCard crew={item} />}
+          renderItem={({ item }) => (
+            <BareCrewCard
+              job={item.job}
+              name={item.name}
+              profile_path={item.profile_path}
+            />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "tvCrew" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <BareCrewCard
+              job={item.job}
+              name={item.name ? item.name : unknown}
+              profile_path={item.profile_path}
+            />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
@@ -77,8 +150,21 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <TvShowCardWithDetails show={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "tvShowSeason" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TvShowCardWithDetails show={item} />
+            <SeasonCard
+              season={item}
+              id={id}
+              showName={showName ? showName : ""}
+            />
           )}
           horizontal
           showsHorizontalScrollIndicator={false}
