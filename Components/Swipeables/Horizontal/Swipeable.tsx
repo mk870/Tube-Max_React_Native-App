@@ -35,6 +35,8 @@ import AlbumCard from "~/Components/Cards/Shared/AlbumCard";
 import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
 import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/AlbumCardWithDetails";
 import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
+import { ITrack } from "~/Types/Apis/Music/Track/Track";
+import TrackCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/TrackCardWithDetails";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
   id?: number;
@@ -45,6 +47,7 @@ type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
     | { type: "tvShow"; content: IShowSummary[] }
     | { type: "playlist"; content: IPlayListSummary[] }
     | { type: "artist"; content: IArtist[] }
+    | { type: "tracks"; content: ITrack[] }
     | { type: "relatedArtists"; content: IArtist[] }
     | { type: "album"; content: IAlbumSummary[] }
     | { type: "artistAlbums"; content: IArtistAlbum[] }
@@ -227,6 +230,15 @@ const Swipeable: React.FC<Props> = ({
           data={content}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => <AlbumCardWithDetails artistAlbum={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "tracks" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <TrackCardWithDetails track={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
