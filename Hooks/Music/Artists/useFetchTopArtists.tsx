@@ -25,7 +25,6 @@ const useFetchTopArtists = () => {
           },
         })
         .then((data) => {
-          console.log(data.data.artists);
           dispatch(addTopArtists(data.data.artists));
         })
         .catch((e) => {
@@ -38,9 +37,11 @@ const useFetchTopArtists = () => {
           }
         })
         .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
     }
   }, [spotifyAccessToken]);
-  return { error, isLoading };
+  return { error, isLoading, data: topArtists };
 };
 
 export default useFetchTopArtists;

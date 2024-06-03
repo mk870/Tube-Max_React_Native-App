@@ -23,7 +23,6 @@ const useFetchPlaylist = (playlistId: string) => {
         },
       })
       .then((data) => {
-        console.log(data.data)
         setData(data.data);
         setIsLoading(false);
       })

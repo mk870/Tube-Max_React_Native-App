@@ -13,6 +13,7 @@ import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
 import { medium, regular, unknown } from "~/Utils/Constants";
 import { darkGray, large, small, white } from "~/Theme/Apptheme";
 import {
+  IArtist,
   ICast,
   ICreator,
   IGuestStar,
@@ -27,6 +28,13 @@ import BareCrewCard from "~/Components/Cards/Shared/BareCrewCard";
 import TvShowCardWithDetails from "~/Components/Cards/CardsWithDetails/TvShow/TvShowCardWithDetails";
 import SeasonCard from "~/Components/Cards/TvShows/SeasonCard";
 import BareCreatorCard from "~/Components/Cards/Shared/BareCreatorCard";
+import PlaylistCard from "~/Components/Cards/Shared/PlaylistCard";
+import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
+import ArtistCard from "~/Components/Cards/Shared/ArtistCard";
+import AlbumCard from "~/Components/Cards/Shared/AlbumCard";
+import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
+import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/AlbumCardWithDetails";
+import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
   id?: number;
@@ -35,7 +43,11 @@ type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
 } & (
     | { type: "movie"; content: IMovieSummary[] }
     | { type: "tvShow"; content: IShowSummary[] }
-    | { type: "music"; content: IPlayListSummary[] }
+    | { type: "playlist"; content: IPlayListSummary[] }
+    | { type: "artist"; content: IArtist[] }
+    | { type: "relatedArtists"; content: IArtist[] }
+    | { type: "album"; content: IAlbumSummary[] }
+    | { type: "artistAlbums"; content: IArtistAlbum[] }
     | { type: "movieCast"; content: ICast[] }
     | { type: "creators"; content: ICreator[] }
     | { type: "movieCrew"; content: IMovieCrew[] }
@@ -166,6 +178,55 @@ const Swipeable: React.FC<Props> = ({
               showName={showName ? showName : ""}
             />
           )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "playlist" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <PlaylistCard playlist={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "artist" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <ArtistCard artist={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "relatedArtists" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View style={{ marginHorizontal: 5 }}>
+              <ArtistsWithDetails artist={item} />
+            </View>
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "album" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <AlbumCard album={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "artistAlbums" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <AlbumCardWithDetails artistAlbum={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
