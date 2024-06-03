@@ -73,8 +73,8 @@ export type IActorProfile = {
   profile_path: IStringOrNull;
 };
 export type IImage = {
-  url: INumberOrNull;
-  height: IStringOrNull;
+  height: INumberOrNull;
+  url: IStringOrNull;
   width: INumberOrNull;
 };
 export type IArtist = {

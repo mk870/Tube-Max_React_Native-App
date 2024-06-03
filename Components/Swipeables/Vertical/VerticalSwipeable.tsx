@@ -1,17 +1,22 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
+
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
 import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import BareSharedCard from "~/Components/Cards/Shared/BareSharedCard";
-import { useRouter } from "expo-router";
 import { IMovieRecommendations } from "~/Types/Apis/Movies/MovieRecommandations";
 import { IShowRecommendation } from "~/Types/Apis/TvShows/ShowRecommendation";
+import PlaylistCard from "~/Components/Cards/Shared/PlaylistCard";
+import { IArtist } from "~/Types/Shared/Types";
+import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
 
 type Props =
   | { type: "movie"; content: IMovieSummary[] }
   | { type: "tvShow"; content: IShowSummary[] }
-  | { type: "music"; content: IPlayListSummary[] }
+  | { type: "artists"; content: IArtist[] }
+  | { type: "playlist"; content: IPlayListSummary[] }
   | { type: "movieRecomms"; content: IMovieRecommendations[] }
   | { type: "showRecomms"; content: IShowRecommendation[] };
 
@@ -46,13 +51,21 @@ const VerticalSwipeable: React.FC<Props> = ({ type, content }) => {
             onPressFunc={() => router.push(`tvshow/${show.id}`)}
           />
         ))}
-        {type === "showRecomms" &&
+      {type === "showRecomms" &&
         content.map((show, index) => (
           <BareSharedCard
             posterPath={show.poster_path}
             key={index}
             onPressFunc={() => router.push(`tvshow/${show.id}`)}
           />
+        ))}
+      {type === "playlist" &&
+        content.map((playlist, index) => (
+          <PlaylistCard playlist={playlist} key={index} />
+        ))}
+        {type === "artists" &&
+        content.map((artist, index) => (
+          <ArtistsWithDetails artist={artist} key={index} />
         ))}
     </ScrollView>
   );

@@ -28,7 +28,6 @@ const useFetchHipHop = () => {
           }
         )
         .then((data) => {
-          console.log(data.data.playlists.items);
           if (data.data.playlists.items === undefined) {
             dispatch(addHipHopPlaylists([]));
             setIsLoading(false);

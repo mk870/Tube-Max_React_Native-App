@@ -115,15 +115,20 @@ const TabsStack: IReactNoPropElement = () => {
           }}
         />
         <Tabs.Screen
-          name={"music"}
+          name={"(music)"}
           options={{
             title: tabsMenu.music,
+            headerShown: segments[2] === undefined ? true : false,
             tabBarIcon: ({ color, focused }) => (
               <Icons focused={focused} color={color} name={tabsMenu.music} />
             ),
             tabBarLabel: ({ focused }) => (
               <Label focused={focused} textItem={tabsMenu.music} />
             ),
+            tabBarStyle: [
+              styles.tabStyles,
+              { display: segments[2] === undefined ? "flex" : "none" },
+            ],
           }}
         />
         <Tabs.Screen

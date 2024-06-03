@@ -28,7 +28,6 @@ const useFetchElectro = () => {
           }
         )
         .then((data) => {
-            console.log(data.data.playlists.items)
           if (data.data.playlists.items === undefined) {
             dispatch(addElectroPlaylists([]));
             setIsLoading(false);

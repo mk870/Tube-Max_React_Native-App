@@ -47,7 +47,7 @@ const useFetchTopList = () => {
         });
     } else setIsLoading(false);
   }, [dispatch, spotifyAccessToken, topListPlaylists]);
-  return { error, isLoading };
+  return { error, isLoading,data:topListPlaylists };
 };
 
 export default useFetchTopList;
