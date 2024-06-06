@@ -41,7 +41,7 @@ type ITracks = {
   previous: IStringOrNull;
   total: INumberOrNull;
 };
-type ITracksItem = {
+export type ITracksItem = {
   artists: IArtist[];
   available_markets: string[] | null;
   disc_number: INumberOrNull;

@@ -14,9 +14,9 @@ import { useRouter } from "expo-router";
 import millify from "millify";
 
 import { IArtist } from "~/Types/Shared/Types";
-import { getSpotifyImage } from "~/Utils/Funcs";
+import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
 import { medium, regular } from "~/Utils/Constants";
-import { appTheme, background, small, white } from "~/Theme/Apptheme";
+import { appTheme, background, darkGray, small, white } from "~/Theme/Apptheme";
 import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
 
 type Props = {
@@ -53,10 +53,12 @@ const ArtistsWithDetails: React.FC<Props> = ({ artist }) => {
       onPress={() => route.push(`music/artists/${artist.id}`)}
     >
       <Image
-        source={getSpotifyImage(artist.images ? artist.images[0].url : null)}
+        source={getSpotifyImage(artist.images ? artist.images[0]?.url : null)}
         style={[{ height: getHeight(), width: getWidth() }, styles.imageStyles]}
       />
-      <Text style={styles.title}>{artist.name}</Text>
+      <Text style={styles.title}>
+        {width > 760 ? shortenString(artist.name, 22) : shortenString(artist.name, 16)}
+      </Text>
       <View
         style={{
           flexDirection: flexDirection(),
@@ -65,13 +67,18 @@ const ArtistsWithDetails: React.FC<Props> = ({ artist }) => {
         }}
       >
         <View style={styles.row}>
-          <Ionicons name="people-outline" size={24} color="gray" />
+          <Ionicons
+            name="people-outline"
+            size={20}
+            color="gray"
+            style={{ marginRight: 3 }}
+          />
           <Text style={styles.detailsText}>{`${
-            artist.followers.total ? millify(artist.followers.total) : "---"
+            artist.followers?.total ? millify(artist.followers.total) : "---"
           } followers`}</Text>
         </View>
         <Pressable
-          style={width>358?styles.smallPressable:styles.largePressable}
+          style={width > 358 ? styles.smallPressable : styles.largePressable}
           onTouchEnd={(e) => addArtistToFavourites(e)}
           disabled={isLoading ? true : false}
         >
@@ -97,7 +104,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     gap: 5,
-    marginBottom:5
+    marginBottom: 5,
   },
   imageStyles: {
     borderRadius: 10,
@@ -122,13 +129,13 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   largePressable: {
-    width:100,
-    height:30,
+    width: 100,
+    height: 30,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: background,
-    borderRadius:5
+    backgroundColor: darkGray,
+    borderRadius: 5,
   },
   pressableText: {
     fontFamily: regular,
@@ -147,10 +154,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 30,
   },
-  innerLargePressableContainer:{
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between",
-    gap:5
-  }
+  innerLargePressableContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 5,
+  },
 });

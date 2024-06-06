@@ -29,7 +29,7 @@ const ArtistDetails: React.FC<Props> = ({
       {profile && (
         <ContentImage
           source="spotify"
-          imagePath={profile.images ? profile.images[0].url : null}
+          imagePath={profile.images ? profile.images[0]?.url : null}
         />
       )}
       {profile && <Profile profile={profile} />}
@@ -43,11 +43,13 @@ const ArtistDetails: React.FC<Props> = ({
         content={albums}
         headerTitle={`${profile ? profile.name + "'s" : "Artist"} Albums`}
       />
-      <Swipeable
-        type="relatedArtists"
-        content={relatedArtists}
-        headerTitle="Related Artists"
-      />
+      {relatedArtists.length > 0 && (
+        <Swipeable
+          type="artists with details"
+          content={relatedArtists}
+          headerTitle="Related Artists"
+        />
+      )}
     </ScrollView>
   );
 };

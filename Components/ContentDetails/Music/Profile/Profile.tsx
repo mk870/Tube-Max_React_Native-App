@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import millify from "millify";
+
 import { IArtist } from "~/Types/Shared/Types";
 import { appTheme, medium, primary, small, white } from "~/Theme/Apptheme";
 import { bold, regular, unknown } from "~/Utils/Constants";
-import millify from "millify";
 import Genres from "../Genres/Genres";
 import ContentButton from "../../Shared/Buttons/ContentButton";
 

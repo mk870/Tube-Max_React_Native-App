@@ -45,8 +45,14 @@ const TrackCardWithDetails: React.FC<Props> = ({
   };
   const getArtists = () => {
     if (artists) {
-      if (artists.length > 1) return `${artists[0].name} ft...`;
-      else return artists[0].name;
+      if (artists.length > 1)
+        return width > 760
+          ? shortenString(`${artists[0].name} ft...`, 22)
+          : shortenString(`${artists[0].name} ft...`, 13);
+      else
+        return width > 760
+          ? shortenString(artists[0].name, 22)
+          : shortenString(artists[0].name, 13);
     } else {
       return unknown;
     }
@@ -104,7 +110,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingRight: 5,
   },
   row: {
     flexDirection: "row",

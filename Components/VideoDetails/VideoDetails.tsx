@@ -1,13 +1,12 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-import { medium, regular, youtubeKey } from "~/Utils/Constants";
-import { IYoutubVideo } from "~/Types/Apis/Youtube/Types";
 import YoutubeIframe from "react-native-youtube-iframe";
+
+import { regular, youtubeKey } from "~/Utils/Constants";
+import { IYoutubVideo } from "~/Types/Apis/Youtube/Types";
 import HttpError from "../HttpError/HttpError";
 import ScreenSpinner from "../Spinner/ScreenSpinner";
-import { WebView } from "react-native-webview";
 import { appTheme, small, white } from "~/Theme/Apptheme";
 
 type Props = {
@@ -23,19 +22,21 @@ const VideoDetails: React.FC<Props> = ({ type, videoQueryString }) => {
   const [isLoading, setIsLoading] = useState(true);
   const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${videoQueryString} ${type}&key=${youtubeKey}`;
   useEffect(() => {
-    if(!videoPlayingNow){
-        axios
-      .get(url)
-      .then((data) => {
-        setAllVideos(data.data.items);
-        setVideoPlayingNow(data.data.items[0]);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.log(e.message);
-        setError("something went wrong, please check your network connection");
-        setIsLoading(false);
-      });
+    if (!videoPlayingNow) {
+      axios
+        .get(url)
+        .then((data) => {
+          setAllVideos(data.data.items);
+          setVideoPlayingNow(data.data.items[0]);
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          console.log(e.message);
+          setError(
+            "something went wrong, please check your network connection"
+          );
+          setIsLoading(false);
+        });
     }
   }, []);
   const getDate = (date: string) => {
@@ -56,10 +57,10 @@ const VideoDetails: React.FC<Props> = ({ type, videoQueryString }) => {
       {allVideos.length > 0 && videoPlayingNow && (
         <View style={styles.container}>
           <View style={[styles.videoContainer, { height: 205 }]}>
-            {/* <YoutubeIframe
+            <YoutubeIframe
               videoId={`${videoPlayingNow.id.videoId}`}
               height={500}
-            /> */}
+            />
           </View>
           <View style={styles.videoDetails}>
             <Text style={styles.headerText}>
@@ -73,19 +74,22 @@ const VideoDetails: React.FC<Props> = ({ type, videoQueryString }) => {
             </Text>
           </View>
           <View style={styles.videosContainer}>
-            {videoList().map((video,index) => (
-              <View
-                key={index}
-                style={styles.unplayedVideoContainer}
-              >
+            {videoList().map((video, index) => (
+              <View key={index} style={styles.unplayedVideoContainer}>
                 <Image
                   source={{ uri: video.snippet.thumbnails.medium.url }}
-                  style={[styles.thumbnailStyles,{height:120,width:190}]}
+                  style={[styles.thumbnailStyles, { height: 120, width: 190 }]}
                   resizeMode="cover"
                 />
-                <Text style={styles.unPlayedVideoTitleText}>{video.snippet.title}</Text>
-                <Text style={styles.regularText}>{video.snippet.channelTitle}</Text>
-                <Text style={styles.regularText}>{getDate(video.snippet.publishedAt)}</Text>
+                <Text style={styles.unPlayedVideoTitleText}>
+                  {video.snippet.title}
+                </Text>
+                <Text style={styles.regularText}>
+                  {video.snippet.channelTitle}
+                </Text>
+                <Text style={styles.regularText}>
+                  {getDate(video.snippet.publishedAt)}
+                </Text>
               </View>
             ))}
           </View>
@@ -106,8 +110,6 @@ const styles = StyleSheet.create({
   videoContainer: {
     flexDirection: "column",
     gap: 10,
-    borderColor: "red",
-    borderWidth: 1,
   },
   videoDetails: {
     flexDirection: "column",
@@ -127,6 +129,7 @@ const styles = StyleSheet.create({
   videosContainer: {
     flexDirection: "column",
     gap: 5,
+    paddingHorizontal:5
   },
   unplayedVideoContainer: {
     flexDirection: "column",

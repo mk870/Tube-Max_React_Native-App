@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import VideoDetails from "~/Components/VideoDetails/VideoDetails";
-import { useLocalSearchParams } from "expo-router";
-import ScreenWrapper from "~/HOCs/ScreenWrapper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useLocalSearchParams } from "expo-router";
 
+import VideoDetails from "~/Components/VideoDetails/VideoDetails";
+import ScreenWrapper from "~/HOCs/ScreenWrapper";
 
 const Video = () => {
   const { queryString, type } = useLocalSearchParams();
