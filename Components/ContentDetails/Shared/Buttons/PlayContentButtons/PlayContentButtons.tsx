@@ -19,7 +19,7 @@ const PlayContentButtons: React.FC<Props> = ({ type, queryString }) => {
           ? `tvshow/video/${typeOfVideos}`
           : `movie/video/${typeOfVideos}`,
       params: {
-        queryString,
+        queryString: queryString.replace(/[{}()\[\]]/g, ""),
       },
     });
   };
@@ -32,7 +32,7 @@ const PlayContentButtons: React.FC<Props> = ({ type, queryString }) => {
           onPressFunc={() =>
             router.push({
               pathname: "music/video/song",
-              params: { queryString },
+              params: { queryString: queryString.replace(/[{}()\[\]]/g, "") },
             })
           }
         />

@@ -1,12 +1,12 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
+import { useLocalSearchParams } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import ScreenWrapper from "~/HOCs/ScreenWrapper";
 import useFetchShowById from "~/Hooks/TvShows/useFetchShowById";
 import useFetchShowRecommendations from "~/Hooks/TvShows/useFetchShowRecommendations";
 import useFetchShowReviews from "~/Hooks/TvShows/useFetchShowReviews";
-import { useLocalSearchParams } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
-import MovieDetails from "~/Components/ContentDetails/Movie/MovieDetails";
 import HttpError from "~/Components/HttpError/HttpError";
 import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
 import TvShowDetails from "~/Components/ContentDetails/TvShow/TvShowDetails";
@@ -26,11 +26,7 @@ const TvShow = () => {
     else return false;
   };
   const hasLoadedData = () => {
-    if (
-      show.show &&
-      showRecomms.recommendations.length > 0 &&
-      showReviews.reviews
-    )
+    if (show.show && showRecomms.recommendations && showReviews.reviews)
       return true;
     else return false;
   };
@@ -43,7 +39,9 @@ const TvShow = () => {
         {hasLoadedData() && (
           <TvShowDetails
             show={show.show}
-            recommendations={showRecomms.recommendations}
+            recommendations={
+              showRecomms.recommendations ? showRecomms.recommendations : []
+            }
             reviews={showReviews.reviews}
           />
         )}

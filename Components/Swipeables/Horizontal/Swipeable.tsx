@@ -18,6 +18,8 @@ import {
   ICreator,
   IGuestStar,
   IMovieCrew,
+  IPlaylistTrack,
+  IPlaylistTracksItem,
   ISeasonSummary,
   ITvCrew,
   IVoidFunc,
@@ -37,6 +39,7 @@ import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/Albu
 import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
 import { ITrack } from "~/Types/Apis/Music/Track/Track";
 import TrackCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/TrackCardWithDetails";
+import PlaylistTrackCard from "~/Components/Cards/CardsWithDetails/Music/PlaylistTrackCard";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
   id?: number;
@@ -46,6 +49,7 @@ type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
     | { type: "movie"; content: IMovieSummary[] }
     | { type: "tvShow"; content: IShowSummary[] }
     | { type: "playlist"; content: IPlayListSummary[] }
+    | { type: "playlistTracks"; content: IPlaylistTracksItem[] }
     | { type: "artist"; content: IArtist[] }
     | { type: "tracks"; content: ITrack[] }
     | { type: "artists with details"; content: IArtist[] }
@@ -230,7 +234,9 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <AlbumCardWithDetails content={item} type="artistAlbum"/>}
+          renderItem={({ item }) => (
+            <AlbumCardWithDetails content={item} type="artistAlbum" />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
@@ -239,7 +245,9 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <AlbumCardWithDetails content={item} type="trackAlbum"/>}
+          renderItem={({ item }) => (
+            <AlbumCardWithDetails content={item} type="trackAlbum" />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
@@ -249,6 +257,15 @@ const Swipeable: React.FC<Props> = ({
           data={content}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => <TrackCardWithDetails track={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "playlistTracks" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <PlaylistTrackCard track={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />

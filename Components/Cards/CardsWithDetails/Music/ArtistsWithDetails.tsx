@@ -16,7 +16,7 @@ import millify from "millify";
 import { IArtist } from "~/Types/Shared/Types";
 import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
 import { medium, regular } from "~/Utils/Constants";
-import { appTheme, background, darkGray, small, white } from "~/Theme/Apptheme";
+import { appTheme, darkGray, small, white } from "~/Theme/Apptheme";
 import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
 
 type Props = {

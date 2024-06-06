@@ -8,7 +8,6 @@ import ScreenWrapper from "~/HOCs/ScreenWrapper";
 
 const Video = () => {
   const { queryString, type } = useLocalSearchParams();
-  console.log(queryString, type);
   return (
     <SafeAreaView style={styles.container}>
       <VideoDetails
