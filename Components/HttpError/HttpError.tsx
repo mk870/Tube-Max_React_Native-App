@@ -1,18 +1,23 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { medium } from "~/Utils/Constants";
-import { appTheme, white } from "~/Theme/Apptheme";
+import { appTheme, background, darkGray, primary, white } from "~/Theme/Apptheme";
+import { useRouter } from "expo-router";
 
 const HttpError = () => {
+  const router = useRouter()
   return (
     <View style={styles.container}>
       <Image
         source={require("assets/images/error.png")}
         style={styles.imageStyles}
       />
-      <Text style={styles.textStyles}>
+      <Text style={[styles.textStyles,{color:white}]}>
         Oops Something went wrong, please refresh page!!!
       </Text>
+      <Pressable style={styles.pressableStyles} onPress={()=>router.back()}>
+        <Text style={[styles.textStyles,{color:primary}]}>Go Back</Text>
+      </Pressable>
     </View>
   );
 };
@@ -30,11 +35,19 @@ const styles = StyleSheet.create({
   textStyles: {
     fontFamily: medium,
     fontSize: appTheme.font.small,
-    color: white,
     textAlign:"center"
   },
   imageStyles: {
     height: 250,
     width: 180,
   },
+  pressableStyles:{
+    marginTop: 10,
+    width:90,
+    height:40,
+    backgroundColor:darkGray,
+    alignItems:"center",
+    justifyContent:"center",
+    borderRadius:5
+  }
 });

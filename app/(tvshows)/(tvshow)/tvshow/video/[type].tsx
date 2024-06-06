@@ -1,16 +1,20 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import VideoDetails from "~/Components/VideoDetails/VideoDetails";
-import { useLocalSearchParams } from "expo-router";
-import ScreenWrapper from "~/HOCs/ScreenWrapper";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import VideoDetails from "~/Components/VideoDetails/VideoDetails";
+import ScreenWrapper from "~/HOCs/ScreenWrapper";
+import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
 
 const Video = () => {
   const { queryString, type } = useLocalSearchParams();
-  console.log(queryString, type);
+  const route = useRouter();
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.row}>
+        <HeaderIcon iconName="arrow-back" onPressFunc={() => route.back()} />
+      </View>
       <VideoDetails
         type={type ? (Array.isArray(type) ? "" : type) : ""}
         videoQueryString={
@@ -28,5 +32,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "column",
     flex: 1,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    backgroundColor: "black",
   },
 });
