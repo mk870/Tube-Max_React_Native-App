@@ -10,23 +10,22 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-
+import { medium, regular, unknown } from "~/Utils/Constants";
 import { small, appTheme, white } from "~/Theme/Apptheme";
-import { regular, medium } from "~/Utils/Constants";
-import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
+import { IPlaylistTracksItem } from "~/Types/Shared/Types";
+import { useRouter } from "expo-router";
 import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
-import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
+import { shortenString, getSpotifyImage } from "~/Utils/Funcs";
 
-type Props =
-  | {
-      content: IArtistAlbum;
-      type: "artistAlbum";
-    }
-  | { type: "trackAlbum"; content: IAlbumSummary };
+type Props = {
+  track: IPlaylistTracksItem;
+};
 
-const AlbumCardWithDetails: React.FC<Props> = ({ content }) => {
+const PlaylistTrackCard: React.FC<Props> = ({
+  track: {
+    track: { name, artists, album, id },
+  },
+}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const route = useRouter();
   const { width } = useWindowDimensions();
@@ -40,34 +39,42 @@ const AlbumCardWithDetails: React.FC<Props> = ({ content }) => {
     else if (width > 358) return 170;
     else return 140;
   };
-  const addArtistToFavourites = (e: GestureResponderEvent) => {
+  const addTrackToFavourites = (e: GestureResponderEvent) => {
     e.stopPropagation();
     setIsLoading(true);
     setTimeout(() => setIsLoading(false), 3000);
   };
   const getArtists = () => {
-    if (content.artists.length > 1) return `${content.artists[0].name} ft...`;
-    else return content.artists[0].name;
+    if (artists) {
+      if (artists.length > 1)
+        return width > 760
+          ? shortenString(`${artists[0].name} ft...`, 22)
+          : shortenString(`${artists[0].name} ft...`, 13);
+      else
+        return width > 760
+          ? shortenString(artists[0].name, 22)
+          : shortenString(artists[0].name, 13);
+    } else {
+      return unknown;
+    }
   };
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => route.push(`music/albums/${content.id}`)}
+      onPress={() => route.push(`music/track/${id}`)}
     >
       <Image
-        source={getSpotifyImage(content.images ? content.images[0].url : null)}
+        source={getSpotifyImage(album?.images ? album.images[0]?.url : null)}
         style={[{ height: getHeight(), width: getWidth() }, styles.imageStyles]}
       />
       <Text style={styles.title}>
-        {width > 760
-          ? shortenString(content.name, 22)
-          : shortenString(content.name, 13)}
+        {name ? shortenString(name, 18) : unknown}
       </Text>
       <View style={styles.subContainer}>
         <Text style={styles.detailsText}>{getArtists()}</Text>
         <Pressable
           style={styles.smallPressable}
-          onTouchEnd={(e) => addArtistToFavourites(e)}
+          onTouchEnd={(e) => addTrackToFavourites(e)}
           disabled={isLoading ? true : false}
         >
           {isLoading ? (
@@ -81,7 +88,7 @@ const AlbumCardWithDetails: React.FC<Props> = ({ content }) => {
   );
 };
 
-export default AlbumCardWithDetails;
+export default PlaylistTrackCard;
 
 const styles = StyleSheet.create({
   container: {
@@ -106,7 +113,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    //paddingRight: 5,
   },
   row: {
     flexDirection: "row",

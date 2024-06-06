@@ -1,7 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import ContentButton from "../ContentButton";
 import { useRouter } from "expo-router";
+
+import ContentButton from "../ContentButton";
 import { IVideoType } from "~/Types/Shared/Types";
 
 type Props = {
@@ -18,7 +19,7 @@ const PlayContentButtons: React.FC<Props> = ({ type, queryString }) => {
           ? `tvshow/video/${typeOfVideos}`
           : `movie/video/${typeOfVideos}`,
       params: {
-        queryString,
+        queryString: queryString.replace(/[{}()\[\]]/g, ""),
       },
     });
   };
@@ -26,9 +27,14 @@ const PlayContentButtons: React.FC<Props> = ({ type, queryString }) => {
     <View style={styles.btnContainer}>
       {type === "track" ? (
         <ContentButton
-          title="Watch Video"
+          title="Play"
           type="play"
-          onPressFunc={() => console.log("hie")}
+          onPressFunc={() =>
+            router.push({
+              pathname: "music/video/song",
+              params: { queryString: queryString.replace(/[{}()\[\]]/g, "") },
+            })
+          }
         />
       ) : (
         <>

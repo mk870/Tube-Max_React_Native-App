@@ -93,6 +93,12 @@ const MusicStack = () => {
           title: "Latest Albums",
         }}
       />
+      <Stack.Screen
+        name="music/video/[type]"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };

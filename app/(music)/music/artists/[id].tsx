@@ -45,7 +45,7 @@ const Artist = () => {
     else return false;
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       {isLoading() && <ScreenSpinner />}
       {hasError() && <HttpError />}
       {isdataLoaded() && (

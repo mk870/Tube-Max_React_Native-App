@@ -1,5 +1,10 @@
 import * as SecureStore from "expo-secure-store";
-import { IArtistSummary, ITrackSummary } from "~/Types/Shared/Types";
+import { ITracksItem } from "~/Types/Apis/Music/Album/Album";
+import {
+  IArtistSummary,
+  INumberOrNull,
+  ITrackSummary,
+} from "~/Types/Shared/Types";
 
 export const saveSecureValue = async (key: string, value: string) => {
   await SecureStore.setItemAsync(key, value);
@@ -89,39 +94,67 @@ export const getTrackArtistsIds = (artistList: IArtistSummary[] | null) => {
     return ids;
   } else return null;
 };
-export const timeConverter = (totalMinutes:number) => {
+export const timeConverter = (totalMinutes: number) => {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
   return `${hours}h ${minutes}m`;
-}
+};
 export const getTMDBImage = (imageUrl: string | null) => {
   if (imageUrl) return { uri: `https://image.tmdb.org/t/p/w500/${imageUrl}` };
-  else return require("assets/images/poster.jpg")
+  else return require("assets/images/poster.jpg");
 };
 export const getSpotifyImage = (imageUrl: string | null) => {
   if (imageUrl) return { uri: `${imageUrl}` };
-  else return require("assets/images/empty_album_poster.jpg")
+  else return require("assets/images/empty-profile.jpg");
 };
 export const getYear = (releaseDate: string) => {
   return releaseDate.split("-")[0];
 };
-export const shortenString = (text:string, maxNumberOfWords:number) => {
+export const shortenString = (text: string, maxNumberOfWords: number) => {
   const maxWords = maxNumberOfWords + 1;
   if (text.length > maxNumberOfWords)
     return `${text.substring(0, maxWords)}...`;
   else return text;
 };
 
-export const cleanTextSnippets = (snippet:string) => {
+export const cleanTextSnippets = (snippet: string) => {
   if (snippet) return snippet.replace(/(https?|ftp):\/\/[.[a-zA-Z0-9/-]+/, " ");
   else return "";
 };
-export const numberToString = (value:number)=>{
-  if(typeof value === "number") return value.toString();
-  else return value
-}
-export const stringToNumber = (value:string)=>{
-  if(typeof value === "string") return Number(value);
-  else return value
-}
-
+export const numberToString = (value: number) => {
+  if (typeof value === "number") return value.toString();
+  else return value;
+};
+export const stringToNumber = (value: string) => {
+  if (typeof value === "string") return Number(value);
+  else return value;
+};
+export const getArtistIds = (tracksList: ITracksItem[]) => {
+  const ids = [];
+  const albumArtistsObj: { [key: string]: any } = {};
+  for (let i = 0; i < tracksList.length; i++) {
+    for (let j = 0; j < tracksList[i].artists.length; j++) {
+      if (tracksList[i].artists[j].name in albumArtistsObj === false) {
+        albumArtistsObj[tracksList[i].artists[j].name] =
+          tracksList[i].artists[j].id;
+      }
+    }
+  }
+  for (const key in albumArtistsObj) {
+    ids.push(albumArtistsObj[key]);
+  }
+  const processedIds = [];
+  for (let i = 0; i < ids.length; i++) {
+    if (i === ids.length - 1) {
+      processedIds.push(ids[i]);
+    } else {
+      processedIds.push(`${ids[i]},`);
+    }
+  }
+  const idsInString = "".concat(...processedIds);
+  return idsInString;
+};
+export const trackDurationInMins = (durationInMs: INumberOrNull) => {
+  if (durationInMs) return `${Math.round(durationInMs / 60000)} mins`;
+  else return "--- mins";
+};

@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 
 import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
@@ -29,16 +29,27 @@ const ArtistDetails: React.FC<Props> = ({
       {profile && (
         <ContentImage
           source="spotify"
-          imagePath={profile.images ? profile.images[0].url : null}
+          imagePath={profile.images ? profile.images[0]?.url : null}
         />
       )}
       {profile && <Profile profile={profile} />}
+      <Swipeable
+        type="tracks"
+        content={tracks}
+        headerTitle={`${profile ? profile.name + "'s" : "Artist's"} Top Tracks`}
+      />
       <Swipeable
         type="artistAlbums"
         content={albums}
         headerTitle={`${profile ? profile.name + "'s" : "Artist"} Albums`}
       />
-      <Swipeable type="relatedArtists" content={relatedArtists} headerTitle="Related Artists"/>
+      {relatedArtists.length > 0 && (
+        <Swipeable
+          type="artists with details"
+          content={relatedArtists}
+          headerTitle="Related Artists"
+        />
+      )}
     </ScrollView>
   );
 };

@@ -1,17 +1,32 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import ScreenWrapper from '~/HOCs/ScreenWrapper'
+import { StyleSheet } from "react-native";
+import React from "react";
+import { useLocalSearchParams } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-type Props = {}
+import ScreenWrapper from "~/HOCs/ScreenWrapper";
+import useFetchPlaylist from "~/Hooks/Music/Playlists/useFetchPlaylist";
+import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
+import HttpError from "~/Components/HttpError/HttpError";
+import PlaylistDetails from "~/Components/ContentDetails/Music/Playlist/PlaylistDetails";
 
-const Playlist = (props: Props) => {
+const Playlist = () => {
+  const { id } = useLocalSearchParams();
+  const processedId = id ? (Array.isArray(id) ? "" : id) : "";
+  const { data, isLoading, error } = useFetchPlaylist(processedId);
   return (
-    <View>
-      <Text>Playlist</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      {isLoading && <ScreenSpinner />}
+      {error && <HttpError />}
+      {data && <PlaylistDetails playlist={data} />}
+    </SafeAreaView>
+  );
+};
 
-export default ScreenWrapper(Playlist)
+export default ScreenWrapper(Playlist);
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+  },
+});

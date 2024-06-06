@@ -2,8 +2,9 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { IVoidFunc } from "~/Types/Shared/Types";
-import { darkGray, white } from "~/Theme/Apptheme";
+import { darkGray, small, white } from "~/Theme/Apptheme";
 import { sharedStyles } from "../Styles/styles";
+import { regular } from "~/Utils/Constants";
 
 type Props = {
   title: string;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 const ContentButton: React.FC<Props> = ({ title, type, onPressFunc }) => {
-  const iconSize = 22;
+  const iconSize = 20;
   return (
     <TouchableOpacity
       onPress={onPressFunc}
@@ -23,7 +24,7 @@ const ContentButton: React.FC<Props> = ({ title, type, onPressFunc }) => {
       ) : (
         <Ionicons name="play-outline" size={iconSize} color={white} />
       )}
-      <Text style={sharedStyles.regularText}>{title}</Text>
+      <Text style={styles.regularText}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -35,9 +36,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 5,
-    paddingVertical: 8,
+    paddingVertical: 5,
     paddingHorizontal: 5,
     backgroundColor: darkGray,
-    borderRadius: 5,
+    borderRadius: 3,
+  },
+  regularText: {
+    fontFamily: regular,
+    fontSize: small,
+    color: "gray",
   },
 });

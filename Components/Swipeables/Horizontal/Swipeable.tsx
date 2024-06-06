@@ -18,6 +18,8 @@ import {
   ICreator,
   IGuestStar,
   IMovieCrew,
+  IPlaylistTrack,
+  IPlaylistTracksItem,
   ISeasonSummary,
   ITvCrew,
   IVoidFunc,
@@ -35,6 +37,9 @@ import AlbumCard from "~/Components/Cards/Shared/AlbumCard";
 import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
 import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/AlbumCardWithDetails";
 import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
+import { ITrack } from "~/Types/Apis/Music/Track/Track";
+import TrackCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/TrackCardWithDetails";
+import PlaylistTrackCard from "~/Components/Cards/CardsWithDetails/Music/PlaylistTrackCard";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
   id?: number;
@@ -44,10 +49,13 @@ type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
     | { type: "movie"; content: IMovieSummary[] }
     | { type: "tvShow"; content: IShowSummary[] }
     | { type: "playlist"; content: IPlayListSummary[] }
+    | { type: "playlistTracks"; content: IPlaylistTracksItem[] }
     | { type: "artist"; content: IArtist[] }
-    | { type: "relatedArtists"; content: IArtist[] }
+    | { type: "tracks"; content: ITrack[] }
+    | { type: "artists with details"; content: IArtist[] }
     | { type: "album"; content: IAlbumSummary[] }
     | { type: "artistAlbums"; content: IArtistAlbum[] }
+    | { type: "trackAlbum"; content: IAlbumSummary[] }
     | { type: "movieCast"; content: ICast[] }
     | { type: "creators"; content: ICreator[] }
     | { type: "movieCrew"; content: IMovieCrew[] }
@@ -200,7 +208,7 @@ const Swipeable: React.FC<Props> = ({
           showsHorizontalScrollIndicator={false}
         />
       )}
-      {type === "relatedArtists" && (
+      {type === "artists with details" && (
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
@@ -226,7 +234,38 @@ const Swipeable: React.FC<Props> = ({
         <FlatList
           data={content}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <AlbumCardWithDetails artistAlbum={item} />}
+          renderItem={({ item }) => (
+            <AlbumCardWithDetails content={item} type="artistAlbum" />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "trackAlbum" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <AlbumCardWithDetails content={item} type="trackAlbum" />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "tracks" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <TrackCardWithDetails track={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
+      {type === "playlistTracks" && (
+        <FlatList
+          data={content}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <PlaylistTrackCard track={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />

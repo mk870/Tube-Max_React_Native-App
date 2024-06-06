@@ -6,6 +6,65 @@ export type INumberOrNull = number | null;
 export type IExternalUrl = {
   spotify: IStringOrNull;
 };
+export type IPlaylistTracksItem = {
+  added_at: IStringOrNull;
+  added_by: IAddedBy | null;
+  is_local: IBooleanOrNull;
+  primary_color: IStringOrNull;
+  track: IPlaylistTrack;
+  video_thumbnail: { url: IStringOrNull };
+};
+export type IPlaylistArtist = {
+  external_urls: IExternalUrl;
+  href: IStringOrNull;
+  id: IStringOrNull;
+  name: IStringOrNull;
+  type: IStringOrNull;
+  uri: IStringOrNull;
+};
+export type IPlaylistAlbum = {
+  album_type: IStringOrNull;
+  artists: IPlaylistArtist[] | null;
+  available_markets: string[] | null;
+  external_urls: IExternalUrl;
+  href: IStringOrNull;
+  id: IStringOrNull;
+  images: IImage[] | null;
+  name: IStringOrNull;
+  release_date: IStringOrNull;
+  release_date_precision: IStringOrNull;
+  total_tracks: INumberOrNull;
+  type: IStringOrNull;
+  uri: IStringOrNull;
+};
+export type IPlaylistTrack = {
+  album: IPlaylistAlbum | null;
+  artists: IArtist[] | null;
+  available_markets: string[] | null;
+  disc_number: INumberOrNull;
+  duration_ms: INumberOrNull;
+  episode: IBooleanOrNull;
+  explicit: IBooleanOrNull;
+  external_urls: IExternalUrl | null;
+  external_ids: { isrc: IStringOrNull };
+  href: IStringOrNull;
+  id: string;
+  is_local: IBooleanOrNull;
+  name: IStringOrNull;
+  popularity: INumberOrNull;
+  preview_url: IStringOrNull;
+  track: IBooleanOrNull;
+  track_number: INumberOrNull;
+  type: IStringOrNull;
+  uri: IStringOrNull;
+};
+export type IAddedBy = {
+  href: IStringOrNull;
+  id: IStringOrNull;
+  type: IStringOrNull;
+  uri: IStringOrNull;
+  external_urls: IExternalUrl | null;
+};
 export type IGuestStar = {
   adult: IBooleanOrNull;
   character: IStringOrNull;
@@ -142,7 +201,7 @@ export type ICast = {
   profile_path: IStringOrNull;
 };
 export type IContentType = "movie" | "tvShow" | "music";
-export type IVideoType = "reviews"|"clips"|"trailer"|"song"
+export type IVideoType = "reviews" | "clips" | "trailer" | "song";
 export type INewsCategory =
   | "musicians"
   | "movies"
