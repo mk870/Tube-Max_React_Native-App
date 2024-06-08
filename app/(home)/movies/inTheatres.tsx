@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
+
 import ScreenWrapper from "~/HOCs/ScreenWrapper";
 import useFetchMoreMovies from "~/Hooks/Movies/useFetchMoreMovies";
 import HttpError from "~/Components/HttpError/HttpError";

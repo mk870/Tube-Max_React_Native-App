@@ -11,6 +11,10 @@ import { IShowRecommendation } from "~/Types/Apis/TvShows/ShowRecommendation";
 import PlaylistCard from "~/Components/Cards/Shared/PlaylistCard";
 import { IArtist } from "~/Types/Shared/Types";
 import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
+import { INews } from "~/Types/Apis/News/News";
+import NewsCard from "~/Components/Cards/CardsWithDetails/News/NewsCard";
+import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
+import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/AlbumCardWithDetails";
 
 type Props =
   | { type: "movie"; content: IMovieSummary[] }
@@ -18,6 +22,8 @@ type Props =
   | { type: "artists"; content: IArtist[] }
   | { type: "playlist"; content: IPlayListSummary[] }
   | { type: "movieRecomms"; content: IMovieRecommendations[] }
+  | { type: "news"; content: INews[] }
+  | { type: "album"; content: IAlbumSummary[] }
   | { type: "showRecomms"; content: IShowRecommendation[] };
 
 const VerticalSwipeable: React.FC<Props> = ({ type, content }) => {
@@ -63,9 +69,17 @@ const VerticalSwipeable: React.FC<Props> = ({ type, content }) => {
         content.map((playlist, index) => (
           <PlaylistCard playlist={playlist} key={index} />
         ))}
-        {type === "artists" &&
+      {type === "artists" &&
         content.map((artist, index) => (
           <ArtistsWithDetails artist={artist} key={index} />
+        ))}
+      {type === "news" &&
+        content.map((article, index) => (
+          <NewsCard article={article} key={index} />
+        ))}
+        {type === "album" &&
+        content.map((album, index) => (
+          <AlbumCardWithDetails type="trackAlbum" content={album} key={index} />
         ))}
     </ScrollView>
   );

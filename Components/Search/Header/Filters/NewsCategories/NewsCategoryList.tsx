@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
+
 import { large, white } from "~/Theme/Apptheme";
 import { medium } from "~/Utils/Constants";
 import Category from "./CategoryCard/Category";

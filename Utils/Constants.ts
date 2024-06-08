@@ -5,7 +5,7 @@ export const tabsMenu = {
     news: "News",
     favorites:"Favorites"
 }
-
+export const backendUrl = "https://tube-max.onrender.com/";
 export const artistsNewsCategory = "musicians";
 export const moviesNewsCategory = "movies";
 export const tvShowsNewsCategory = "tv shows";

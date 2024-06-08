@@ -1,13 +1,12 @@
 import React from "react";
-import { useRouter, Stack } from "expo-router";
+import StackWrapper from "~/HOCs/StackWrapper";
+import { Stack, useRouter } from "expo-router";
 
 import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
 import { background, white } from "~/Theme/Apptheme";
 import { bold } from "~/Utils/Constants";
-import StackWrapper from "~/HOCs/StackWrapper";
 
-
-const FavoritesStack = () => {
+const NewsStack = () => {
   const router = useRouter();
   return (
     <Stack
@@ -30,31 +29,19 @@ const FavoritesStack = () => {
       }}
     >
       <Stack.Screen
-        name="favorites/index"
+        name="news/index"
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="favorites/movies"
+        name="news/[id]"
         options={{
-          title: "fav movies",
-        }}
-      />
-      <Stack.Screen
-        name="favorites/tracks"
-        options={{
-          title: "Actor",
-        }}
-      />
-      <Stack.Screen
-        name="favorites/tvShows"
-        options={{
-          title: "Actors",
+          headerShown: false,
         }}
       />
     </Stack>
   );
 };
 
-export default StackWrapper(FavoritesStack);
+export default StackWrapper(NewsStack);

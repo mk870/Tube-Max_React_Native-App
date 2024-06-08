@@ -158,3 +158,6 @@ export const trackDurationInMins = (durationInMs: INumberOrNull) => {
   if (durationInMs) return `${Math.round(durationInMs / 60000)} mins`;
   else return "--- mins";
 };
+export const capitalizeFirstLetter = (word: string) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};
