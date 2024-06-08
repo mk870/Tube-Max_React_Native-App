@@ -7,7 +7,7 @@ import {
 import React from "react";
 import { Tabs, useRouter, useSegments } from "expo-router";
 
-import { appTheme } from "../../../Theme/Apptheme";
+import { appTheme, background } from "../../../Theme/Apptheme";
 import {
   bold,
   expoSecureValueKeyNames,
@@ -39,7 +39,7 @@ const TabsStack: IReactNoPropElement = () => {
         Alert.alert("AccessToken Retrivial Error", "please retry again later");
       });
   };
-  //console.log("segs",segments[1])
+  
   return (
     <View style={styles.container}>
       <Tabs
@@ -70,6 +70,7 @@ const TabsStack: IReactNoPropElement = () => {
           headerStyle: {
             borderTopColor: appTheme.colors.background,
             backgroundColor: appTheme.colors.background,
+            borderBottomColor:background
           },
           headerRightContainerStyle: {
             paddingRight: 15,
@@ -132,15 +133,20 @@ const TabsStack: IReactNoPropElement = () => {
           }}
         />
         <Tabs.Screen
-          name={"news"}
+          name={"(news)"}
           options={{
             title: tabsMenu.news,
+            headerShown: segments[2] === undefined ? true : false,
             tabBarIcon: ({ color, focused }) => (
               <Icons focused={focused} color={color} name={tabsMenu.news} />
             ),
             tabBarLabel: ({ focused }) => (
               <Label focused={focused} textItem={tabsMenu.news} />
             ),
+            tabBarStyle: [
+              styles.tabStyles,
+              { display: segments[2] === undefined ? "flex" : "none" },
+            ],
           }}
         />
         <Tabs.Screen

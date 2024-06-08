@@ -1,6 +1,7 @@
 import { IStringOrNull } from "~/Types/Shared/Types";
 
 export type INews = {
+  id: number;
   author: IStringOrNull;
   content: string;
   description: string;

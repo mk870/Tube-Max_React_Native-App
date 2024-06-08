@@ -1,20 +1,29 @@
-import { GestureResponderEvent, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
+import {
+  GestureResponderEvent,
+  ImageBackground,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
-import React, { useState } from 'react'
-import { IShowSummary } from '~/Types/Apis/TvShows/ShowSummary'
-import { useRouter } from 'expo-router'
-import ButtonSpinner from '~/Components/Spinner/ButtonSpinner'
-import { appTheme } from '~/Theme/Apptheme'
-import { getTMDBImage } from '~/Utils/Funcs'
-import { styles } from '../../Shared/styles'
-import { unknown } from '~/Utils/Constants'
+import React, { useState } from "react";
+import { useRouter } from "expo-router";
+
+import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
+import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
+import { appTheme } from "~/Theme/Apptheme";
+import { getTMDBImage } from "~/Utils/Funcs";
+import { styles } from "../../Shared/styles";
+import { unknown } from "~/Utils/Constants";
 
 type Props = {
-    show:IShowSummary
-}
+  show: IShowSummary;
+};
 
-const TvShowCardWithDetails:React.FC<Props> = ({show:{id,poster_path,vote_average,name,first_air_date}}) => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+const TvShowCardWithDetails: React.FC<Props> = ({
+  show: { id, poster_path, vote_average, name, first_air_date },
+}) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const route = useRouter();
   const navigate = () => {
     route.push(`/tvshow/${id}`);
@@ -56,7 +65,7 @@ const TvShowCardWithDetails:React.FC<Props> = ({show:{id,poster_path,vote_averag
         <View style={subContainer}>
           <View style={detailsContainer}>
             <View style={details}>
-              <Text style={titleText}>{name?name:unknown}</Text>
+              <Text style={titleText}>{name ? name : unknown}</Text>
               <Text style={detailsText}>
                 {first_air_date ? first_air_date : unknown}
               </Text>
@@ -67,9 +76,7 @@ const TvShowCardWithDetails:React.FC<Props> = ({show:{id,poster_path,vote_averag
                 <Text style={ratingsText}>{getRating()}</Text>
               </View>
               <View style={subDetails}>
-                <Pressable
-                  style={btn}
-                >
+                <Pressable style={btn}>
                   <Text style={detailsText}>view</Text>
                 </Pressable>
                 <Pressable
@@ -93,7 +100,7 @@ const TvShowCardWithDetails:React.FC<Props> = ({show:{id,poster_path,vote_averag
         </View>
       </ImageBackground>
     </View>
-  )
-}
+  );
+};
 
-export default TvShowCardWithDetails
+export default TvShowCardWithDetails;
