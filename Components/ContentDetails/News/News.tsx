@@ -17,7 +17,13 @@ const News = () => {
       <View style={styles.subContainer}>
         {isLoading && <ScreenSpinner />}
         {error && <HttpError />}
-        {data.length > 1 && <VerticalSwipeable type="news" content={data}/>}
+        {data.length > 1 && (
+          <VerticalSwipeable
+            type="news"
+            content={data}
+            newsCategory={category}
+          />
+        )}
       </View>
     </View>
   );

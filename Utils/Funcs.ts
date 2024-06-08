@@ -1,5 +1,6 @@
 import * as SecureStore from "expo-secure-store";
 import { ITracksItem } from "~/Types/Apis/Music/Album/Album";
+import { INews } from "~/Types/Apis/News/News";
 import {
   IArtistSummary,
   INumberOrNull,
@@ -107,6 +108,10 @@ export const getSpotifyImage = (imageUrl: string | null) => {
   if (imageUrl) return { uri: `${imageUrl}` };
   else return require("assets/images/empty-profile.jpg");
 };
+export const getNewsImage = (imageUrl: string | null) => {
+  if (imageUrl) return { uri: `${imageUrl}` };
+  else return require("assets/images/news.jpg");
+};
 export const getYear = (releaseDate: string) => {
   return releaseDate.split("-")[0];
 };
@@ -160,4 +165,15 @@ export const trackDurationInMins = (durationInMs: INumberOrNull) => {
 };
 export const capitalizeFirstLetter = (word: string) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
+};
+export const randomNumber = () => {
+  return Math.floor(Math.random() * (1000 - 1 + 1) + 1);
+};
+export const addNewsId = (newsList: INews[]) => {
+  const newNewsList = [];
+  for (let i = 0; i < newsList.length; i++) {
+    let article = { ...newsList[i], id: i + 1 };
+    newNewsList.push(article);
+  }
+  return newNewsList;
 };

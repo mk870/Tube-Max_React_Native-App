@@ -12,6 +12,7 @@ import { addTvShowsNews } from "~/Redux/Slices/News/TvShowsNewsSlice";
 import { INews } from "~/Types/Apis/News/News";
 import { INewsCategory, IStringOrNull } from "~/Types/Shared/Types";
 import { backendUrl } from "~/Utils/Constants";
+import { addNewsId } from "~/Utils/Funcs";
 
 const useFetchNews = (newsCategory: INewsCategory) => {
   const [error, setError] = useState<IStringOrNull>(null);
@@ -66,8 +67,7 @@ const useFetchNews = (newsCategory: INewsCategory) => {
     axios
       .get(`${backendUrl}news/${newsCategory}`)
       .then((data) => {
-        console.log(data.data.articles[0])
-        dispatchNews(data.data.articles);
+        dispatchNews(addNewsId(data.data.articles));
       })
       .catch((e) => {
         console.log("error", e);
@@ -78,26 +78,22 @@ const useFetchNews = (newsCategory: INewsCategory) => {
   useEffect(() => {
     if (newsCategory === "hollywood actors" && actorNews.length < 1) {
       fetchData();
-    }
-    else if (newsCategory === "albums" && albumNews.length < 1) {
+    } else if (newsCategory === "albums" && albumNews.length < 1) {
       fetchData();
-    }
-    else if (newsCategory === "movies" && movieNews.length < 1) {
+    } else if (newsCategory === "movies" && movieNews.length < 1) {
       fetchData();
-    }
-    else if (newsCategory === "tv shows" && tvShowNews.length < 1) {
+    } else if (newsCategory === "tv shows" && tvShowNews.length < 1) {
       fetchData();
-    }
-    else if (newsCategory === "songs" && songNews.length < 1) {
+    } else if (newsCategory === "songs" && songNews.length < 1) {
       fetchData();
-    }
-    else if (newsCategory === "entertainment" && entertainmentNews.length < 1) {
+    } else if (
+      newsCategory === "entertainment" &&
+      entertainmentNews.length < 1
+    ) {
       fetchData();
-    }
-    else if (newsCategory === "musicians" && artistsNews.length < 1) {
+    } else if (newsCategory === "musicians" && artistsNews.length < 1) {
       fetchData();
-    }
-    else setIsLoading(false)
+    } else setIsLoading(false);
   }, [newsCategory]);
   return { data: getData(), error, isLoading };
 };

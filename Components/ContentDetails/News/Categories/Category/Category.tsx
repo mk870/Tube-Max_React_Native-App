@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 5,
     marginRight: 8,
-    marginLeft:3
+    marginLeft:3,
   },
   text: {
     fontFamily: medium,

@@ -6,22 +6,27 @@ import {
   View,
 } from "react-native";
 import React from "react";
+import { useRouter } from "expo-router";
+
 import { IStringOrNull } from "~/Types/Shared/Types";
 import { imageBackgroundColor } from "~/Theme/Apptheme";
 import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
 import LinearGradientOverlay from "~/Components/LinearGradient/LinearGradientOverlay";
-import { getSpotifyImage, getTMDBImage } from "~/Utils/Funcs";
-import { useRouter } from "expo-router";
+import { getNewsImage, getSpotifyImage, getTMDBImage } from "~/Utils/Funcs";
 
 type Props = {
   imagePath: IStringOrNull;
-  source: "tmdb" | "spotify";
+  source: "tmdb" | "spotify" | "news";
 };
 
 const ContentImage: React.FC<Props> = ({ imagePath, source }) => {
   const route = useRouter();
   const { width } = useWindowDimensions();
   const screenBreakpoint = 500;
+  const getHeight = ()=>{
+    if(source==="news" && width< screenBreakpoint)return 200
+    else return 500
+  }
   const backGroundColor =
     width > screenBreakpoint ? imageBackgroundColor : "transparent";
   return (
@@ -29,10 +34,12 @@ const ContentImage: React.FC<Props> = ({ imagePath, source }) => {
       source={
         source === "spotify"
           ? getSpotifyImage(imagePath)
+          : source === "news"
+          ? getNewsImage(imagePath)
           : getTMDBImage(imagePath)
       }
-      style={[styles.poster, { height: 500 }]}
-      resizeMode="cover"
+      style={[styles.poster, { height: getHeight()}]}
+      resizeMode={source==="news"?"contain":"cover"}
       blurRadius={width > screenBreakpoint ? 15 : 0}
     >
       <LinearGradientOverlay backGroundColor={backGroundColor} />
@@ -48,6 +55,8 @@ const ContentImage: React.FC<Props> = ({ imagePath, source }) => {
           source={
             source === "spotify"
               ? getSpotifyImage(imagePath)
+              : source === "news"
+              ? getNewsImage(imagePath)
               : getTMDBImage(imagePath)
           }
           style={[

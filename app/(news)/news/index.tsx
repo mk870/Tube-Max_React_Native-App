@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import ScreenWrapper from "../../../HOCs/ScreenWrapper";
 import News from "~/Components/ContentDetails/News/News";

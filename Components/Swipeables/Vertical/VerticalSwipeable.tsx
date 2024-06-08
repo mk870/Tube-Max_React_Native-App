@@ -9,24 +9,32 @@ import BareSharedCard from "~/Components/Cards/Shared/BareSharedCard";
 import { IMovieRecommendations } from "~/Types/Apis/Movies/MovieRecommandations";
 import { IShowRecommendation } from "~/Types/Apis/TvShows/ShowRecommendation";
 import PlaylistCard from "~/Components/Cards/Shared/PlaylistCard";
-import { IArtist } from "~/Types/Shared/Types";
+import { IArtist, INewsCategory } from "~/Types/Shared/Types";
 import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
 import { INews } from "~/Types/Apis/News/News";
 import NewsCard from "~/Components/Cards/CardsWithDetails/News/NewsCard";
 import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
-import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/AlbumCardWithDetails";
+import LatestAlbumCard from "~/Components/Cards/CardsWithDetails/Music/LatestAlbumCard";
 
-type Props =
-  | { type: "movie"; content: IMovieSummary[] }
+type Props = { newsCategory?: INewsCategory } & (
+  | {
+      type: "movie";
+      content: IMovieSummary[];
+    }
   | { type: "tvShow"; content: IShowSummary[] }
   | { type: "artists"; content: IArtist[] }
   | { type: "playlist"; content: IPlayListSummary[] }
   | { type: "movieRecomms"; content: IMovieRecommendations[] }
   | { type: "news"; content: INews[] }
   | { type: "album"; content: IAlbumSummary[] }
-  | { type: "showRecomms"; content: IShowRecommendation[] };
+  | { type: "showRecomms"; content: IShowRecommendation[] }
+);
 
-const VerticalSwipeable: React.FC<Props> = ({ type, content }) => {
+const VerticalSwipeable: React.FC<Props> = ({
+  type,
+  content,
+  newsCategory,
+}) => {
   const router = useRouter();
   return (
     <ScrollView
@@ -75,11 +83,15 @@ const VerticalSwipeable: React.FC<Props> = ({ type, content }) => {
         ))}
       {type === "news" &&
         content.map((article, index) => (
-          <NewsCard article={article} key={index} />
+          <NewsCard
+            article={article}
+            key={index}
+            newsCategory={newsCategory ? newsCategory : "entertainment"}
+          />
         ))}
-        {type === "album" &&
+      {type === "album" &&
         content.map((album, index) => (
-          <AlbumCardWithDetails type="trackAlbum" content={album} key={index} />
+          <LatestAlbumCard album={album} key={index} />
         ))}
     </ScrollView>
   );
@@ -88,8 +100,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 5,
     flexWrap: "wrap",
+    padding: 5,
     gap: 10,
     marginTop: 10,
   },

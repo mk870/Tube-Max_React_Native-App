@@ -1,5 +1,6 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
+
 import { INewsCategory } from "~/Types/Shared/Types";
 import {
   moviesNewsCategory,
@@ -11,7 +12,6 @@ import {
   entertainmentNewsCategory,
 } from "~/Utils/Constants";
 import Category from "./Category/Category";
-import { background } from "~/Theme/Apptheme";
 
 type Props = {
   category: string;
