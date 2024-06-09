@@ -200,7 +200,7 @@ export type ICast = {
   popularity: INumberOrNull;
   profile_path: IStringOrNull;
 };
-export type IContentType = "movie" | "tvShow" | "music";
+export type IContentType = "movies"| "tvshows"| "music"| "news";
 export type IVideoType = "reviews" | "clips" | "trailer" | "song";
 export type INewsCategory =
   | "musicians"

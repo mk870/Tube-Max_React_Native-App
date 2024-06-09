@@ -1,13 +1,20 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import React from "react";
 
 import { darkGray, primary, white } from "~/Theme/Apptheme";
 import { medium } from "~/Utils/Constants";
+import { IContentType } from "~/Types/Shared/Types";
 
 type Props = {
-  contentType: string[];
-  contentTypeOption: string;
-  setContentTypeOption: React.Dispatch<React.SetStateAction<string>>;
+  contentType: IContentType[];
+  contentTypeOption: IContentType;
+  setContentTypeOption: React.Dispatch<React.SetStateAction<IContentType>>;
 };
 
 const ContentOptions: React.FC<Props> = ({
@@ -15,35 +22,39 @@ const ContentOptions: React.FC<Props> = ({
   contentTypeOption,
   setContentTypeOption,
 }) => {
-  const { searchOptionsContainer, searchOption } = styles;
+  const { searchOptionsContainer, searchOption, container } = styles;
+  const { width } = useWindowDimensions();
   return (
-    <View style={searchOptionsContainer}>
-      {contentType.map((option: string) => (
-        <TouchableOpacity
-          key={option}
-          style={[
-            searchOption,
-            {
-              borderBottomWidth: option === contentTypeOption ? 3 : 0,
-              borderBottomColor:
-                option === contentTypeOption ? primary : darkGray,
-              backgroundColor:
-                option === contentTypeOption ? darkGray : darkGray,
-            },
-          ]}
-          onPress={() => setContentTypeOption(option)}
-        >
-          <Text
-            style={{
-              color: option === contentTypeOption ? white : "gray",
-              fontFamily: medium,
-              fontSize: 14,
-            }}
+    <View style={container}>
+      <View style={searchOptionsContainer}>
+        {contentType.map((option: IContentType) => (
+          <TouchableOpacity
+            key={option}
+            style={[
+              searchOption,
+              {
+                width: width > 358 ? 80 : 65,
+                borderBottomWidth: option === contentTypeOption ? 3 : 0,
+                borderBottomColor:
+                  option === contentTypeOption ? primary : darkGray,
+                backgroundColor:
+                  option === contentTypeOption ? darkGray : darkGray,
+              },
+            ]}
+            onPress={() => setContentTypeOption(option)}
           >
-            {option.charAt(0).toUpperCase() + option.slice(1)}
-          </Text>
-        </TouchableOpacity>
-      ))}
+            <Text
+              style={{
+                color: option === contentTypeOption ? white : "gray",
+                fontFamily: medium,
+                fontSize: 14,
+              }}
+            >
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
 };
@@ -51,18 +62,24 @@ const ContentOptions: React.FC<Props> = ({
 export default ContentOptions;
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   searchOptionsContainer: {
     flexDirection: "row",
     gap: 10,
     flexWrap: "wrap",
     alignContent: "center",
-    justifyContent: "space-around",
     marginTop: 5,
   },
   searchOption: {
     paddingVertical: 5,
-    paddingHorizontal: 10,
-    borderRadius: 5,
+    borderRadius: 3,
     borderCurve: "circular",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
