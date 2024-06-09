@@ -37,7 +37,7 @@ const Genres: React.FC<Props> = ({ contentType }) => {
   return (
     <View style={container}>
       <Text style={headertext}>
-        {contentType === "music" ? "Playlist Genres" : "Genres"}
+        {"Genres"}
       </Text>
       <FlatList
         data={dataList()}

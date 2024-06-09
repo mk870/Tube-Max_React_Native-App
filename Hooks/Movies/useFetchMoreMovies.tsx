@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+
 import { useAppSelector } from "~/Redux/Hooks/Hooks";
 import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
 import { tmdbKey } from "~/Utils/Constants";

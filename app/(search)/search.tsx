@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { IReactNoPropElement } from "../../Types/ReactComonents/Types";
@@ -18,20 +18,25 @@ import {
 import SearchResults from "~/Components/Search/Results/SearchResults";
 import Genres from "~/Components/Search/Header/Filters/GenreList/Genres";
 import NewsCategoryList from "~/Components/Search/Header/Filters/NewsCategories/NewsCategoryList";
-import { ISearchResultsProps } from "~/Components/Search/Results/types";
+import {
+  IMusicSearchType,
+  ISearchResultsProps,
+} from "~/Components/Search/Results/types";
 import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
 import { clearTvShowGenres } from "~/Redux/Slices/Genres/TvShows";
 import { clearMusicGenres } from "~/Redux/Slices/Genres/Music";
 import { clearMoviesGenres } from "~/Redux/Slices/Genres/Movies";
 import SearchContainer from "~/Components/Search/Header/SearchContainer/SearchContainer";
 import ContentOptions from "~/Components/Search/Header/ContentOptions/ContentOptions";
+import SearchOptions from "~/Components/Search/Header/Filters/MusicOptions/SearchOptions";
+import { IContentType } from "~/Types/Shared/Types";
 
 const search: IReactNoPropElement = () => {
   const [searchInput, setSearchInput] = useState<string | undefined>("");
   const moviesGenres = useAppSelector((state) => state.movieGenres.value);
   const dispatch = useAppDispatch();
   const tvShowGenres = useAppSelector((state) => state.tvShowGenres.value);
-  const contentType: string[] = ["movies", "tvshows", "music", "news"];
+  const contentType: IContentType[] = ["movies", "tvshows", "music", "news"];
   const newsCategories = [
     moviesNewsCategory,
     tvShowsNewsCategory,
@@ -44,22 +49,33 @@ const search: IReactNoPropElement = () => {
   const [selectedNewsCategory, setSelectedNewsCategory] = useState<string>(
     newsCategories[0]
   );
-  const [contentTypeOption, setContentTypeOption] = useState<string>(
+  const [contentTypeOption, setContentTypeOption] = useState<IContentType>(
     contentType[0]
   );
+  const [musicSearchType, setMusicSearchType] =
+    useState<IMusicSearchType>("artist");
   const [searchDetails, setSearchDetails] = useState<ISearchResultsProps>({
     searchInput: "",
     searchFilters: "",
   });
-  const { header } = styles;
+  useEffect(() => {
+    if (contentTypeOption === "news") {
+      setSearchDetails({
+        ...searchDetails,
+        searchInput: undefined,
+        searchFilters: selectedNewsCategory,
+      });
+    } else {
+      setSearchDetails({
+        ...searchDetails,
+        searchInput: undefined,
+        searchFilters: "",
+      });
+    }
+  }, [contentTypeOption, musicSearchType, selectedNewsCategory]);
   const handleKeyboardSubmit = () => {
     if (searchInput) {
-      if (contentTypeOption === "news") {
-        setSearchDetails({
-          searchInput: searchInput,
-          searchFilters: selectedNewsCategory,
-        });
-      } else if (contentTypeOption === "movies") {
+      if (contentTypeOption === "movies") {
         const genreList = moviesGenres.filter(
           (genre) => genre.selected === true
         );
@@ -83,10 +99,13 @@ const search: IReactNoPropElement = () => {
         const resultList = genreIds.join(",");
         setSearchDetails({
           searchInput: searchInput,
-          searchFilters: resultList
+          searchFilters: resultList,
         });
       } else {
-        setSearchDetails({ searchInput: searchInput, searchFilters: "" });
+        setSearchDetails({
+          searchInput: searchInput,
+          searchFilters: musicSearchType,
+        });
       }
     }
     if (contentTypeOption === "tvshows") dispatch(clearTvShowGenres());
@@ -94,8 +113,9 @@ const search: IReactNoPropElement = () => {
     if (contentTypeOption === "movies") dispatch(clearMoviesGenres());
     setSearchInput("");
   };
+  const { header, container } = styles;
   return (
-    <SafeAreaView>
+    <SafeAreaView style={container}>
       <View style={header}>
         <SearchContainer
           contentTypeOption={contentTypeOption}
@@ -108,19 +128,27 @@ const search: IReactNoPropElement = () => {
           contentType={contentType}
           contentTypeOption={contentTypeOption}
         />
-        {contentTypeOption !== "news" ? (
+        {(contentTypeOption === "movies" ||
+          contentTypeOption === "tvshows") && (
           <Genres contentType={contentTypeOption} />
-        ) : (
+        )}
+        {contentTypeOption === "news" && (
           <NewsCategoryList
             selectedCategory={selectedNewsCategory}
             newsCategories={newsCategories}
             setSelectedCategory={setSelectedNewsCategory}
           />
         )}
+        {contentTypeOption === "music" && (
+          <SearchOptions
+            setMusicSearchType={setMusicSearchType}
+            musicSearchType={musicSearchType}
+          />
+        )}
       </View>
       <SearchResults
-        searchFilters={searchDetails.searchFilters}
-        searchInput={searchDetails.searchInput}
+        contentType={contentTypeOption}
+        searchParams={searchDetails}
       />
     </SafeAreaView>
   );
@@ -129,6 +157,9 @@ const search: IReactNoPropElement = () => {
 export default ScreenWrapper(search);
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   header: {
     flexDirection: "column",
     gap: 8,
