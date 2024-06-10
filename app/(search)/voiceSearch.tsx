@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { IReactNoPropElement } from '~/Types/ReactComonents/Types'
-import ScreenWrapper from '~/HOCs/ScreenWrapper'
+import ScreenWrapper from '~/src/HOCs/ScreenWrapper'
+import { IReactNoPropElement } from '~/src/Types/ReactComonents/Types'
 
 const voiceSearch:IReactNoPropElement = () => {
   return (

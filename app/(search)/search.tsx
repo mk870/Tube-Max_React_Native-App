@@ -2,34 +2,34 @@ import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { IReactNoPropElement } from "../../Types/ReactComonents/Types";
-import ScreenWrapper from "../../HOCs/ScreenWrapper";
-import { small, white } from "~/Theme/Apptheme";
-import {
-  actorsNewsCategory,
-  albumsNewsCategory,
-  artistsNewsCategory,
-  entertainmentNewsCategory,
-  moviesNewsCategory,
-  regular,
-  songsNewsCategory,
-  tvShowsNewsCategory,
-} from "~/Utils/Constants";
-import SearchResults from "~/Components/Search/Results/SearchResults";
-import Genres from "~/Components/Search/Header/Filters/GenreList/Genres";
-import NewsCategoryList from "~/Components/Search/Header/Filters/NewsCategories/NewsCategoryList";
+import ScreenWrapper from "~/src/HOCs/ScreenWrapper";
+import { useAppSelector, useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { clearMoviesGenres } from "~/src/Redux/Slices/Genres/Movies";
+import { clearMusicGenres } from "~/src/Redux/Slices/Genres/Music";
+import { clearTvShowGenres } from "~/src/Redux/Slices/Genres/TvShows";
+import ContentOptions from "~/src/Screens/Search/Header/ContentOptions/ContentOptions";
+import SearchOptions from "~/src/Screens/Search/Header/Filters/MusicOptions/SearchOptions";
+import NewsCategoryList from "~/src/Screens/Search/Header/Filters/NewsCategories/NewsCategoryList";
+import SearchContainer from "~/src/Screens/Search/Header/SearchContainer/SearchContainer";
+import SearchResults from "~/src/Screens/Search/Results/SearchResults";
 import {
   IMusicSearchType,
   ISearchResultsProps,
-} from "~/Components/Search/Results/types";
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
-import { clearTvShowGenres } from "~/Redux/Slices/Genres/TvShows";
-import { clearMusicGenres } from "~/Redux/Slices/Genres/Music";
-import { clearMoviesGenres } from "~/Redux/Slices/Genres/Movies";
-import SearchContainer from "~/Components/Search/Header/SearchContainer/SearchContainer";
-import ContentOptions from "~/Components/Search/Header/ContentOptions/ContentOptions";
-import SearchOptions from "~/Components/Search/Header/Filters/MusicOptions/SearchOptions";
-import { IContentType } from "~/Types/Shared/Types";
+} from "~/src/Screens/Search/Results/types";
+import { small, white } from "~/src/Theme/Apptheme";
+import { IReactNoPropElement } from "~/src/Types/ReactComonents/Types";
+import { IContentType } from "~/src/Types/Shared/Types";
+import {
+  moviesNewsCategory,
+  tvShowsNewsCategory,
+  artistsNewsCategory,
+  songsNewsCategory,
+  albumsNewsCategory,
+  actorsNewsCategory,
+  entertainmentNewsCategory,
+  regular,
+} from "~/src/Utils/Constants";
+import Genres from "~/src/Screens/Search/Header/Filters/GenreList/Genres";
 
 const search: IReactNoPropElement = () => {
   const [searchInput, setSearchInput] = useState<string | undefined>("");
@@ -66,8 +66,8 @@ const search: IReactNoPropElement = () => {
     });
     setMusicSearchType(type);
   };
-  
-  const handleContentTypeChange = (type:IContentType)=>{
+
+  const handleContentTypeChange = (type: IContentType) => {
     if (type === "news") {
       setSearchDetails({
         ...searchDetails,
@@ -81,8 +81,8 @@ const search: IReactNoPropElement = () => {
         searchFilters: "",
       });
     }
-    setContentTypeOption(type)
-  }
+    setContentTypeOption(type);
+  };
   const handleKeyboardSubmit = () => {
     if (searchInput) {
       if (contentTypeOption === "movies") {

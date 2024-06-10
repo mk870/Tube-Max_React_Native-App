@@ -1,5 +1,5 @@
 import React from 'react'
-import MovieStack from '~/Components/Navigation/Stacks/Movies/MovieStack'
+import MovieStack from '~/src/Navigation/Stacks/Movies/MovieStack'
 
 const MovieLayout = () => {
   return (

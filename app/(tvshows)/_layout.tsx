@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import TvShowsStack from '~/Components/Navigation/Stacks/TvShows/TvShowsStack'
+import TvShowsStack from '~/src/Navigation/Stacks/TvShows/TvShowsStack'
 
 const TvShowsRootLayout = () => {
   return (
