@@ -17,7 +17,7 @@ import { INewsCategory } from "~/Types/Shared/Types";
 
 type Props = {
   article: INews;
-  newsCategory: INewsCategory
+  newsCategory: INewsCategory | string;
 };
 
 const NewsCard: React.FC<Props> = ({
@@ -26,9 +26,9 @@ const NewsCard: React.FC<Props> = ({
     title,
     source: { name },
     publishedAt,
-    id
+    id,
   },
-  newsCategory
+  newsCategory,
 }) => {
   const route = useRouter();
   const { width } = useWindowDimensions();
@@ -42,23 +42,28 @@ const NewsCard: React.FC<Props> = ({
     else if (width > 358) return 160;
     else return 140;
   };
+  const newsText = (text: string) => {
+    if (width > 700) return shortenString(text, 26);
+    else return shortenString(text, 18);
+  };
   return (
     <TouchableOpacity
       style={[styles.container, { width: getWidth() }]}
-      onPress={() => route.push({pathname:`news/${id}`,params:{
-        category: newsCategory
-      }})}
+      onPress={() =>
+        route.push({
+          pathname: `news/${id}`,
+          params: {
+            category: newsCategory,
+          },
+        })
+      }
     >
       <Image
         source={getNewsImage(urlToImage ? urlToImage : null)}
         style={[{ height: getHeight(), width: getWidth() }, styles.imageStyles]}
       />
-      <Text style={styles.headerText}>
-        {title ? shortenString(title, 17) : unknown}
-      </Text>
-      <Text style={styles.regularText}>
-        {name ? shortenString(name, 17) : unknown}
-      </Text>
+      <Text style={styles.headerText}>{title ? newsText(title) : unknown}</Text>
+      <Text style={styles.regularText}>{name ? newsText(name) : unknown}</Text>
       <Text style={styles.text}>
         {moment(publishedAt).startOf("days").fromNow()}
       </Text>
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
     fontFamily: regular,
     fontSize: small,
     color: "gray",
-    fontStyle:"italic"
+    fontStyle: "italic",
   },
   imageStyles: {
     borderRadius: 10,

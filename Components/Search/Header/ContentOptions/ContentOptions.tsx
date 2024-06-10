@@ -14,7 +14,7 @@ import { IContentType } from "~/Types/Shared/Types";
 type Props = {
   contentType: IContentType[];
   contentTypeOption: IContentType;
-  setContentTypeOption: React.Dispatch<React.SetStateAction<IContentType>>;
+  setContentTypeOption: (type: IContentType) => void;
 };
 
 const ContentOptions: React.FC<Props> = ({

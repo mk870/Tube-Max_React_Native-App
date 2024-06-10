@@ -27,7 +27,9 @@ const useFetchTvShowSearch = (
           setError(true);
         })
         .finally(() => setIsLoading(false));
-    } else setIsLoading(false);
+    } else {
+      setData(null);
+      setIsLoading(false)};
   }, [queryString, genres]);
   return { data, isLoading, error };
 };
