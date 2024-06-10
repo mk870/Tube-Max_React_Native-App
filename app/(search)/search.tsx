@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { IReactNoPropElement } from "../../Types/ReactComonents/Types";
@@ -53,13 +53,22 @@ const search: IReactNoPropElement = () => {
     contentType[0]
   );
   const [musicSearchType, setMusicSearchType] =
-    useState<IMusicSearchType>("artist");
+    useState<IMusicSearchType>("track");
   const [searchDetails, setSearchDetails] = useState<ISearchResultsProps>({
     searchInput: "",
     searchFilters: "",
   });
-  useEffect(() => {
-    if (contentTypeOption === "news") {
+  const handleMusicSearchTypeChange = (type: IMusicSearchType) => {
+    setSearchDetails({
+      ...searchDetails,
+      searchInput: undefined,
+      searchFilters: "",
+    });
+    setMusicSearchType(type);
+  };
+  
+  const handleContentTypeChange = (type:IContentType)=>{
+    if (type === "news") {
       setSearchDetails({
         ...searchDetails,
         searchInput: undefined,
@@ -72,7 +81,8 @@ const search: IReactNoPropElement = () => {
         searchFilters: "",
       });
     }
-  }, [contentTypeOption, musicSearchType, selectedNewsCategory]);
+    setContentTypeOption(type)
+  }
   const handleKeyboardSubmit = () => {
     if (searchInput) {
       if (contentTypeOption === "movies") {
@@ -85,7 +95,7 @@ const search: IReactNoPropElement = () => {
         }
         const resultList = genreIds.join(",");
         setSearchDetails({
-          searchInput: searchInput,
+          searchInput,
           searchFilters: resultList,
         });
       } else if (contentTypeOption === "tvshows") {
@@ -98,12 +108,12 @@ const search: IReactNoPropElement = () => {
         }
         const resultList = genreIds.join(",");
         setSearchDetails({
-          searchInput: searchInput,
+          searchInput,
           searchFilters: resultList,
         });
       } else {
         setSearchDetails({
-          searchInput: searchInput,
+          searchInput,
           searchFilters: musicSearchType,
         });
       }
@@ -124,7 +134,7 @@ const search: IReactNoPropElement = () => {
           handleKeyboardSubmit={handleKeyboardSubmit}
         />
         <ContentOptions
-          setContentTypeOption={setContentTypeOption}
+          setContentTypeOption={handleContentTypeChange}
           contentType={contentType}
           contentTypeOption={contentTypeOption}
         />
@@ -141,7 +151,7 @@ const search: IReactNoPropElement = () => {
         )}
         {contentTypeOption === "music" && (
           <SearchOptions
-            setMusicSearchType={setMusicSearchType}
+            handlePressFunc={handleMusicSearchTypeChange}
             musicSearchType={musicSearchType}
           />
         )}
@@ -149,6 +159,8 @@ const search: IReactNoPropElement = () => {
       <SearchResults
         contentType={contentTypeOption}
         searchParams={searchDetails}
+        newsCategory={selectedNewsCategory}
+        musicSearchType={musicSearchType}
       />
     </SafeAreaView>
   );

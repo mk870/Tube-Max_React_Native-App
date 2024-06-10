@@ -10,10 +10,7 @@ import { addMoviesNews } from "~/Redux/Slices/News/MoviesNiewsSlice";
 import { addSongsNews } from "~/Redux/Slices/News/SongsNewsSlice";
 import { addTvShowsNews } from "~/Redux/Slices/News/TvShowsNewsSlice";
 import { INews } from "~/Types/Apis/News/News";
-import {
-  IContentType,
-  IStringOrNull,
-} from "~/Types/Shared/Types";
+import { IContentType, IStringOrNull } from "~/Types/Shared/Types";
 import { backendUrl } from "~/Utils/Constants";
 import { addNewsId } from "~/Utils/Funcs";
 
@@ -51,21 +48,23 @@ const useFetchSearchNews = (
     }
   };
   const getData = () => {
-    if (newsCategory === "hollywood actors") {
-      return actorNews;
-    } else if (newsCategory === "albums") {
-      return albumNews;
-    } else if (newsCategory === "movies") {
-      return movieNews;
-    } else if (newsCategory === "tv shows") {
-      return tvShowNews;
-    } else if (newsCategory === "songs") {
-      return songNews;
-    } else if (newsCategory === "entertainment") {
-      return entertainmentNews;
-    } else {
-      return artistsNews;
-    }
+    if (contentType === "news") {
+      if (newsCategory === "hollywood actors") {
+        return actorNews;
+      } else if (newsCategory === "albums") {
+        return albumNews;
+      } else if (newsCategory === "movies") {
+        return movieNews;
+      } else if (newsCategory === "tv shows") {
+        return tvShowNews;
+      } else if (newsCategory === "songs") {
+        return songNews;
+      } else if (newsCategory === "entertainment") {
+        return entertainmentNews;
+      } else {
+        return artistsNews;
+      }
+    } else return null;
   };
   const fetchData = () => {
     setIsLoading(true);
@@ -73,7 +72,6 @@ const useFetchSearchNews = (
     axios
       .get(`${backendUrl}news/${newsCategory}`)
       .then((data) => {
-        console.log(data.data.articles)
         dispatchNews(addNewsId(data.data.articles));
       })
       .catch((e) => {

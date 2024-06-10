@@ -15,18 +15,35 @@ import { INews } from "~/Types/Apis/News/News";
 import NewsCard from "~/Components/Cards/CardsWithDetails/News/NewsCard";
 import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
 import LatestAlbumCard from "~/Components/Cards/CardsWithDetails/Music/LatestAlbumCard";
+import MovieCard from "~/Screens/Search/Cards/MovieCard";
+import TvShowcard from "~/Screens/Search/Cards/TvShowcard";
+import { ITrack } from "~/Types/Apis/Music/Track/Track";
+import TrackCard from "~/Screens/Search/Cards/TrackCard";
+import AlbumCard from "~/Screens/Search/Cards/AlbumCard";
+import ArtistCard from "~/Screens/Search/Cards/ArtistCard";
 
-type Props = { newsCategory?: INewsCategory } & (
+type Props = { newsCategory?: INewsCategory | string } & (
   | {
       type: "movie";
       content: IMovieSummary[];
     }
+  | {
+      type: "track";
+      content: ITrack[];
+    }
+  | {
+      type: "movieSearchResults";
+      content: IMovieSummary[];
+    }
   | { type: "tvShow"; content: IShowSummary[] }
+  | { type: "tvShowSearchResults"; content: IShowSummary[] }
   | { type: "artists"; content: IArtist[] }
+  | { type: "artistSearchResults"; content: IArtist[] }
   | { type: "playlist"; content: IPlayListSummary[] }
   | { type: "movieRecomms"; content: IMovieRecommendations[] }
   | { type: "news"; content: INews[] }
   | { type: "album"; content: IAlbumSummary[] }
+  | { type: "albumSearchResults"; content: IAlbumSummary[] }
   | { type: "showRecomms"; content: IShowRecommendation[] }
 );
 
@@ -49,6 +66,14 @@ const VerticalSwipeable: React.FC<Props> = ({
             onPressFunc={() => router.push(`movie/${movie.id}`)}
           />
         ))}
+      {type === "movieSearchResults" &&
+        content.map((movie, index) => (
+          <MovieCard
+            movie={movie}
+            key={index}
+            onPressFunc={() => router.push(`movie/${movie.id}`)}
+          />
+        ))}
       {type === "movieRecomms" &&
         content.map((movie, index) => (
           <BareSharedCard
@@ -61,6 +86,14 @@ const VerticalSwipeable: React.FC<Props> = ({
         content.map((show, index) => (
           <BareSharedCard
             posterPath={show.poster_path}
+            key={index}
+            onPressFunc={() => router.push(`tvshow/${show.id}`)}
+          />
+        ))}
+      {type === "tvShowSearchResults" &&
+        content.map((show, index) => (
+          <TvShowcard
+            show={show}
             key={index}
             onPressFunc={() => router.push(`tvshow/${show.id}`)}
           />
@@ -81,6 +114,10 @@ const VerticalSwipeable: React.FC<Props> = ({
         content.map((artist, index) => (
           <ArtistsWithDetails artist={artist} key={index} />
         ))}
+      {type === "artistSearchResults" &&
+        content.map((artist, index) => (
+          <ArtistCard artist={artist} key={index} />
+        ))}
       {type === "news" &&
         content.map((article, index) => (
           <NewsCard
@@ -93,6 +130,10 @@ const VerticalSwipeable: React.FC<Props> = ({
         content.map((album, index) => (
           <LatestAlbumCard album={album} key={index} />
         ))}
+      {type === "albumSearchResults" &&
+        content.map((album, index) => <AlbumCard album={album} key={index} />)}
+      {type === "track" &&
+        content.map((track, index) => <TrackCard track={track} key={index} />)}
     </ScrollView>
   );
 };

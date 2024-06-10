@@ -1,8 +1,4 @@
-import {
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 
@@ -37,8 +33,8 @@ const MovieDetails: React.FC<Props> = ({
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
-      <ContentImage source="tmdb" imagePath={poster_path}/>
-      <Details movie={movie}/>
+      <ContentImage source="tmdb" imagePath={poster_path} />
+      <Details movie={movie} />
       <View style={styles.castNcrewContainer}>
         <Swipeable
           type="movieCast"
@@ -63,11 +59,13 @@ const MovieDetails: React.FC<Props> = ({
           }
         />
       </View>
-      <Reviews type="movie" content={reviews} />
-      <View style={styles.recommsContainer}>
-        <Text style={styles.recommsText}>Movie Recommendations</Text>
-        <VerticalSwipeable type="movieRecomms" content={recommandations} />
-      </View>
+      {reviews.length > 0 && <Reviews type="movie" content={reviews} />}
+      {recommandations.length > 0 && (
+        <View style={styles.recommsContainer}>
+          <Text style={styles.recommsText}>Movie Recommendations</Text>
+          <VerticalSwipeable type="movieRecomms" content={recommandations} />
+        </View>
+      )}
     </ScrollView>
   );
 };

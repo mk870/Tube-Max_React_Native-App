@@ -1,9 +1,4 @@
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import { IShow } from "~/Types/Apis/TvShows/Show";
@@ -32,7 +27,7 @@ const TvShowDetails: React.FC<Props> = ({ show, recommendations, reviews }) => {
           contentContainerStyle={styles.container}
           showsVerticalScrollIndicator={false}
         >
-          <ContentImage imagePath={show.poster_path} source="tmdb"/>
+          <ContentImage imagePath={show.poster_path} source="tmdb" />
           <ShowDetails show={show} screenBreakPoint={screenBreakpoint} />
           {show.created_by && show.created_by.length > 0 && (
             <Swipeable
@@ -45,14 +40,16 @@ const TvShowDetails: React.FC<Props> = ({ show, recommendations, reviews }) => {
             type="tvShowSeason"
             content={show.seasons ? show.seasons : []}
             id={show.id}
-            showName={show.name?show.name:""}
+            showName={show.name ? show.name : ""}
             headerTitle="Seasons"
           />
           {reviews.length > 0 && <Reviews type="tvShow" content={reviews} />}
-          <View style={styles.recommsContainer}>
-            <Text style={styles.recommsText}>Show Recommendations</Text>
-            <VerticalSwipeable type="showRecomms" content={recommendations} />
-          </View>
+          {recommendations.length > 0 && (
+            <View style={styles.recommsContainer}>
+              <Text style={styles.recommsText}>Show Recommendations</Text>
+              <VerticalSwipeable type="showRecomms" content={recommendations} />
+            </View>
+          )}
         </ScrollView>
       )}
     </>

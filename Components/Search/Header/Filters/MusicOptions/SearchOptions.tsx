@@ -12,12 +12,12 @@ import { darkGray, large, primary, small, white } from "~/Theme/Apptheme";
 import { medium, regular } from "~/Utils/Constants";
 
 type Props = {
-  setMusicSearchType: React.Dispatch<React.SetStateAction<IMusicSearchType>>;
+  handlePressFunc: (type: IMusicSearchType) => void;
   musicSearchType: IMusicSearchType;
 };
 
 const SearchOptions: React.FC<Props> = ({
-  setMusicSearchType,
+  handlePressFunc,
   musicSearchType,
 }) => {
   const { container, row, headertext, text, typeContainer } = styles;
@@ -42,7 +42,7 @@ const SearchOptions: React.FC<Props> = ({
                 width: width > 358 ? 80 : 65,
               },
             ]}
-            onPress={() => setMusicSearchType(type)}
+            onPress={() => handlePressFunc(type)}
           >
             <Text
               style={[

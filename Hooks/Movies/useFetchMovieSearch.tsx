@@ -28,6 +28,7 @@ const useFetchMovieSearch = (
         })
         .finally(() => setIsLoading(false));
     } else {
+      setData(null)
       setIsLoading(false);
     }
   }, [queryString, genres]);
