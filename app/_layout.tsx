@@ -5,8 +5,9 @@ import { Provider } from "react-redux";
 import 'react-native-reanimated'
 import 'react-native-gesture-handler'
 
-import TabsStack from "../Components/Navigation/Tabs/TabsStack";
-import { store } from "../Redux/Store";
+import { store } from "~/src/Redux/Store";
+import TabsStack from "~/src/Navigation/Tabs/TabsStack";
+
 
 const RootLayout: React.FC = () => {
   const [fontsLoaded] = useFonts({

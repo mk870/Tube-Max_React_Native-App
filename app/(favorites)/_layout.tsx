@@ -1,6 +1,5 @@
-import React from "react";
-
-import FavoritesStack from "~/Components/Navigation/Stacks/Favorites/FavoritesStack";
+import React from "react"
+import FavoritesStack from "~/src/Navigation/Stacks/Favorites/FavoritesStack";
 
 const FavoritesLayout = () => {
   return <FavoritesStack />;
