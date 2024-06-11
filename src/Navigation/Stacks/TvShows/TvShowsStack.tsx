@@ -4,7 +4,7 @@ import { Stack, useRouter } from 'expo-router';
 import HeaderIcon from '~/src/Components/HeaderIcon/HeaderIcon';
 import StackWrapper from '~/src/HOCs/StackWrapper';
 import { background, white } from '~/src/Theme/Apptheme';
-import { bold } from '~/src/Utils/Constants';
+import { bold, stackAnimation } from '~/src/Utils/Constants';
 
 const TvShowsStack = () => {
     const router = useRouter();
@@ -31,31 +31,36 @@ const TvShowsStack = () => {
       <Stack.Screen
         name="tvshows/index"
         options={{
-          headerShown:false
+          headerShown:false,
+          animation: stackAnimation
         }}
       />
       <Stack.Screen
         name="(tvshow)"
         options={{
-          headerShown:false
+          headerShown:false,
+          animation: stackAnimation
         }}
       />
       <Stack.Screen
         name="tvshows/onair"
         options={{
-          title: "On Air"
+          title: "On Air",
+          animation: stackAnimation
         }}
       />
       <Stack.Screen
         name="tvshows/popular"
         options={{
           title: "Most Popular",
+          animation: stackAnimation
         }}
       />
       <Stack.Screen
         name="tvshows/toprated"
         options={{
           title: "Top Rated",
+          animation: stackAnimation
         }}
       />
     </Stack>

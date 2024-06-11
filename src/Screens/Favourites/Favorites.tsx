@@ -9,7 +9,7 @@ type Props = {}
 const favorites = (props: Props) => {
   const router = useRouter()
   return (
-    <View>
+    <View >
       <Text style={{color:"white"}}>favorites</Text>
       <Button title='go to fav movies' onPress={()=>router.push("favorites/movies")}/>
     </View>
