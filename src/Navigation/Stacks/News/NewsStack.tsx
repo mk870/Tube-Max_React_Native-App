@@ -4,7 +4,7 @@ import { Stack, useRouter } from "expo-router";
 import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
 import StackWrapper from "~/src/HOCs/StackWrapper";
 import { background, white } from "~/src/Theme/Apptheme";
-import { bold } from "~/src/Utils/Constants";
+import { bold, stackAnimation } from "~/src/Utils/Constants";
 
 const NewsStack = () => {
   const router = useRouter();
@@ -32,12 +32,14 @@ const NewsStack = () => {
         name="news/index"
         options={{
           headerShown: false,
+          animation: stackAnimation
         }}
       />
       <Stack.Screen
         name="news/[id]"
         options={{
           headerShown: false,
+          animation: stackAnimation
         }}
       />
     </Stack>

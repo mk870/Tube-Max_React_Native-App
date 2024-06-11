@@ -4,7 +4,7 @@ import { Stack, useRouter } from "expo-router";
 import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
 import StackWrapper from "~/src/HOCs/StackWrapper";
 import { appTheme } from "~/src/Theme/Apptheme";
-import { bold } from "~/src/Utils/Constants";
+import { bold, stackAnimation } from "~/src/Utils/Constants";
 
 const SearchStack = () => {
   const router = useRouter();
@@ -32,14 +32,16 @@ const SearchStack = () => {
       <Stack.Screen
         name="search"
         options={{
-          headerShown: false
+          headerShown: false,
+          animation: stackAnimation
         }}
       />
       <Stack.Screen
         name="voiceSearch"
         options={{
           title: "Voice Search",
-          presentation:"modal"
+          presentation:"modal",
+          animation: stackAnimation
         }}
       />
     </Stack>

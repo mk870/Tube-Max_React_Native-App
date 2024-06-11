@@ -13,6 +13,7 @@ export const albumsNewsCategory = "albums";
 export const songsNewsCategory = "songs";
 export const actorsNewsCategory = "hollywood actors";
 export const entertainmentNewsCategory = "entertainment";
+export const stackAnimation = "slide_from_bottom"
 
 export const expoSecureValueKeyNames= {
     accessToken:"accessToken"

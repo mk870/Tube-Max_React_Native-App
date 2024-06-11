@@ -23,6 +23,14 @@ const Details: React.FC<Props> = ({
   const getYear = (releaseDate: string) => {
     return releaseDate.split("-")[0];
   };
+  const fadeIn = {
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{title}</Text>

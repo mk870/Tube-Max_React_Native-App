@@ -8,6 +8,7 @@ import {
 import React, { useState } from "react";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import * as Animatable from 'react-native-animatable';
 
 import { styles } from "../../Shared/styles";
 import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
@@ -55,7 +56,7 @@ const MovieCardWithDetails: React.FC<Props> = ({
     }
   };
   return (
-    <View style={[container]} onTouchEnd={navigate}>
+    <Animatable.View animation={"fadeIn"} delay={400} style={[container]} onTouchEnd={navigate}>
       <ImageBackground
         source={getTMDBImage(poster_path)}
         style={poster}
@@ -63,7 +64,7 @@ const MovieCardWithDetails: React.FC<Props> = ({
         imageStyle={{ borderRadius: 15 }}
       >
         <View style={subContainer}>
-          <View style={detailsContainer}>
+          <Animatable.View animation={"fadeIn"} delay={600} duration={900} style={detailsContainer}>
             <View style={details}>
               <Text style={titleText}>{title}</Text>
               <Text style={detailsText}>
@@ -98,10 +99,10 @@ const MovieCardWithDetails: React.FC<Props> = ({
                 </Pressable>
               </View>
             </View>
-          </View>
+          </Animatable.View>
         </View>
       </ImageBackground>
-    </View>
+    </Animatable.View>
   );
 };
 

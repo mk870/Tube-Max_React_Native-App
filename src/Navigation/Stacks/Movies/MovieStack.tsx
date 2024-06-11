@@ -4,7 +4,7 @@ import { Stack, useRouter } from 'expo-router';
 import HeaderIcon from '~/src/Components/HeaderIcon/HeaderIcon';
 import StackWrapper from '~/src/HOCs/StackWrapper';
 import { background, white } from '~/src/Theme/Apptheme';
-import { bold } from '~/src/Utils/Constants';
+import { bold, stackAnimation } from '~/src/Utils/Constants';
 
 const MovieStack = () => {
     const router = useRouter();
@@ -31,31 +31,36 @@ const MovieStack = () => {
         <Stack.Screen
           name="movie/[id]"
           options={{
-            headerShown:false
+            headerShown:false,
+            animation: stackAnimation
           }}
         />
         <Stack.Screen
           name="movie/video/[type]"
           options={{
-            headerShown:false
+            headerShown:false,
+            animation: stackAnimation
           }}
         />
         <Stack.Screen
           name="movie/actors/[id]"
           options={{
-            headerShown:false
+            headerShown:false,
+            animation: stackAnimation
           }}
         />
         <Stack.Screen
           name="movie/actors/actors"
           options={{
             title: "Actors",
+            animation: stackAnimation
           }}
         />
         <Stack.Screen
           name="movie/actors/crew"
           options={{
             title: "Crew",
+            animation: stackAnimation
           }}
         />
       </Stack>
