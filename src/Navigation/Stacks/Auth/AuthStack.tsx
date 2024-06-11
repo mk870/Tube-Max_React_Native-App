@@ -40,6 +40,12 @@ const AuthStack = () => {
           title: "Register",
         }}
       />
+      <Stack.Screen
+        name="verification"
+        options={{
+          title: "Verification",
+        }}
+      />
     </Stack>
   );
 };
