@@ -6,10 +6,11 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { IStringOrNull } from "~/Types/Shared/Types";
-import { notAvailable, regular } from "~/Utils/Constants";
-import { small, white } from "~/Theme/Apptheme";
-import { getTMDBImage, shortenString } from "~/Utils/Funcs";
+
+import { white, small } from "~/src/Theme/Apptheme";
+import { IStringOrNull } from "~/src/Types/Shared/Types";
+import { notAvailable, regular } from "~/src/Utils/Constants";
+import { getTMDBImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props = {
   name: string;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { tmdbKey } from '~/Utils/Constants'
-import { ISeason } from '~/Types/Apis/TvShows/Season'
 
+import { ISeason } from '~/src/Types/Apis/TvShows/Season';
+import { tmdbKey } from '~/src/Utils/Constants';
 
 const useFetchSeason = (id:number,seasonNumber:number) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);

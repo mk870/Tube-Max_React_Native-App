@@ -2,25 +2,25 @@ import { StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 
-import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
-import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
-import BareSharedCard from "~/Components/Cards/Shared/BareSharedCard";
-import { IMovieRecommendations } from "~/Types/Apis/Movies/MovieRecommandations";
-import { IShowRecommendation } from "~/Types/Apis/TvShows/ShowRecommendation";
-import PlaylistCard from "~/Components/Cards/Shared/PlaylistCard";
-import { IArtist, INewsCategory } from "~/Types/Shared/Types";
-import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
-import { INews } from "~/Types/Apis/News/News";
-import NewsCard from "~/Components/Cards/CardsWithDetails/News/NewsCard";
-import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
-import LatestAlbumCard from "~/Components/Cards/CardsWithDetails/Music/LatestAlbumCard";
-import MovieCard from "~/Screens/Search/Cards/MovieCard";
-import TvShowcard from "~/Screens/Search/Cards/TvShowcard";
-import { ITrack } from "~/Types/Apis/Music/Track/Track";
-import TrackCard from "~/Screens/Search/Cards/TrackCard";
-import AlbumCard from "~/Screens/Search/Cards/AlbumCard";
-import ArtistCard from "~/Screens/Search/Cards/ArtistCard";
+import MovieCard from "~/src/Screens/Search/Cards/MovieCard";
+import TrackCard from "~/src/Screens/Search/Cards/TrackCard";
+import TvShowcard from "~/src/Screens/Search/Cards/TvShowcard";
+import { IMovieRecommendations } from "~/src/Types/Apis/Movies/MovieRecommandations";
+import { IMovieSummary } from "~/src/Types/Apis/Movies/SummaryMovieInfo";
+import { IAlbumSummary } from "~/src/Types/Apis/Music/Album/AlbumSummary";
+import { IPlayListSummary } from "~/src/Types/Apis/Music/PlayListSummary";
+import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
+import { INews } from "~/src/Types/Apis/News/News";
+import { IShowRecommendation } from "~/src/Types/Apis/TvShows/ShowRecommendation";
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
+import { INewsCategory, IArtist } from "~/src/Types/Shared/Types";
+import ArtistsWithDetails from "../../Cards/CardsWithDetails/Music/ArtistsWithDetails";
+import LatestAlbumCard from "../../Cards/CardsWithDetails/Music/LatestAlbumCard";
+import NewsCard from "../../Cards/CardsWithDetails/News/NewsCard";
+import BareSharedCard from "../../Cards/Shared/BareSharedCard";
+import PlaylistCard from "../../Cards/Shared/PlaylistCard";
+import ArtistCard from "~/src/Screens/Search/Cards/ArtistCard";
+import AlbumCard from "~/src/Screens/Search/Cards/AlbumCard";
 
 type Props = { newsCategory?: INewsCategory | string } & (
   | {

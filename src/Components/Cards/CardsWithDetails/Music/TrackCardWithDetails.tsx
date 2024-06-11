@@ -12,11 +12,11 @@ import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-import { ITrack } from "~/Types/Apis/Music/Track/Track";
-import { medium, regular, unknown } from "~/Utils/Constants";
-import { small, appTheme, white } from "~/Theme/Apptheme";
-import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
+import { medium, regular, unknown } from "~/src/Utils/Constants";
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
+import { appTheme, small, white } from "~/src/Theme/Apptheme";
+import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
+import { shortenString, getSpotifyImage } from "~/src/Utils/Funcs";
 
 type Props = {
   track: ITrack;

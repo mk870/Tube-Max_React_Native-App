@@ -1,18 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
-import { addActorsNews } from "~/Redux/Slices/News/ActorsNewsSlice";
-import { addAlbumsNews } from "~/Redux/Slices/News/AlbumsNewsSlice";
-import { addArtistsNews } from "~/Redux/Slices/News/ArtistsNewsSlice";
-import { addEntertainmentNews } from "~/Redux/Slices/News/EntertainmentSlice";
-import { addMoviesNews } from "~/Redux/Slices/News/MoviesNiewsSlice";
-import { addSongsNews } from "~/Redux/Slices/News/SongsNewsSlice";
-import { addTvShowsNews } from "~/Redux/Slices/News/TvShowsNewsSlice";
-import { INews } from "~/Types/Apis/News/News";
-import { IContentType, IStringOrNull } from "~/Types/Shared/Types";
-import { backendUrl } from "~/Utils/Constants";
-import { addNewsId } from "~/Utils/Funcs";
+import { useAppDispatch, useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import { addActorsNews } from "~/src/Redux/Slices/News/ActorsNewsSlice";
+import { addAlbumsNews } from "~/src/Redux/Slices/News/AlbumsNewsSlice";
+import { addArtistsNews } from "~/src/Redux/Slices/News/ArtistsNewsSlice";
+import { addEntertainmentNews } from "~/src/Redux/Slices/News/EntertainmentSlice";
+import { addMoviesNews } from "~/src/Redux/Slices/News/MoviesNiewsSlice";
+import { addSongsNews } from "~/src/Redux/Slices/News/SongsNewsSlice";
+import { addTvShowsNews } from "~/src/Redux/Slices/News/TvShowsNewsSlice";
+import { INews } from "~/src/Types/Apis/News/News";
+import { IContentType, IStringOrNull } from "~/src/Types/Shared/Types";
+import { backendUrl } from "~/src/Utils/Constants";
+import { addNewsId } from "~/src/Utils/Funcs";
 
 const useFetchSearchNews = (
   newsCategory: string,

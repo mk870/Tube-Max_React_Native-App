@@ -7,19 +7,15 @@ import {
 import React from "react";
 import { Tabs, useRouter, useSegments } from "expo-router";
 
-import { appTheme, background } from "../../../Theme/Apptheme";
-import {
-  bold,
-  expoSecureValueKeyNames,
-  tabsMenu,
-} from "../../../Utils/Constants";
 import Icons from "./Icons/Icons";
 import Label from "./Labels/Labels";
-import { IReactNoPropElement } from "../../../Types/ReactComonents/Types";
-import HeaderIcon from "../../HeaderIcon/HeaderIcon";
-import { getSecureValue } from "../../../Utils/Funcs";
-import Logout from "../../Alerts/Logout";
-import useGetSpotifyToken from "~/Hooks/Music/useGetSpotifyToken";
+import Logout from "~/src/Components/Alerts/Logout";
+import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
+import useGetSpotifyToken from "~/src/Hooks/Music/useGetSpotifyToken";
+import { appTheme, background } from "~/src/Theme/Apptheme";
+import { IReactNoPropElement } from "~/src/Types/ReactComponents/Types";
+import { expoSecureValueKeyNames, bold, tabsMenu } from "~/src/Utils/Constants";
+import { getSecureValue } from "~/src/Utils/Funcs";
 
 const TabsStack: IReactNoPropElement = () => {
   const { width } = useWindowDimensions();

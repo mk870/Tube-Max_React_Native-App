@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { INews } from "~/Types/Apis/News/News";
-import { INewsDispatchAction } from "~/Types/Redux/Types";
+
+import { INews } from "~/src/Types/Apis/News/News";
+import { INewsDispatchAction } from "~/src/Types/Redux/Types";
 
 const news: INews[] = [];
 export const moviesNewsSlice = createSlice({

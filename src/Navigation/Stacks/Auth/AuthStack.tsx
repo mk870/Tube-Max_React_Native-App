@@ -1,10 +1,10 @@
 import React from "react";
 import { Stack, useRouter } from "expo-router";
 
-import { appTheme } from "../../../../Theme/Apptheme";
-import { bold } from "../../../../Utils/Constants";
-import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
-import StackWrapper from "../../../../HOCs/StackWrapper";
+import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
+import StackWrapper from "~/src/HOCs/StackWrapper";
+import { appTheme } from "~/src/Theme/Apptheme";
+import { bold } from "~/src/Utils/Constants";
 
 const AuthStack = () => {
   const router = useRouter();

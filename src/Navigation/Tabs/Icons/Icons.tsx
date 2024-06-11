@@ -3,8 +3,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useEffect, useRef } from "react";
 import { usePathname } from "expo-router";
-import { tabsMenu } from "../../../../Utils/Constants";
-import { appTheme } from "../../../../Theme/Apptheme";
+
+import { appTheme } from "~/src/Theme/Apptheme";
+import { tabsMenu } from "~/src/Utils/Constants";
 
 type Props = {
   focused: boolean;

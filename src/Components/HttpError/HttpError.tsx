@@ -1,8 +1,9 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { medium } from "~/Utils/Constants";
-import { appTheme, background, darkGray, primary, white } from "~/Theme/Apptheme";
 import { useRouter } from "expo-router";
+
+import { medium } from "~/src/Utils/Constants";
+import { appTheme, darkGray, primary, white } from "~/src/Theme/Apptheme";
 
 const HttpError = () => {
   const router = useRouter()

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { tmdbKey } from "~/Utils/Constants";
-import { IShowReview } from "~/Types/Apis/TvShows/ShowReviews";
+
+import { IShowReview } from "~/src/Types/Apis/TvShows/ShowReviews";
+import { tmdbKey } from "~/src/Utils/Constants";
 
 const useFetchShowReviews = (id: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);

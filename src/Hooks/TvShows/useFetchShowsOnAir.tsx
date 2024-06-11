@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { addShowsPlayingNow } from "~/Redux/Slices/TvShows/ShowsNowPlaying";
 import axios from "axios";
-import { useAppSelector, useAppDispatch } from "~/Redux/Hooks/Hooks";
-import { tmdbKey } from "~/Utils/Constants";
+
+import { useAppSelector, useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { addShowsPlayingNow } from "~/src/Redux/Slices/TvShows/ShowsNowPlaying";
+import { tmdbKey } from "~/src/Utils/Constants";
 
 const useFetchShowsOnAir = () => {
   const showsOnAir = useAppSelector((state) => state.showsPlayingNow.value);

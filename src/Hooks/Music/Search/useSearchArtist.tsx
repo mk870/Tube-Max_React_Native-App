@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { IMusicSearchType } from "~/Components/Search/Results/types";
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
-import { IArtist, IContentType, IStringOrNull } from "~/Types/Shared/Types";
 import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
+import { useAppDispatch, useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import { IMusicSearchType } from "~/src/Screens/Search/Results/types";
+import { IContentType, IStringOrNull, IArtist } from "~/src/Types/Shared/Types";
 
 
 const useSearchArtist = (

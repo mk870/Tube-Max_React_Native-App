@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
-import { IMusicPlayListDispatchAction } from "~/Types/Redux/Types";
 
-const electroPlaylist:IPlayListSummary[]=[]
+import { IPlayListSummary } from "~/src/Types/Apis/Music/PlayListSummary";
+import { IMusicPlayListDispatchAction } from "~/src/Types/Redux/Types";
+
+const electroPlaylist: IPlayListSummary[] = [];
 export const electroPlaylistsSlice = createSlice({
   name: "electroPlaylists",
   initialState: {
     value: electroPlaylist,
   },
   reducers: {
-    addElectroPlaylists: (state, action:IMusicPlayListDispatchAction) => {
+    addElectroPlaylists: (state, action: IMusicPlayListDispatchAction) => {
       state.value = action.payload;
     },
   },

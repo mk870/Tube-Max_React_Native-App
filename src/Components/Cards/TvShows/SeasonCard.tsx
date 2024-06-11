@@ -1,10 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { ISeasonSummary } from "~/Types/Shared/Types";
-import { getTMDBImage } from "~/Utils/Funcs";
-import { regular } from "~/Utils/Constants";
-import { small } from "~/Theme/Apptheme";
 import { useRouter } from "expo-router";
+
+import { small } from "~/src/Theme/Apptheme";
+import { ISeasonSummary } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
+import { getTMDBImage } from "~/src/Utils/Funcs";
 
 type Props = {
   season: ISeasonSummary;

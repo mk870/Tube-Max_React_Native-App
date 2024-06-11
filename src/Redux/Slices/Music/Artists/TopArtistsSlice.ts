@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ITopArtistDispatchAction } from "~/Types/Redux/Types";
-import { IArtist } from "~/Types/Shared/Types";
+
+import { ITopArtistDispatchAction } from "~/src/Types/Redux/Types";
+import { IArtist } from "~/src/Types/Shared/Types";
 
 const topArtists: IArtist[] = [];
 export const topArtistsSlice = createSlice({

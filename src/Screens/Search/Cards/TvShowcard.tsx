@@ -1,12 +1,12 @@
 import { Image, Text, useWindowDimensions, TouchableOpacity } from "react-native";
 import React from "react";
 
-import { IVoidFunc } from "~/Types/Shared/Types";
-import { getTMDBImage } from "~/Utils/Funcs";
-import { unknown } from "~/Utils/Constants";
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import { styles } from "./Shared/styles";
 import { getWidth, getHeight, contentTitle } from "./Shared/utils";
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
+import { IVoidFunc } from "~/src/Types/Shared/Types";
+import { unknown } from "~/src/Utils/Constants";
+import { getTMDBImage } from "~/src/Utils/Funcs";
 
 type Props = {
   show: IShowSummary;

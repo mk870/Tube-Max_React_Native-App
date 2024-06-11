@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 import * as WebBrowser from "expo-web-browser";
 
-import { INews } from "~/Types/Apis/News/News";
+import { INews } from "~/src/Types/Apis/News/News";
 import {
   appTheme,
   background,
@@ -11,8 +11,8 @@ import {
   primary,
   small,
   white,
-} from "~/Theme/Apptheme";
-import { bold, regular, unknown } from "~/Utils/Constants";
+} from "~/src/Theme/Apptheme";
+import { bold, regular, unknown } from "~/src/Utils/Constants";
 
 type Props = {
   article: INews;

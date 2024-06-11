@@ -8,10 +8,11 @@ import {
 import React from "react";
 import { useRouter } from "expo-router";
 
-import { regular } from "~/Utils/Constants";
-import { small, white } from "~/Theme/Apptheme";
-import { IStringOrNull } from "~/Types/Shared/Types";
-import { getTMDBImage, shortenString } from "~/Utils/Funcs";
+import { white, small } from "~/src/Theme/Apptheme";
+import { IStringOrNull } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
+import { getTMDBImage, shortenString } from "~/src/Utils/Funcs";
+
 
 type Props = {
   id: number;

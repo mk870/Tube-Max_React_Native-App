@@ -7,9 +7,9 @@ import {
 } from "react-native";
 import React from "react";
 
-import { darkGray, primary, white } from "~/Theme/Apptheme";
-import { medium } from "~/Utils/Constants";
-import { IContentType } from "~/Types/Shared/Types";
+import { darkGray, primary, white } from "~/src/Theme/Apptheme";
+import { medium } from "~/src/Utils/Constants";
+import { IContentType } from "~/src/Types/Shared/Types";
 
 type Props = {
   contentType: IContentType[];

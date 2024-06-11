@@ -3,12 +3,12 @@ import {
 } from "react-native";
 import React from "react";
 
-import { IActorProfile } from "~/Types/Shared/Types";
-import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
 import Details from "./Details/Details";
-import Swipeable from "~/Components/Swipeables/Horizontal/Swipeable";
+import Swipeable from "~/src/Components/Swipeables/Horizontal/Swipeable";
 import ContentImage from "../ContentImage/ContentImage";
+import { IMovieSummary } from "~/src/Types/Apis/Movies/SummaryMovieInfo";
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
+import { IActorProfile } from "~/src/Types/Shared/Types";
 
 type Props = {
   actor: IActorProfile | null;

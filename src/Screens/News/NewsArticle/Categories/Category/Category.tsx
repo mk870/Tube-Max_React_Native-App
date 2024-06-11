@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-import { INewsCategory } from "~/Types/Shared/Types";
-import { medium } from "~/Utils/Constants";
-import { appTheme, primary } from "~/Theme/Apptheme";
-import { capitalizeFirstLetter } from "~/Utils/Funcs";
+import { medium } from "~/src/Utils/Constants";
+import { primary, appTheme } from "~/src/Theme/Apptheme";
+import { INewsCategory } from "~/src/Types/Shared/Types";
+import { capitalizeFirstLetter } from "~/src/Utils/Funcs";
 
 type Props = {
   selectedCategory: string;

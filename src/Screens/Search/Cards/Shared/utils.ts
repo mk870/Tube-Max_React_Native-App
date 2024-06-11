@@ -1,4 +1,4 @@
-import { shortenString } from "~/Utils/Funcs";
+import { shortenString } from "~/src/Utils/Funcs";
 
 export const getHeight = (width: number) => {
   if (width > 700) return 220;

@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 
-import { IVoidFunc } from "~/Types/Shared/Types";
-import { regular } from "~/Utils/Constants";
-import { darkGray, primary, small, white } from "~/Theme/Apptheme";
+import { IVoidFunc } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
+import { darkGray, primary, small, white } from "~/src/Theme/Apptheme";
 
 type Props = {
   category: string;

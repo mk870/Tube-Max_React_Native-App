@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
-import { IContentType, IStringOrNull } from "~/Types/Shared/Types";
 import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
-import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
-import { IMusicSearchType } from "~/Components/Search/Results/types";
+import { useAppDispatch, useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import { IMusicSearchType } from "~/src/Screens/Search/Results/types";
+import { IAlbumSummary } from "~/src/Types/Apis/Music/Album/AlbumSummary";
+import { IContentType, IStringOrNull } from "~/src/Types/Shared/Types";
 
 const useSearchAlbum = (
   queryString: string | undefined,

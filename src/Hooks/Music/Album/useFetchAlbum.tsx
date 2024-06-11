@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
-import { IStringOrNull } from "~/Types/Shared/Types";
+
 import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
-import { IAlbum } from "~/Types/Apis/Music/Album/Album";
+import { useAppDispatch, useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import { IAlbum } from "~/src/Types/Apis/Music/Album/Album";
+import { IStringOrNull } from "~/src/Types/Shared/Types";
 
 const useFetchAlbum = (albumId: string) => {
   const [error, setError] = useState<IStringOrNull>(null);

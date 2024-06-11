@@ -9,12 +9,12 @@ import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
-import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
-import { appTheme } from "~/Theme/Apptheme";
-import { getTMDBImage } from "~/Utils/Funcs";
 import { styles } from "../../Shared/styles";
-import { unknown } from "~/Utils/Constants";
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
+import { appTheme } from "~/src/Theme/Apptheme";
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
+import { unknown } from "~/src/Utils/Constants";
+import { getTMDBImage } from "~/src/Utils/Funcs";
 
 type Props = {
   show: IShowSummary;

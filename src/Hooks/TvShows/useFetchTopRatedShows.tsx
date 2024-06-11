@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAppSelector, useAppDispatch } from "~/Redux/Hooks/Hooks";
-import { tmdbKey } from "~/Utils/Constants";
-import { addtopRatedShows } from "~/Redux/Slices/TvShows/TopRatedShows";
+
+import { useAppSelector, useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { addtopRatedShows } from "~/src/Redux/Slices/TvShows/TopRatedShows";
+import { tmdbKey } from "~/src/Utils/Constants";
 
 const useFetchTopRatedShows = () => {
   const topRatedShows = useAppSelector((state) => state.topRatedShows.value);

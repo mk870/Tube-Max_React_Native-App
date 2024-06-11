@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "~/Redux/Hooks/Hooks";
-import { IStringOrNull } from "~/Types/Shared/Types";
+
 import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
-import { ITrack } from "~/Types/Apis/Music/Track/Track";
+import { useAppDispatch, useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
+import { IStringOrNull } from "~/src/Types/Shared/Types";
 
 const useFetchRecommendations = (trackId: string) => {
   const [error, setError] = useState<IStringOrNull>(null);

@@ -6,7 +6,7 @@ import ScreenSpinner from "~/src/Components/Spinner/ScreenSpinner";
 import VerticalSwipeable from "~/src/Components/Swipeables/Vertical/VerticalSwipeable";
 import ScreenWrapper from "~/src/HOCs/ScreenWrapper";
 import useFetchMoreMovies from "~/src/Hooks/Movies/useFetchMoreMovies";
-import { IReactNoPropElement } from "~/src/Types/ReactComonents/Types";
+import { IReactNoPropElement } from "~/src/Types/ReactComponents/Types";
 
 const Popular: IReactNoPropElement = () => {
   const { data, error, isLoading } = useFetchMoreMovies("popular");

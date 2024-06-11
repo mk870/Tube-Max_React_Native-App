@@ -1,7 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
+
 import { appTheme } from "../../Theme/Apptheme";
-import { bold, medium } from "../../Utils/Constants";
+import { bold } from "../../Utils/Constants";
 import ButtonSpinner from "../Spinner/ButtonSpinner";
 
 type Props = {

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { IVoidFunc } from "~/Types/Shared/Types";
-import { darkGray, small, white } from "~/Theme/Apptheme";
-import { sharedStyles } from "../Styles/styles";
-import { regular } from "~/Utils/Constants";
+
+import { white, darkGray, small } from "~/src/Theme/Apptheme";
+import { IVoidFunc } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
 
 type Props = {
   title: string;

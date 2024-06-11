@@ -6,8 +6,8 @@ import {
   small,
   primary,
   background,
-} from "~/Theme/Apptheme";
-import { medium, regular } from "~/Utils/Constants";
+} from "~/src/Theme/Apptheme";
+import { medium, regular } from "~/src/Utils/Constants";
 
 export const styles = StyleSheet.create({
   headerContainer: {

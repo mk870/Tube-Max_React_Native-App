@@ -10,7 +10,7 @@ import { Zocial, Feather, Ionicons } from "@expo/vector-icons";
 
 import { appTheme } from "../../Theme/Apptheme";
 import { ContentType } from "./Types/Types";
-import { IVoidFunc } from "~/Types/Shared/Types";
+import { IVoidFunc } from "~/src/Types/Shared/Types";
 
 type Props = {
   width: DimensionValue;

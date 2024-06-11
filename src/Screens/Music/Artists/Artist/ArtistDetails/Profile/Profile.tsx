@@ -3,11 +3,11 @@ import React from "react";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import millify from "millify";
 
-import { IArtist } from "~/Types/Shared/Types";
-import { appTheme, medium, primary, small, white } from "~/Theme/Apptheme";
-import { bold, regular, unknown } from "~/Utils/Constants";
-import Genres from "../Genres/Genres";
-import ContentButton from "../../Shared/Buttons/ContentButton";
+import { IArtist } from "~/src/Types/Shared/Types";
+import { appTheme, medium, primary, small, white } from "~/src/Theme/Apptheme";
+import { bold, regular, unknown } from "~/src/Utils/Constants";
+import Genres from "../../../../Genres/Genres";
+import ContentButton from "../../../../../Shared/Buttons/ContentButton";
 
 type Props = {
   profile: IArtist;

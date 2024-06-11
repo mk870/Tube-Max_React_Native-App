@@ -8,11 +8,11 @@ import {
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 
-import { IMovieReview } from "~/Types/Apis/Movies/MovieReviews";
-import { IShowReview } from "~/Types/Apis/TvShows/ShowReviews";
-import { IStringOrNull } from "~/Types/Shared/Types";
-import { cleanTextSnippets } from "~/Utils/Funcs";
 import { styles } from "./styles";
+import { IMovieReview } from "~/src/Types/Apis/Movies/MovieReviews";
+import { IShowReview } from "~/src/Types/Apis/TvShows/ShowReviews";
+import { IStringOrNull } from "~/src/Types/Shared/Types";
+import { cleanTextSnippets } from "~/src/Utils/Funcs";
 
 type Props =
   | {

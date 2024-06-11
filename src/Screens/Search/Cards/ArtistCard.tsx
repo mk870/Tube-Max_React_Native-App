@@ -11,11 +11,11 @@ import { Ionicons } from "@expo/vector-icons";
 import millify from "millify";
 import { useRouter } from "expo-router";
 
-import { medium, regular } from "~/Utils/Constants";
-import { appTheme, white } from "~/Theme/Apptheme";
-import { IArtist } from "~/Types/Shared/Types";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
 import { getHeight, getWidth } from "./Shared/utils";
+import { appTheme, white } from "~/src/Theme/Apptheme";
+import { IArtist } from "~/src/Types/Shared/Types";
+import { medium, regular } from "~/src/Utils/Constants";
+import { getSpotifyImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props = {
   artist: IArtist;

@@ -17,7 +17,7 @@ import {
   ISearchResultsProps,
 } from "~/src/Screens/Search/Results/types";
 import { small, white } from "~/src/Theme/Apptheme";
-import { IReactNoPropElement } from "~/src/Types/ReactComonents/Types";
+import { IReactNoPropElement } from "~/src/Types/ReactComponents/Types";
 import { IContentType } from "~/src/Types/Shared/Types";
 import {
   moviesNewsCategory,

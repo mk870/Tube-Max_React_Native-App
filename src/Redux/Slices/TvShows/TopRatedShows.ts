@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
-import { IShowSummaryDispatchAction } from "~/Types/Redux/Types";
+
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
+import { IShowSummaryDispatchAction } from "~/src/Types/Redux/Types";
 
 const topRatedShows: IShowSummary[] = [];
 export const topRatedShowsSlice = createSlice({

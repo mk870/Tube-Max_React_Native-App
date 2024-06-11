@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
-import { IMusicPlayListDispatchAction } from "~/Types/Redux/Types";
+
+import { IPlayListSummary } from "~/src/Types/Apis/Music/PlayListSummary";
+import { IMusicPlayListDispatchAction } from "~/src/Types/Redux/Types";
 
 const topListPlaylist: IPlayListSummary[] = [];
 export const topListPlaylistsSlice = createSlice({

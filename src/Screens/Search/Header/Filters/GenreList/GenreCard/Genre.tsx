@@ -1,9 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Feather, AntDesign } from "@expo/vector-icons";
-import { IGenre } from "~/Types/Redux/Types";
-import { darkGray, primary, small, white } from "~/Theme/Apptheme";
-import { regular } from "~/Utils/Constants";
+
+import { white, primary, darkGray, small } from "~/src/Theme/Apptheme";
+import { IGenre } from "~/src/Types/Redux/Types";
+import { regular } from "~/src/Utils/Constants";
 
 type Props = {
   genre: IGenre;

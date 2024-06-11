@@ -1,17 +1,17 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
 
-import { INewsCategory } from "~/Types/Shared/Types";
+import Category from "./Category/Category";
+import { INewsCategory } from "~/src/Types/Shared/Types";
 import {
+  entertainmentNewsCategory,
   moviesNewsCategory,
   tvShowsNewsCategory,
   artistsNewsCategory,
   songsNewsCategory,
   albumsNewsCategory,
   actorsNewsCategory,
-  entertainmentNewsCategory,
-} from "~/Utils/Constants";
-import Category from "./Category/Category";
+} from "~/src/Utils/Constants";
 
 type Props = {
   category: string;
@@ -19,7 +19,7 @@ type Props = {
 };
 
 const Categories: React.FC<Props> = ({ setCategory, category }) => {
-  const newsCategories:INewsCategory[] = [
+  const newsCategories: INewsCategory[] = [
     entertainmentNewsCategory,
     moviesNewsCategory,
     tvShowsNewsCategory,

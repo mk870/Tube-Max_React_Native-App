@@ -2,12 +2,12 @@ import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import React from "react";
 import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
 
-import { IShow } from "~/Types/Apis/TvShows/Show";
-import { appTheme, medium, primary, small, white } from "~/Theme/Apptheme";
-import { bold, notAvailable, regular } from "~/Utils/Constants";
-import Genres from "../../Movie/Genres/Genres";
-import ContentButton from "../../Shared/Buttons/ContentButton";
-import { getYear } from "~/Utils/Funcs";
+import { appTheme, medium, primary, small, white } from "~/src/Theme/Apptheme";
+import ContentButton from "~/src/Screens/Shared/Buttons/ContentButton";
+import { IShow } from "~/src/Types/Apis/TvShows/Show";
+import { notAvailable, bold, regular } from "~/src/Utils/Constants";
+import { getYear } from "~/src/Utils/Funcs";
+import Genres from "~/src/Screens/Movies/Movie/MovieDetails/Genres/Genres";
 
 type Props = {
   show: IShow;

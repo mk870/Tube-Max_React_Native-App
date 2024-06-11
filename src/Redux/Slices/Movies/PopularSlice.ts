@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
-import { IMovieSummaryDispatchAction } from "~/Types/Redux/Types";
+
+import { IMovieSummary } from "~/src/Types/Apis/Movies/SummaryMovieInfo";
+import { IMovieSummaryDispatchAction } from "~/src/Types/Redux/Types";
 
 const popularMoviesList: IMovieSummary[] = [];
 export const popularMoviesSlice = createSlice({

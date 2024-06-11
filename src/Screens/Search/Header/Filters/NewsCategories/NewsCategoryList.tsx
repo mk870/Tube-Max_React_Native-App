@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import React from "react";
 
-import { large, white } from "~/Theme/Apptheme";
-import { medium } from "~/Utils/Constants";
+import { large, white } from "~/src/Theme/Apptheme";
+import { medium } from "~/src/Utils/Constants";
 import Category from "./CategoryCard/Category";
 
 type Props = {

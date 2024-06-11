@@ -10,12 +10,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import YoutubeIframe from "react-native-youtube-iframe";
 
-import { regular, youtubeKey } from "~/Utils/Constants";
-import { IYoutubVideo } from "~/Types/Apis/Youtube/Types";
 import HttpError from "../HttpError/HttpError";
 import ScreenSpinner from "../Spinner/ScreenSpinner";
-import { appTheme, darkGray, small, white } from "~/Theme/Apptheme";
-import { shortenString } from "~/Utils/Funcs";
+import { small, appTheme, white, darkGray } from "~/src/Theme/Apptheme";
+import { IYoutubVideo } from "~/src/Types/Apis/Youtube/Types";
+import { youtubeKey, regular } from "~/src/Utils/Constants";
+import { shortenString } from "~/src/Utils/Funcs";
 
 type Props = {
   videoQueryString: string;

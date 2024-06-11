@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
-import { tmdbKey } from "~/Utils/Constants";
-import { IContentType } from "~/Types/Shared/Types";
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
+import { IContentType } from "~/src/Types/Shared/Types";
+import { tmdbKey } from "~/src/Utils/Constants";
 
 const useFetchTvShowSearch = (
   queryString: string | undefined,

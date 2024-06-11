@@ -3,11 +3,11 @@ import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
-import InputField from "~/Components/InputField/InputField";
-import { darkGray, large, white } from "~/Theme/Apptheme";
-import { IVoidFunc } from "~/Types/Shared/Types";
-import { bold } from "~/Utils/Constants";
+import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
+import InputField from "~/src/Components/InputField/InputField";
+import { darkGray, white, large } from "~/src/Theme/Apptheme";
+import { IVoidFunc } from "~/src/Types/Shared/Types";
+import { bold } from "~/src/Utils/Constants";
 
 type Props = {
   searchInput: string | undefined;

@@ -4,8 +4,8 @@ import {
   imageBackgroundColor,
   primary,
   white,
-} from "~/Theme/Apptheme";
-import { medium } from "~/Utils/Constants";
+} from "~/src/Theme/Apptheme";
+import { medium } from "~/src/Utils/Constants";
 
 export const styles = StyleSheet.create({
   container: {

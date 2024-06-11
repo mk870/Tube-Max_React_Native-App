@@ -8,11 +8,11 @@ import {
 import React from "react";
 import { useRouter } from "expo-router";
 
-import { IStringOrNull } from "~/Types/Shared/Types";
-import { imageBackgroundColor } from "~/Theme/Apptheme";
-import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
-import LinearGradientOverlay from "~/Components/LinearGradient/LinearGradientOverlay";
-import { getNewsImage, getSpotifyImage, getTMDBImage } from "~/Utils/Funcs";
+import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
+import LinearGradientOverlay from "~/src/Components/LinearGradient/LinearGradientOverlay";
+import { imageBackgroundColor } from "~/src/Theme/Apptheme";
+import { IStringOrNull } from "~/src/Types/Shared/Types";
+import { getSpotifyImage, getNewsImage, getTMDBImage } from "~/src/Utils/Funcs";
 
 type Props = {
   imagePath: IStringOrNull;

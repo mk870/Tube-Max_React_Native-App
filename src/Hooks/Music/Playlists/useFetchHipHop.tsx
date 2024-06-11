@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAppSelector, useAppDispatch } from "~/Redux/Hooks/Hooks";
+
 import { refetchSpotifyTokenAfterExpiration } from "./RefetchToken/RefetchToken";
-import { addHipHopPlaylists } from "~/Redux/Slices/Music/Playlists/HipHopSlice";
+import { useAppSelector, useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { addHipHopPlaylists } from "~/src/Redux/Slices/Music/Playlists/HipHopSlice";
 
 const useFetchHipHop = () => {
   const [error, setError] = useState(null);

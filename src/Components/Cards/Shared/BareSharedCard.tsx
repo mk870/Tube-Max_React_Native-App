@@ -1,13 +1,13 @@
 import {
   Image,
   StyleSheet,
-  Text,
   useWindowDimensions,
   View,
 } from "react-native";
 import React from "react";
-import { getTMDBImage } from "~/Utils/Funcs";
-import { IVoidFunc } from "~/Types/Shared/Types";
+
+import { IVoidFunc } from "~/src/Types/Shared/Types";
+import { getTMDBImage } from "~/src/Utils/Funcs";
 
 type Props = {
   posterPath: string | null;

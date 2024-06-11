@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { addpopularShows } from "~/Redux/Slices/TvShows/PopularShows";
 import axios from "axios";
-import { useAppSelector, useAppDispatch } from "~/Redux/Hooks/Hooks";
-import { tmdbKey } from "~/Utils/Constants";
+
+import { useAppSelector, useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { addpopularShows } from "~/src/Redux/Slices/TvShows/PopularShows";
+import { tmdbKey } from "~/src/Utils/Constants";
 
 const useFetchPopularShows = () => {
   const popularShows = useAppSelector((state) => state.popularShows.value);

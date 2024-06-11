@@ -1,9 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Ionicons, AntDesign, MaterialIcons } from "@expo/vector-icons";
-import { ITrack } from "~/Types/Apis/Music/Track/Track";
-import { IArtist } from "~/Types/Shared/Types";
 import { useRouter } from "expo-router";
+
 import {
   appTheme,
   darkGray,
@@ -11,11 +10,13 @@ import {
   primary,
   small,
   white,
-} from "~/Theme/Apptheme";
-import { bold, regular, unknown } from "~/Utils/Constants";
-import { trackDurationInMins } from "~/Utils/Funcs";
-import ContentButton from "~/Components/ContentDetails/Shared/Buttons/ContentButton";
-import PlayContentButtons from "~/Components/ContentDetails/Shared/Buttons/PlayContentButtons/PlayContentButtons";
+} from "~/src/Theme/Apptheme";
+import ContentButton from "~/src/Screens/Shared/Buttons/ContentButton";
+import PlayContentButtons from "~/src/Screens/Shared/Buttons/PlayContentButtons/PlayContentButtons";
+import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
+import { IArtist } from "~/src/Types/Shared/Types";
+import { unknown, bold, regular } from "~/src/Utils/Constants";
+import { trackDurationInMins } from "~/src/Utils/Funcs";
 
 type Props = {
   track: ITrack;

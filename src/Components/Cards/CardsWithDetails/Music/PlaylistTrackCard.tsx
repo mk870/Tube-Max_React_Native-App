@@ -10,12 +10,13 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { medium, regular, unknown } from "~/Utils/Constants";
-import { small, appTheme, white } from "~/Theme/Apptheme";
-import { IPlaylistTracksItem } from "~/Types/Shared/Types";
+import { medium, regular, unknown } from "~/src/Utils/Constants";
 import { useRouter } from "expo-router";
-import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
-import { shortenString, getSpotifyImage } from "~/Utils/Funcs";
+
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
+import { appTheme, small, white } from "~/src/Theme/Apptheme";
+import { IPlaylistTracksItem } from "~/src/Types/Shared/Types";
+import { shortenString, getSpotifyImage } from "~/src/Utils/Funcs";
 
 type Props = {
   track: IPlaylistTracksItem;

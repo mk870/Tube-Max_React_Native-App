@@ -6,11 +6,11 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { ICreator } from "~/Types/Shared/Types";
-import { useRouter } from "expo-router";
-import { small } from "~/Theme/Apptheme";
-import { regular } from "~/Utils/Constants";
-import { getTMDBImage, shortenString } from "~/Utils/Funcs";
+
+import { small } from "~/src/Theme/Apptheme";
+import { ICreator } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
+import { getTMDBImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props = {
   creator: ICreator;

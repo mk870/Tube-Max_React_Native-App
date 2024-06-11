@@ -7,10 +7,11 @@ import {
 } from "react-native";
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { ICast, IMovieCrew, IVoidFunc } from "~/Types/Shared/Types";
-import { getTMDBImage, shortenString } from "~/Utils/Funcs";
-import { appTheme, primary, small, white } from "~/Theme/Apptheme";
-import { medium, regular } from "~/Utils/Constants";
+
+import { medium, regular } from "~/src/Utils/Constants";
+import { appTheme, white, small, primary } from "~/src/Theme/Apptheme";
+import { ICast, IVoidFunc, IMovieCrew } from "~/src/Types/Shared/Types";
+import { getTMDBImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props =
   | {

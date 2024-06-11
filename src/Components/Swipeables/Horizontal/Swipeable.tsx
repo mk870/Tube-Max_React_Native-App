@@ -7,38 +7,38 @@ import {
 } from "react-native";
 import React from "react";
 
-import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
-import { IShowSummary } from "~/Types/Apis/TvShows/ShowSummary";
-import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
-import { medium, regular, unknown } from "~/Utils/Constants";
-import { darkGray, large, small, white } from "~/Theme/Apptheme";
+import { medium, regular, unknown } from "~/src/Utils/Constants";
+import { large, white, darkGray, small } from "~/src/Theme/Apptheme";
+import { IMovieSummary } from "~/src/Types/Apis/Movies/SummaryMovieInfo";
+import { IAlbumSummary } from "~/src/Types/Apis/Music/Album/AlbumSummary";
+import { IArtistAlbum } from "~/src/Types/Apis/Music/Artist/ArtistAlbum";
+import { IPlayListSummary } from "~/src/Types/Apis/Music/PlayListSummary";
+import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
+import { IShowSummary } from "~/src/Types/Apis/TvShows/ShowSummary";
 import {
+  IVoidFunc,
+  IPlaylistTracksItem,
   IArtist,
   ICast,
   ICreator,
-  IGuestStar,
   IMovieCrew,
-  IPlaylistTracksItem,
-  ISeasonSummary,
   ITvCrew,
-  IVoidFunc,
-} from "~/Types/Shared/Types";
+  IGuestStar,
+  ISeasonSummary,
+} from "~/src/Types/Shared/Types";
 import MovieCardWithDetails from "../../Cards/CardsWithDetails/Movie/MovieCardWithDetails";
-import BareCastCard from "~/Components/Cards/Shared/BareCastCard";
-import BareCrewCard from "~/Components/Cards/Shared/BareCrewCard";
-import TvShowCardWithDetails from "~/Components/Cards/CardsWithDetails/TvShow/TvShowCardWithDetails";
-import SeasonCard from "~/Components/Cards/TvShows/SeasonCard";
-import BareCreatorCard from "~/Components/Cards/Shared/BareCreatorCard";
-import PlaylistCard from "~/Components/Cards/Shared/PlaylistCard";
-import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
-import ArtistCard from "~/Components/Cards/Shared/ArtistCard";
-import AlbumCard from "~/Components/Cards/Shared/AlbumCard";
-import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
-import AlbumCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/AlbumCardWithDetails";
-import ArtistsWithDetails from "~/Components/Cards/CardsWithDetails/Music/ArtistsWithDetails";
-import { ITrack } from "~/Types/Apis/Music/Track/Track";
-import TrackCardWithDetails from "~/Components/Cards/CardsWithDetails/Music/TrackCardWithDetails";
-import PlaylistTrackCard from "~/Components/Cards/CardsWithDetails/Music/PlaylistTrackCard";
+import AlbumCardWithDetails from "../../Cards/CardsWithDetails/Music/AlbumCardWithDetails";
+import ArtistsWithDetails from "../../Cards/CardsWithDetails/Music/ArtistsWithDetails";
+import PlaylistTrackCard from "../../Cards/CardsWithDetails/Music/PlaylistTrackCard";
+import TrackCardWithDetails from "../../Cards/CardsWithDetails/Music/TrackCardWithDetails";
+import TvShowCardWithDetails from "../../Cards/CardsWithDetails/TvShow/TvShowCardWithDetails";
+import AlbumCard from "../../Cards/Shared/AlbumCard";
+import ArtistCard from "../../Cards/Shared/ArtistCard";
+import BareCastCard from "../../Cards/Shared/BareCastCard";
+import BareCreatorCard from "../../Cards/Shared/BareCreatorCard";
+import BareCrewCard from "../../Cards/Shared/BareCrewCard";
+import PlaylistCard from "../../Cards/Shared/PlaylistCard";
+import SeasonCard from "../../Cards/TvShows/SeasonCard";
 
 type Props = { headerTitle: string } & { seeAllRouteFunc?: IVoidFunc } & {
   id?: number;

@@ -24,7 +24,6 @@ import { songsNewsSlice } from './Slices/News/SongsNewsSlice'
 import { tvShowsNewsSlice } from './Slices/News/TvShowsNewsSlice'
 import { actorsNewsSlice } from './Slices/News/ActorsNewsSlice'
 
-
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,

@@ -1,7 +1,8 @@
 import { StyleSheet, Text } from "react-native";
 import React from "react";
-import { bold, regular } from "../../../../Utils/Constants";
-import { appTheme } from "../../../../Theme/Apptheme";
+
+import { appTheme } from "~/src/Theme/Apptheme";
+import { bold, regular } from "~/src/Utils/Constants";
 
 type Props = {
   focused: boolean;

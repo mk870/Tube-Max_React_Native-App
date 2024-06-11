@@ -8,10 +8,10 @@ import {
 import React from "react";
 import { useRouter } from "expo-router";
 
-import { IArtist } from "~/Types/Shared/Types";
-import { regular } from "~/Utils/Constants";
-import { small } from "~/Theme/Apptheme";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
+import { small } from "~/src/Theme/Apptheme";
+import { IArtist } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
+import { getSpotifyImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props = {
   artist: IArtist;
@@ -35,7 +35,7 @@ const ArtistCard: React.FC<Props> = ({ artist }) => {
       onPress={() => router.push(`music/artists/${artist.id}`)}
     >
       <Image
-        source={getSpotifyImage(artist.images ? artist.images[0].url : null)}
+        source={getSpotifyImage(artist.images ? artist.images[0]?.url : null)}
         style={{
           height: getHeightAndWidth(),
           width: getHeightAndWidth(),

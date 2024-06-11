@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "expo-router";
 
 import ContentButton from "../ContentButton";
-import { IVideoType } from "~/Types/Shared/Types";
+import { IVideoType } from "~/src/Types/Shared/Types";
 
 type Props = {
   type: "movie" | "episode" | "track";

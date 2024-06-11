@@ -13,11 +13,11 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import millify from "millify";
 
-import { IArtist } from "~/Types/Shared/Types";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
-import { medium, regular } from "~/Utils/Constants";
-import { appTheme, darkGray, small, white } from "~/Theme/Apptheme";
-import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
+import { medium, regular } from "~/src/Utils/Constants";
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
+import { appTheme, small, white, darkGray } from "~/src/Theme/Apptheme";
+import { IArtist } from "~/src/Types/Shared/Types";
+import { getSpotifyImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props = {
   artist: IArtist;

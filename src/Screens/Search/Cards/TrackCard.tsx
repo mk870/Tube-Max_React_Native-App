@@ -8,11 +8,11 @@ import {
 import React from "react";
 import { useRouter } from "expo-router";
 
-import { medium, regular, unknown } from "~/Utils/Constants";
-import { appTheme, white } from "~/Theme/Apptheme";
-import { ITrack } from "~/Types/Apis/Music/Track/Track";
-import { shortenString, getSpotifyImage } from "~/Utils/Funcs";
 import { getHeight, getWidth } from "./Shared/utils";
+import { appTheme, white } from "~/src/Theme/Apptheme";
+import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
+import { unknown, regular, medium } from "~/src/Utils/Constants";
+import { shortenString, getSpotifyImage } from "~/src/Utils/Funcs";
 
 type Props = {
   track: ITrack;

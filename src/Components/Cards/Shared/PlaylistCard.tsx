@@ -3,10 +3,10 @@ import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-import { IPlayListSummary } from "~/Types/Apis/Music/PlayListSummary";
-import { getSpotifyImage } from "~/Utils/Funcs";
-import { appTheme, background, primary, white } from "~/Theme/Apptheme";
-import { medium, unknown } from "~/Utils/Constants";
+import { IPlayListSummary } from "~/src/Types/Apis/Music/PlayListSummary";
+import { getSpotifyImage } from "~/src/Utils/Funcs";
+import { appTheme, background, primary, white } from "~/src/Theme/Apptheme";
+import { medium, unknown } from "~/src/Utils/Constants";
 
 type Props = {
   playlist: IPlayListSummary;

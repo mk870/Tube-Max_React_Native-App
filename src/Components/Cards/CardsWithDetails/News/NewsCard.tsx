@@ -9,11 +9,11 @@ import React from "react";
 import { useRouter } from "expo-router";
 import moment from "moment";
 
-import { INews } from "~/Types/Apis/News/News";
-import { medium, small, white } from "~/Theme/Apptheme";
-import { regular, unknown } from "~/Utils/Constants";
-import { getNewsImage, shortenString } from "~/Utils/Funcs";
-import { INewsCategory } from "~/Types/Shared/Types";
+import { regular, unknown } from "~/src/Utils/Constants";
+import { white, small, appTheme } from "~/src/Theme/Apptheme";
+import { INews } from "~/src/Types/Apis/News/News";
+import { INewsCategory } from "~/src/Types/Shared/Types";
+import { shortenString, getNewsImage } from "~/src/Utils/Funcs";
 
 type Props = {
   article: INews;
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontFamily: regular,
-    fontSize: medium,
+    fontSize: appTheme.font.medium,
     color: white,
   },
   regularText: {

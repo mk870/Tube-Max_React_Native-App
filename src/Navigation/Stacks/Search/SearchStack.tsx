@@ -1,11 +1,10 @@
 import React from "react";
 import { Stack, useRouter } from "expo-router";
 
-import { appTheme } from "../../../../Theme/Apptheme";
-import { bold } from "../../../../Utils/Constants";
-import HeaderIcon from "../../../HeaderIcon/HeaderIcon";
-import StackWrapper from "../../../../HOCs/StackWrapper";
-import InputField from "~/Components/InputField/InputField";
+import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
+import StackWrapper from "~/src/HOCs/StackWrapper";
+import { appTheme } from "~/src/Theme/Apptheme";
+import { bold } from "~/src/Utils/Constants";
 
 const SearchStack = () => {
   const router = useRouter();

@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { INumberOrNull, IStringOrNull } from "~/Types/Shared/Types";
-import { appTheme, small, white } from "~/Theme/Apptheme";
-import { regular } from "~/Utils/Constants";
+
+import { appTheme, small, white } from "~/src/Theme/Apptheme";
+import { INumberOrNull, IStringOrNull } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
 
 type Props = {
   list: {

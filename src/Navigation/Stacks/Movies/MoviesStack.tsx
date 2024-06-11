@@ -1,9 +1,10 @@
 import React from "react";
 import { Stack, useRouter } from "expo-router";
-import { bold } from "~/Utils/Constants";
-import { background, white } from "~/Theme/Apptheme";
-import HeaderIcon from "~/Components/HeaderIcon/HeaderIcon";
-import StackWrapper from "~/HOCs/StackWrapper";
+
+import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
+import StackWrapper from "~/src/HOCs/StackWrapper";
+import { background, white } from "~/src/Theme/Apptheme";
+import { bold } from "~/src/Utils/Constants";
 
 const MoviesStack = () => {
   const router = useRouter();

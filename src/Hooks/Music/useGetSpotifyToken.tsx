@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "~/Redux/Hooks/Hooks";
-import { addSpotifyAccessToken } from "~/Redux/Slices/Music/Token/SpotifyAccessTokenSlice";
-import { client_id, client_secret } from "~/Utils/Constants";
+
+import { useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { addSpotifyAccessToken } from "~/src/Redux/Slices/Music/Token/SpotifyAccessTokenSlice";
+import { client_id, client_secret } from "~/src/Utils/Constants";
 
 const useGetSpotifyToken = () => {
   const [spotifyAccessTokenError, setSpotifyAccessTokenError] = useState(null);

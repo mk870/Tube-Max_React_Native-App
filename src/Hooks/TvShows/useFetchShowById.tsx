@@ -1,9 +1,8 @@
 import  { useEffect, useState } from 'react'
 import axios from 'axios';
 
-import { tmdbKey } from '~/Utils/Constants';
-import { IShow } from '~/Types/Apis/TvShows/Show';
-
+import { IShow } from '~/src/Types/Apis/TvShows/Show';
+import { tmdbKey } from '~/src/Utils/Constants';
 
 const useFetchShowById = (id:number) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);

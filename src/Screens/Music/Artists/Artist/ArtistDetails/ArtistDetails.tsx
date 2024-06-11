@@ -6,7 +6,7 @@ import ContentImage from "~/src/Screens/Shared/ContentImage/ContentImage";
 import { IArtistAlbum } from "~/src/Types/Apis/Music/Artist/ArtistAlbum";
 import { ITrack } from "~/src/Types/Apis/Music/Track/Track";
 import { IArtist } from "~/src/Types/Shared/Types";
-import Profile from "../../../Profile/Profile";
+import Profile from "./Profile/Profile";
 
 type Props = {
   albums: IArtistAlbum[];

@@ -12,12 +12,12 @@ import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-import { small, appTheme, white } from "~/Theme/Apptheme";
-import { regular, medium } from "~/Utils/Constants";
-import { IArtistAlbum } from "~/Types/Apis/Music/Artist/ArtistAlbum";
-import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
-import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
+import { regular, medium } from "~/src/Utils/Constants";
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
+import { appTheme, small, white } from "~/src/Theme/Apptheme";
+import { IAlbumSummary } from "~/src/Types/Apis/Music/Album/AlbumSummary";
+import { IArtistAlbum } from "~/src/Types/Apis/Music/Artist/ArtistAlbum";
+import { getSpotifyImage, shortenString } from "~/src/Utils/Funcs";
 
 type Props =
   | {

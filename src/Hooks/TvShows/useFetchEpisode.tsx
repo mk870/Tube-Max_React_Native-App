@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { tmdbKey } from "~/Utils/Constants";
-import { IEpisode } from "~/Types/Apis/TvShows/Episode";
+
+import { IEpisode } from "~/src/Types/Apis/TvShows/Episode";
+import { tmdbKey } from "~/src/Utils/Constants";
 
 const useFetchEpisode = (
   id: number,

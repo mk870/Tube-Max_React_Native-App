@@ -7,9 +7,9 @@ import {
 } from "react-native";
 import React from "react";
 
-import { IMusicSearchType } from "~/Components/Search/Results/types";
-import { darkGray, large, primary, small, white } from "~/Theme/Apptheme";
-import { medium, regular } from "~/Utils/Constants";
+import { darkGray, large, primary, small, white } from "~/src/Theme/Apptheme";
+import { medium, regular } from "~/src/Utils/Constants";
+import { IMusicSearchType } from "../../../Results/types";
 
 type Props = {
   handlePressFunc: (type: IMusicSearchType) => void;

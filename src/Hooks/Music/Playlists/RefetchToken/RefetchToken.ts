@@ -1,5 +1,5 @@
-import { addSpotifyAccessToken } from "~/Redux/Slices/Music/Token/SpotifyAccessTokenSlice";
-import { client_id, client_secret } from "~/Utils/Constants";
+import { addSpotifyAccessToken } from "~/src/Redux/Slices/Music/Token/SpotifyAccessTokenSlice";
+import { client_id, client_secret } from "~/src/Utils/Constants";
 
 export const refetchSpotifyTokenAfterExpiration = (
   dispatch: any,

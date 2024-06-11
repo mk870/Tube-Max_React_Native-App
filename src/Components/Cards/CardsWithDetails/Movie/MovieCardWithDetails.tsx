@@ -7,13 +7,14 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
-import { IMovieSummary } from "~/Types/Apis/Movies/SummaryMovieInfo";
-import { appTheme } from "~/Theme/Apptheme";
-import { styles } from "../../Shared/styles";
 import { useRouter } from "expo-router";
-import ButtonSpinner from "~/Components/Spinner/ButtonSpinner";
-import { getTMDBImage } from "~/Utils/Funcs";
-import { unknown } from "~/Utils/Constants";
+
+import { styles } from "../../Shared/styles";
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
+import { appTheme } from "~/src/Theme/Apptheme";
+import { IMovieSummary } from "~/src/Types/Apis/Movies/SummaryMovieInfo";
+import { unknown } from "~/src/Utils/Constants";
+import { getTMDBImage } from "~/src/Utils/Funcs";
 
 type Props = {
   movieContent: IMovieSummary;

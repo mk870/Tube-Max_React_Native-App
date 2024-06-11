@@ -8,11 +8,11 @@ import {
 import React from "react";
 import { useRouter } from "expo-router";
 
-import { IAlbumSummary } from "~/Types/Apis/Music/Album/AlbumSummary";
-import { getSpotifyImage, shortenString } from "~/Utils/Funcs";
+import { IAlbumSummary } from "~/src/Types/Apis/Music/Album/AlbumSummary";
+import { getSpotifyImage, shortenString } from "~/src/Utils/Funcs";
 import { getHeight, getWidth } from "./Shared/utils";
-import { medium, regular } from "~/Utils/Constants";
-import { small, appTheme, white } from "~/Theme/Apptheme";
+import { medium, regular } from "~/src/Utils/Constants";
+import { appTheme, white } from "~/src/Theme/Apptheme";
 
 type Props = {
   album: IAlbumSummary;

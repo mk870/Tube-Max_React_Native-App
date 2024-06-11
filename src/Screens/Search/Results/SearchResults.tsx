@@ -2,19 +2,19 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 
 import { IMusicSearchType, ISearchResultsProps } from "./types";
-import { regular } from "~/Utils/Constants";
-import { medium, white } from "~/Theme/Apptheme";
-import { IContentType } from "~/Types/Shared/Types";
-import useFetchTvShowSearch from "~/Hooks/TvShows/useFetchTvShowSearch";
-import useFetchMovieSearch from "~/Hooks/Movies/useFetchMovieSearch";
-import useFetchSearchNews from "~/Hooks/News/useFetchSearchNews";
-import ScreenSpinner from "~/Components/Spinner/ScreenSpinner";
-import HttpError from "~/Components/HttpError/HttpError";
-import VerticalSwipeable from "~/Components/Swipeables/Vertical/VerticalSwipeable";
-import useSearchArtist from "~/Hooks/Music/Search/useSearchArtist";
-import useSearchAlbum from "~/Hooks/Music/Search/useSearchAlbum";
-import useSearchTrack from "~/Hooks/Music/Search/useSearchTrack";
-import useSearchPlaylist from "~/Hooks/Music/Search/useSearchPlaylist";
+import HttpError from "~/src/Components/HttpError/HttpError";
+import ScreenSpinner from "~/src/Components/Spinner/ScreenSpinner";
+import VerticalSwipeable from "~/src/Components/Swipeables/Vertical/VerticalSwipeable";
+import useFetchMovieSearch from "~/src/Hooks/Movies/useFetchMovieSearch";
+import useSearchAlbum from "~/src/Hooks/Music/Search/useSearchAlbum";
+import useSearchArtist from "~/src/Hooks/Music/Search/useSearchArtist";
+import useSearchPlaylist from "~/src/Hooks/Music/Search/useSearchPlaylist";
+import useSearchTrack from "~/src/Hooks/Music/Search/useSearchTrack";
+import useFetchSearchNews from "~/src/Hooks/News/useFetchSearchNews";
+import useFetchTvShowSearch from "~/src/Hooks/TvShows/useFetchTvShowSearch";
+import { medium, white } from "~/src/Theme/Apptheme";
+import { IContentType } from "~/src/Types/Shared/Types";
+import { regular } from "~/src/Utils/Constants";
 
 type Props = {
   contentType: IContentType;

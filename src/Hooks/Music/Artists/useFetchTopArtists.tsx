@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAppSelector, useAppDispatch } from "~/Redux/Hooks/Hooks";
-import { addTopArtists } from "~/Redux/Slices/Music/Artists/TopArtistsSlice";
+
 import { refetchSpotifyTokenAfterExpiration } from "../Playlists/RefetchToken/RefetchToken";
+import { useAppSelector, useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { addTopArtists } from "~/src/Redux/Slices/Music/Artists/TopArtistsSlice";
 
 const useFetchTopArtists = () => {
   const top25ArtistsIdsString =
