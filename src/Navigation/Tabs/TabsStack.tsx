@@ -1,45 +1,63 @@
-import {
-  Alert,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { Alert, StyleSheet, useWindowDimensions, View } from "react-native";
 import React from "react";
 import { Tabs, useRouter, useSegments } from "expo-router";
 
 import Icons from "./Icons/Icons";
 import Label from "./Labels/Labels";
-import Logout from "~/src/Components/Alerts/Logout";
 import HeaderIcon from "~/src/Components/HeaderIcon/HeaderIcon";
 import useGetSpotifyToken from "~/src/Hooks/Music/useGetSpotifyToken";
 import { appTheme, background } from "~/src/Theme/Apptheme";
 import { IReactNoPropElement } from "~/src/Types/ReactComponents/Types";
 import { expoSecureValueKeyNames, bold, tabsMenu } from "~/src/Utils/Constants";
-import { getSecureValue } from "~/src/Utils/Funcs";
+import { saveSecureValue } from "~/src/Utils/Funcs";
+import { useAppDispatch, useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import { updateAccessToken } from "~/src/Redux/Slices/AccessToken/AccessTokenSlice";
 
 const TabsStack: IReactNoPropElement = () => {
   const { width } = useWindowDimensions();
   const router = useRouter();
   const segments = useSegments();
+  const accessToken = useAppSelector((state) => state.accessToken.value);
+  const dispatch = useAppDispatch()
   useGetSpotifyToken();
-  const handleProfileClick = () => {
-    getSecureValue(expoSecureValueKeyNames.accessToken)
-      .then((value: string | null) => {
-        if (value) {
-          console.log("accessToken", value);
-          Logout();
-        } else router.push("/login");
+  const handleLogout = () => {
+    saveSecureValue(expoSecureValueKeyNames.accessToken, "")
+      .then((_data) => {
+        dispatch(updateAccessToken(null));
       })
       .catch((e) => {
-        console.log("get error", e);
-        Alert.alert("AccessToken Retrivial Error", "please retry again later");
+        console.log("error", e);
+        Alert.alert("AccessToken Saving Error", "please retry again");
       });
+  }
+  const handleProfileClick = () => {
+    if (accessToken) {
+      Alert.alert(
+        "Logout",
+        "Are you sure you want to logout?",
+        [
+          {
+            text: "Ok",
+            onPress: handleLogout,
+            style: "cancel",
+          },
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: true,
+          userInterfaceStyle: "dark",
+        }
+      )
+    } else router.push("/login");
   };
-  
+
   return (
     <View style={styles.container}>
       <Tabs
-      safeAreaInsets={{bottom:0}}
+        safeAreaInsets={{ bottom: 0 }}
         screenOptions={{
           tabBarActiveTintColor: appTheme.colors.white,
           tabBarStyle: styles.tabStyles,
@@ -66,7 +84,7 @@ const TabsStack: IReactNoPropElement = () => {
           headerStyle: {
             borderTopColor: appTheme.colors.background,
             backgroundColor: appTheme.colors.background,
-            borderBottomColor:background
+            borderBottomColor: background,
           },
           headerRightContainerStyle: {
             paddingRight: 15,

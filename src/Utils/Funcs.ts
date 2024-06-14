@@ -1,11 +1,11 @@
 import * as SecureStore from "expo-secure-store";
-import { ITracksItem } from "~/Types/Apis/Music/Album/Album";
-import { INews } from "~/Types/Apis/News/News";
+import { ITracksItem } from "../Types/Apis/Music/Album/Album";
+import { INews } from "../Types/Apis/News/News";
 import {
+  ITrackSummary,
   IArtistSummary,
   INumberOrNull,
-  ITrackSummary,
-} from "~/Types/Shared/Types";
+} from "../Types/Shared/Types";
 
 export const saveSecureValue = async (key: string, value: string) => {
   await SecureStore.setItemAsync(key, value);

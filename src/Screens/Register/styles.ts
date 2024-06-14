@@ -46,6 +46,10 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     marginBottom: 20,
   },
+  linkContainer: {
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
   registerText: {
     color: appTheme.colors.white,
     fontFamily: regular,

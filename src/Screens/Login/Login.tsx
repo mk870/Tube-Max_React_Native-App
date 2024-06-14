@@ -1,25 +1,26 @@
 import {
   ScrollView,
   Text,
+  TouchableOpacity,
   useWindowDimensions,
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import ScreenWrapper from "../../HOCs/ScreenWrapper";
 import InputField from "../../Components/InputField/InputField";
 import CustomButton from "../../Components/CustomButton/CustomButton";
-import { expoSecureValueKeyNames } from "../../Utils/Constants";
 import {
   emailValidator,
   passwordGuideLines,
   passwordValidator,
-  saveSecureValue,
 } from "../../Utils/Funcs";
 import { IUserLogin } from "../../Types/Auth/Types";
 import { IVoidFunc } from "../../Types/Shared/Types";
 import { styles } from "./styles";
+import { loginRequest } from "~/src/HttpServices/Auth/LoginRequest";
+import AuthError from "~/src/HttpServices/Auth/AuthError";
 
 const login = () => {
   const { width } = useWindowDimensions();
@@ -28,6 +29,7 @@ const login = () => {
     password: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<string>("");
   const [isPasswordValidationError, setIsPasswordValidationError] =
     useState<boolean>(false);
   const [isEmailValidationError, setIsEmailValidationError] =
@@ -53,17 +55,15 @@ const login = () => {
           Email: loginUserData.email,
           Password: loginUserData.password,
         };
-        //api call
-        saveSecureValue(expoSecureValueKeyNames.accessToken, "hello")
-          .then((data) => {
-            console.log("success", data);
-          })
-          .catch((e) => {
-            console.log("error", e);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
+        loginRequest(
+          {
+            Email: loginUserData.email,
+            Password: loginUserData.password,
+          },
+          setIsLoading,
+          setLoginError,
+          () => router.replace("/movies")
+        );
         setLoginUserData({ ...loginUserData, email: "", password: "" });
       } else if (loginUserData.email === "" && loginUserData.password !== "") {
         setIsEmailValidationError(true);
@@ -144,9 +144,12 @@ const login = () => {
         <View style={btnWrapper}>
           <View style={registerContainer}>
             <Text style={registerText}>you don't have an account? </Text>
-            <Link href={"/register"} asChild>
+            <TouchableOpacity
+              onPress={() => router.push("/register")}
+              style={styles.linkContainer}
+            >
               <Text style={registerLink}>please register here</Text>
-            </Link>
+            </TouchableOpacity>
           </View>
           <CustomButton
             title={isLoading ? "loading" : "Login"}
@@ -155,6 +158,12 @@ const login = () => {
           />
         </View>
       </View>
+      {loginError && (
+        <AuthError
+          handleCancel={() => setLoginError("")}
+          message={loginError}
+        />
+      )}
     </ScrollView>
   );
 };
