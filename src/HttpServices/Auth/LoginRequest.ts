@@ -13,6 +13,7 @@ export const loginRequest = (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setError: React.Dispatch<React.SetStateAction<string>>,
   handleNavigate: () => void,
+  updateAccessToken: (accessToken: string) => void
 ) => {
   setIsLoading(true);
   axios
@@ -20,6 +21,7 @@ export const loginRequest = (
     .then((res) => {
       saveSecureValue(expoSecureValueKeyNames.accessToken, res.data.accessToken)
         .then((_data) => {
+          updateAccessToken(res.data.accessToken);
           handleNavigate();
         })
         .catch((e) => {

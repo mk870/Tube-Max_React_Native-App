@@ -20,7 +20,7 @@ import CustomButton from "../../Components/CustomButton/CustomButton";
 import InputField from "../../Components/InputField/InputField";
 import { styles } from "./styles";
 import { registrationRequest } from "~/src/HttpServices/Auth/RegistrationRequest";
-import AuthError from "~/src/HttpServices/Auth/AuthError";
+import ServerError from "~/src/Components/HttpError/ServerError";
 
 const register = () => {
   const [signUpData, setSignUpData] = useState<IUserRegister>({
@@ -218,6 +218,7 @@ const register = () => {
       contentContainerStyle={{
         alignItems: "center",
         justifyContent: "flex-start",
+        paddingTop:30
       }}
     >
       <View style={[inputWrapper, { width: width > 700 ? 600 : "95%" }]}>
@@ -305,9 +306,10 @@ const register = () => {
         </View>
       </View>
       {registrationError && (
-        <AuthError
+        <ServerError
           message={registrationError}
           handleCancel={() => setRegistrationError("")}
+          isModalVisible={registrationError ? true : false}
         />
       )}
     </ScrollView>

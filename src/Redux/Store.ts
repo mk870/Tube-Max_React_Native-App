@@ -51,7 +51,7 @@ export const store = configureStore({
     moviesNews: moviesNewsSlice.reducer,
     tvShowsNews: tvShowsNewsSlice.reducer,
     entertainmentNews: entertainmentSlice.reducer,
-    accessToken: accessTokenSlice.reducer
+    accessToken: accessTokenSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

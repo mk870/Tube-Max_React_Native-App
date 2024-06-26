@@ -15,15 +15,15 @@ export const registrationRequest = (
   handleNavigate:(id:number)=>void
 ) => {
   axios
-    .post(`${backendUrl}user-mobil`, userData)
+    .post(`${backendUrl}user-mobile`, userData)
     .then((res) => {
-      console.log(res.data);
       handleNavigate(res.data.userId);
     })
     .catch((e) => {
+      console.log("error",e)
       if (e.response?.data?.error !== "") {
         setError(e.response?.data?.error);
-      } else setError(e.message);
+      } else setError("something went wrong");
     })
     .finally(() => setIsLoading(false));
 };

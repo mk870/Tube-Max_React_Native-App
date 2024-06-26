@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-import { appTheme, darkGray } from "~/src/Theme/Apptheme";
+import { appTheme } from "~/src/Theme/Apptheme";
 import { bold, medium, regular } from "~/src/Utils/Constants";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 70,
   },
   text: {
     fontFamily: bold,

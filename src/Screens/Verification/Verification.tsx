@@ -13,9 +13,11 @@ import { IStringOrNull } from "~/src/Types/Shared/Types";
 import { styles } from "./styles";
 import { verificationRequest } from "~/src/HttpServices/Auth/VerificationRequest";
 import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
-import AuthError from "~/src/HttpServices/Auth/AuthError";
 import ScreenSpinner from "~/src/Components/Spinner/ScreenSpinner";
 import { resendVerificationCodeRequest } from "~/src/HttpServices/Auth/ResendVerificationCodeRequest";
+import { useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { updateAccessToken } from "~/src/Redux/Slices/AccessToken/AccessTokenSlice";
+import ServerError from "~/src/Components/HttpError/ServerError";
 
 const Verification = () => {
   const [verificationCode, setVerificationCode] = useState<string>("");
@@ -25,6 +27,7 @@ const Verification = () => {
   const [typingError, setTypingError] = useState<IStringOrNull>(null);
   const [verificationError, setVerificationError] = useState<string>("");
   const { userId } = useLocalSearchParams();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const handleNavigate = () => router.replace("/movies");
   const processedUserId = userId
@@ -43,7 +46,8 @@ const Verification = () => {
         data,
         setIsVerificationLoading,
         setVerificationError,
-        handleNavigate
+        handleNavigate,
+        (accessToken: string) => dispatch(updateAccessToken(accessToken))
       );
       setVerificationCode("");
     }
@@ -105,9 +109,10 @@ const Verification = () => {
             )}
           </TouchableOpacity>
           {verificationError && (
-            <AuthError
+            <ServerError
               handleCancel={handleAlertCancel}
               message={verificationError}
+              isModalVisible={verificationError ? true : false}
             />
           )}
         </View>

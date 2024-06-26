@@ -20,7 +20,9 @@ import { IUserLogin } from "../../Types/Auth/Types";
 import { IVoidFunc } from "../../Types/Shared/Types";
 import { styles } from "./styles";
 import { loginRequest } from "~/src/HttpServices/Auth/LoginRequest";
-import AuthError from "~/src/HttpServices/Auth/AuthError";
+import { useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { updateAccessToken } from "~/src/Redux/Slices/AccessToken/AccessTokenSlice";
+import ServerError from "~/src/Components/HttpError/ServerError";
 
 const login = () => {
   const { width } = useWindowDimensions();
@@ -35,6 +37,7 @@ const login = () => {
   const [isEmailValidationError, setIsEmailValidationError] =
     useState<boolean>(false);
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const {
     container,
     inputWrapper,
@@ -62,7 +65,8 @@ const login = () => {
           },
           setIsLoading,
           setLoginError,
-          () => router.replace("/movies")
+          () => router.replace("/movies"),
+          (accessToken: string) => dispatch(updateAccessToken(accessToken))
         );
         setLoginUserData({ ...loginUserData, email: "", password: "" });
       } else if (loginUserData.email === "" && loginUserData.password !== "") {
@@ -98,6 +102,7 @@ const login = () => {
       contentContainerStyle={{
         alignItems: "center",
         justifyContent: "flex-start",
+        paddingTop:70
       }}
     >
       <View style={[inputWrapper, { width: width > 700 ? 600 : "95%" }]}>
@@ -159,9 +164,10 @@ const login = () => {
         </View>
       </View>
       {loginError && (
-        <AuthError
+        <ServerError
           handleCancel={() => setLoginError("")}
           message={loginError}
+          isModalVisible={loginError ? true : false}
         />
       )}
     </ScrollView>

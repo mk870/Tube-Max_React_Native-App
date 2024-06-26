@@ -16,7 +16,6 @@ const RootRoute: IReactNoPropElement = () => {
   getSecureValue(expoSecureValueKeyNames.accessToken)
     .then((value: string | null) => {
       if (value) {
-        console.log("accessToken", value);
         dispatch(updateAccessToken(value));
         router.replace("/movies");
       } else {
