@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const Movies = (props: Props) => {
+const TrackCard = (props: Props) => {
   return (
     <View>
-      <Text>Movies</Text>
+      <Text>TrackCard</Text>
     </View>
   )
 }
 
-export default Movies
+export default TrackCard
 
 const styles = StyleSheet.create({})

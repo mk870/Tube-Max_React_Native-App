@@ -1,25 +1,28 @@
 import {
   ScrollView,
   Text,
+  TouchableOpacity,
   useWindowDimensions,
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import ScreenWrapper from "../../HOCs/ScreenWrapper";
 import InputField from "../../Components/InputField/InputField";
 import CustomButton from "../../Components/CustomButton/CustomButton";
-import { expoSecureValueKeyNames } from "../../Utils/Constants";
 import {
   emailValidator,
   passwordGuideLines,
   passwordValidator,
-  saveSecureValue,
 } from "../../Utils/Funcs";
 import { IUserLogin } from "../../Types/Auth/Types";
 import { IVoidFunc } from "../../Types/Shared/Types";
 import { styles } from "./styles";
+import { loginRequest } from "~/src/HttpServices/Auth/LoginRequest";
+import { useAppDispatch } from "~/src/Redux/Hooks/Hooks";
+import { updateAccessToken } from "~/src/Redux/Slices/AccessToken/AccessTokenSlice";
+import ServerError from "~/src/Components/HttpError/ServerError";
 
 const login = () => {
   const { width } = useWindowDimensions();
@@ -28,11 +31,13 @@ const login = () => {
     password: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<string>("");
   const [isPasswordValidationError, setIsPasswordValidationError] =
     useState<boolean>(false);
   const [isEmailValidationError, setIsEmailValidationError] =
     useState<boolean>(false);
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const {
     container,
     inputWrapper,
@@ -49,21 +54,16 @@ const login = () => {
     if (!isEmailValidationError && !isPasswordValidationError) {
       setIsLoading(true);
       if (loginUserData.email !== "" && loginUserData.password !== "") {
-        const userData = {
-          Email: loginUserData.email,
-          Password: loginUserData.password,
-        };
-        //api call
-        saveSecureValue(expoSecureValueKeyNames.accessToken, "hello")
-          .then((data) => {
-            console.log("success", data);
-          })
-          .catch((e) => {
-            console.log("error", e);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
+        loginRequest(
+          {
+            Email: loginUserData.email,
+            Password: loginUserData.password,
+          },
+          setIsLoading,
+          setLoginError,
+          () => router.replace("/movies"),
+          (accessToken: string) => dispatch(updateAccessToken(accessToken))
+        );
         setLoginUserData({ ...loginUserData, email: "", password: "" });
       } else if (loginUserData.email === "" && loginUserData.password !== "") {
         setIsEmailValidationError(true);
@@ -98,6 +98,7 @@ const login = () => {
       contentContainerStyle={{
         alignItems: "center",
         justifyContent: "flex-start",
+        paddingTop:70
       }}
     >
       <View style={[inputWrapper, { width: width > 700 ? 600 : "95%" }]}>
@@ -144,9 +145,12 @@ const login = () => {
         <View style={btnWrapper}>
           <View style={registerContainer}>
             <Text style={registerText}>you don't have an account? </Text>
-            <Link href={"/register"} asChild>
+            <TouchableOpacity
+              onPress={() => router.push("/register")}
+              style={styles.linkContainer}
+            >
               <Text style={registerLink}>please register here</Text>
-            </Link>
+            </TouchableOpacity>
           </View>
           <CustomButton
             title={isLoading ? "loading" : "Login"}
@@ -155,6 +159,13 @@ const login = () => {
           />
         </View>
       </View>
+      {loginError && (
+        <ServerError
+          handleCancel={() => setLoginError("")}
+          message={loginError}
+          isModalVisible={loginError ? true : false}
+        />
+      )}
     </ScrollView>
   );
 };

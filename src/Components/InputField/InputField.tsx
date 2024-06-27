@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { Zocial, Feather, Ionicons } from "@expo/vector-icons";
+import { Fontisto, Feather, Ionicons, Octicons } from "@expo/vector-icons";
 
 import { appTheme } from "../../Theme/Apptheme";
 import { ContentType } from "./Types/Types";
@@ -48,13 +48,17 @@ const InputField: React.FC<Props> = ({
       else return false;
     } else return false;
   };
-
+  const keyboardAppearance = () => {
+    if (type === "emailAddress") return "email-address";
+    else if (type === "number") return "number-pad";
+    else return "default";
+  };
   return (
     <View style={styles(width, height).container}>
       {label && <Text style={styles(width, height).labelText}>{label}</Text>}
       <View style={styles(width, height).inputWrapper}>
         {type === "emailAddress" && (
-          <Zocial
+          <Fontisto
             name="email"
             size={iconSize}
             color={iconColor}
@@ -90,7 +94,7 @@ const InputField: React.FC<Props> = ({
         )}
         {type === "givenName" && (
           <Ionicons
-            name="person"
+            name="person-outline"
             size={iconSize}
             color={iconColor}
             style={styles(width, height).icon}
@@ -98,7 +102,15 @@ const InputField: React.FC<Props> = ({
         )}
         {type === "familyName" && (
           <Ionicons
-            name="people"
+            name="people-outline"
+            size={iconSize}
+            color={iconColor}
+            style={styles(width, height).icon}
+          />
+        )}
+        {label === "Code" && (
+          <Octicons
+            name="verified"
             size={iconSize}
             color={iconColor}
             style={styles(width, height).icon}
@@ -114,7 +126,7 @@ const InputField: React.FC<Props> = ({
           placeholder={placeHolder}
           textContentType={contentType}
           placeholderTextColor={"gray"}
-          keyboardType={type === "emailAddress" ? "email-address" : "default"}
+          keyboardType={keyboardAppearance()}
           cursorColor={appTheme.colors.white}
           autoCorrect={false}
           enterKeyHint={"enter"}

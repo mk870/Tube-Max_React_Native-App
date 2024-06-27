@@ -6,7 +6,6 @@ import { bold, medium, regular } from "~/src/Utils/Constants";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
   },
   text: {
     fontFamily: bold,
@@ -45,6 +44,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     marginBottom: 20,
+  },
+  linkContainer: {
+    paddingVertical: 5,
+    borderRadius: 5,
   },
   registerText: {
     color: appTheme.colors.white,

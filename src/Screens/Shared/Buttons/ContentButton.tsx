@@ -5,22 +5,35 @@ import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { white, darkGray, small } from "~/src/Theme/Apptheme";
 import { IVoidFunc } from "~/src/Types/Shared/Types";
 import { regular } from "~/src/Utils/Constants";
+import ButtonSpinner from "~/src/Components/Spinner/ButtonSpinner";
 
 type Props = {
   title: string;
-  type: "play" | "add";
+  type: "play" | "add" | "loading";
   onPressFunc: IVoidFunc;
+  disabled?: boolean;
 };
 
-const ContentButton: React.FC<Props> = ({ title, type, onPressFunc }) => {
+const ContentButton: React.FC<Props> = ({
+  title,
+  type,
+  onPressFunc,
+  disabled,
+}) => {
   const iconSize = 20;
   return (
     <TouchableOpacity
       onPress={onPressFunc}
-      style={[styles.container, { width: type === "add" ? 150 : 90 }]}
+      style={[
+        styles.container,
+        { width: type === "add" || type === "loading" ? 150 : 90 },
+      ]}
+      disabled={disabled}
     >
       {type === "add" ? (
         <AntDesign name="plus" size={iconSize} color={white} />
+      ) : type === "loading" ? (
+        <ButtonSpinner />
       ) : (
         <Ionicons name="play-outline" size={iconSize} color={white} />
       )}
