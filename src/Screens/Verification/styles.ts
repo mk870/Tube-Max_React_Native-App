@@ -45,7 +45,9 @@ export const styles = StyleSheet.create({
   linkContainer: {
     backgroundColor: lightPrimary,
     paddingVertical: 8,
-    paddingHorizontal: 10,
+    width: 90,
     borderRadius: 5,
+    alignItems:"center",
+    justifyContent:"center"
   },
 });

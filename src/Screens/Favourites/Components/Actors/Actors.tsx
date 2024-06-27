@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const tvShows = (props: Props) => {
+const Actors = (props: Props) => {
   return (
     <View>
-      <Text>tvShows</Text>
+      <Text style={{color:"white"}}>Actors</Text>
     </View>
   )
 }
 
-export default tvShows
+export default Actors
 
 const styles = StyleSheet.create({})

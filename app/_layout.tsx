@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { SplashScreen } from "expo-router";
 import { Provider } from "react-redux";
-import 'react-native-reanimated'
-import 'react-native-gesture-handler'
+import { RootSiblingParent } from "react-native-root-siblings";
+import "react-native-reanimated";
+import "react-native-gesture-handler";
 
 import { store } from "~/src/Redux/Store";
 import TabsStack from "~/src/Navigation/Tabs/TabsStack";
-
 
 const RootLayout: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -26,7 +26,9 @@ const RootLayout: React.FC = () => {
   else SplashScreen.hideAsync();
   return (
     <Provider store={store}>
-      <TabsStack />
+      <RootSiblingParent>
+        <TabsStack />
+      </RootSiblingParent>
     </Provider>
   );
 };

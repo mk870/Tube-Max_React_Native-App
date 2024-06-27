@@ -35,27 +35,6 @@ const FavoritesStack = () => {
           animation: stackAnimation
         }}
       />
-      <Stack.Screen
-        name="favorites/movies"
-        options={{
-          title: "fav movies",
-          animation: stackAnimation
-        }}
-      />
-      <Stack.Screen
-        name="favorites/tracks"
-        options={{
-          title: "Actor",
-          animation: stackAnimation
-        }}
-      />
-      <Stack.Screen
-        name="favorites/tvShows"
-        options={{
-          title: "Actors",
-          animation: stackAnimation
-        }}
-      />
     </Stack>
   );
 };

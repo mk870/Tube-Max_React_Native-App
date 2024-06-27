@@ -54,10 +54,6 @@ const login = () => {
     if (!isEmailValidationError && !isPasswordValidationError) {
       setIsLoading(true);
       if (loginUserData.email !== "" && loginUserData.password !== "") {
-        const userData = {
-          Email: loginUserData.email,
-          Password: loginUserData.password,
-        };
         loginRequest(
           {
             Email: loginUserData.email,

@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const Tracks = (props: Props) => {
+const Albums = (props: Props) => {
   return (
     <View>
-      <Text>Tracks</Text>
+      <Text style={{color:"white"}}>Albums</Text>
     </View>
   )
 }
 
-export default Tracks
+export default Albums
 
 const styles = StyleSheet.create({})

@@ -1,15 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import millify from "millify";
+import axios from "axios";
 
 import ContentButton from "../../../../Shared/Buttons/ContentButton";
 import Genres from "../Genres/Genres";
 import PlayContentButtons from "../../../../Shared/Buttons/PlayContentButtons/PlayContentButtons";
 import { white, appTheme, small, medium } from "~/src/Theme/Apptheme";
 import { IMovie } from "~/src/Types/Apis/Movies/SingleMovie";
-import { bold, regular } from "~/src/Utils/Constants";
-import { timeConverter } from "~/src/Utils/Funcs";
+import { backendUrl, bold, regular } from "~/src/Utils/Constants";
+import { numberToString, timeConverter } from "~/src/Utils/Funcs";
+import { useAppSelector } from "~/src/Redux/Hooks/Hooks";
+import ToasterNotification from "~/src/Components/ToasterNotification/ToasterNotification";
+import ServerError from "~/src/Components/HttpError/ServerError";
 
 type Props = {
   movie: IMovie;
@@ -19,17 +23,39 @@ const Details: React.FC<Props> = ({
   movie: { release_date, vote_average, runtime, budget, revenue, title },
   movie,
 }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [serverError, setServerError] = useState<string>("");
+  const [response, setResponse] = useState<string | null>(null);
+  const accessToken = useAppSelector((state) => state.accessToken);
   const iconSize = 22;
   const getYear = (releaseDate: string) => {
     return releaseDate.split("-")[0];
   };
-  const fadeIn = {
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-    },
+  const handleAddToFavorites = () => {
+    setIsLoading(true);
+    const data = {
+      Title: title ? title : "",
+      Release_date: release_date ? release_date : "",
+      Tmdb_id: movie.id,
+      Poster: movie.poster_path ? movie.poster_path : "",
+      Rating: vote_average ? numberToString(vote_average) : "",
+    };
+    axios
+      .post(`${backendUrl}movie`, data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => setResponse(res.data))
+      .catch((e) => {
+        console.log(e);
+        if (e.response?.data?.error !== "") {
+          setServerError(e.response?.data?.error);
+        } else setServerError("oops something went wrong");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
   return (
     <View style={styles.container}>
@@ -79,11 +105,23 @@ const Details: React.FC<Props> = ({
           </Text>
         )}
         <ContentButton
-          title="add to favorites"
-          onPressFunc={() => console.log("hie")}
-          type="add"
+          title={isLoading ? "" : "Add to favorites"}
+          onPressFunc={handleAddToFavorites}
+          type={isLoading ? "loading" : "add"}
+          disabled={isLoading ? true : false}
         />
         <PlayContentButtons type="movie" queryString={title ? title : ""} />
+        <ToasterNotification
+          isVisible={response ? true : false}
+          message={response ? response : ""}
+        />
+        {serverError && (
+          <ServerError
+            isModalVisible={serverError ? true : false}
+            message={serverError}
+            handleCancel={() => setServerError("")}
+          />
+        )}
       </View>
     </View>
   );
